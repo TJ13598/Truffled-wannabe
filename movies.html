@@ -1,1 +1,672 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Movies</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
+    html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+    }
+
+    body {
+        background-color: #081716;
+        background-image:
+            linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+        background-size: 50px 50px;
+        color: #ffffff;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* HEADER */
+
+    .header {
+        text-align: center;
+        padding-top: 70px;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 70px;
+        line-height: 1;
+        font-weight: 800;
+    }
+
+    .movie-count {
+        margin-top: 25px;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    /* SEARCH */
+
+    .controls {
+        width: 800px;
+        max-width: calc(100% - 40px);
+        margin: 27px auto 58px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .search {
+        flex: 1;
+        height: 53px;
+        border: 0;
+        outline: none;
+        border-radius: 9px;
+        background: #192e2d;
+        color: white;
+        padding: 0 20px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .search::placeholder {
+        color: #a9b6b5;
+        font-style: italic;
+    }
+
+    .category {
+        width: 170px;
+        height: 53px;
+        border: 0;
+        outline: none;
+        border-radius: 20px;
+        background: #192e2d;
+        color: white;
+        padding: 0 15px;
+        font-size: 15px;
+    }
+
+    /* MOVIE GRID */
+
+    .movies {
+        width: calc(100% - 250px);
+        max-width: 1080px;
+        margin-left: 100px;
+        margin-right: 130px;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0;
+        padding-bottom: 80px;
+    }
+
+    /* MOVIE CARD */
+
+    .movie {
+        display: block;
+        color: white;
+        text-decoration: none;
+        min-width: 0;
+    }
+
+    .movie-image {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 2 / 3;
+        overflow: hidden;
+        background: #172827;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .movie:hover .movie-image {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .movie-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* PLACEHOLDER */
+
+    .placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: #ebe3d8;
+        color: #777;
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        z-index: 1;
+    }
+
+    .placeholder span {
+        margin-top: 10px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    /* MOVIE NAME */
+
+    .movie-name {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 25px;
+        padding: 0 5px;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar {
+        position: fixed;
+        top: 139px;
+        right: 18px;
+        width: 80px;
+        padding: 18px 0;
+        background: #142a29;
+        border-radius: 10px;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .side-button {
+        width: 58px;
+        height: 58px;
+        margin: 3px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+        font-size: 27px;
+        transition: background 0.2s ease;
+    }
+
+    .side-button:hover {
+        background: #203b39;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1200px) {
+        .movies {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            width: calc(100% - 220px);
+            margin-left: 40px;
+            margin-right: 140px;
+        }
+    }
+
+    @media (max-width: 850px) {
+        .header h1 {
+            font-size: 55px;
+        }
+
+        .movies {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            width: calc(100% - 40px);
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: auto;
+            bottom: 15px;
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            width: auto;
+            padding: 8px 10px;
+            flex-direction: row;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .header {
+            padding-top: 45px;
+        }
+
+        .header h1 {
+            font-size: 45px;
+        }
+
+        .controls {
+            flex-direction: column;
+        }
+
+        .category {
+            width: 100%;
+        }
+
+        .movies {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+</style>
+
+</head> <body>
+<!-- SIDEBAR -->
+
+<nav class="sidebar">
+
+    <a href="index.html" class="side-button" title="Home">
+        🌐
+    </a>
+
+    <a href="index.html" class="side-button" title="Games">
+        🎮
+    </a>
+
+    <a href="movies.html" class="side-button" title="Movies">
+        🎥
+    </a>
+
+    <a href="tools.html" class="side-button" title="Tools">
+        🛠️
+    </a>
+
+    <a href="community.html" class="side-button" title="Community">
+        📱
+    </a>
+
+    <a href="settings.html" class="side-button" title="Settings">
+        💭
+    </a>
+
+</nav>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <h1>Movies</h1>
+
+    <div class="movie-count" id="movieCount">
+        Showing 10 movies
+    </div>
+
+</header>
+
+
+<!-- SEARCH -->
+
+<div class="controls">
+
+    <input
+        id="search"
+        class="search"
+        type="text"
+        placeholder="Search movies"
+    >
+
+    <select id="category" class="category">
+
+        <option value="all">all</option>
+        <option value="action">Action</option>
+        <option value="comedy">Comedy</option>
+        <option value="horror">Horror</option>
+        <option value="scifi">Sci-Fi</option>
+        <option value="animation">Animation</option>
+        <option value="drama">Drama</option>
+
+    </select>
+
+</div>
+
+
+<!-- MOVIES -->
+
+<main class="movies">
+
+    <a href="movies/movie1.html"
+       class="movie"
+       data-title="Movie One"
+       data-category="action">
+
+        <div class="movie-image">
+
+            <div class="placeholder">
+                🎬
+                <span>Movie One</span>
+            </div>
+
+            <img
+                src="movie_photos/movie1.jpg"
+                alt="Movie One"
+                onerror="this.style.display='none'"
+            >
+
+        </div>
+
+        <div class="movie-name">
+            Movie One
+        </div>
+
+    </a>
+
+
+    <a href="movies/movie2.html"
+       class="movie"
+       data-title="Movie Two"
+       data-category="comedy">
+
+        <div class="movie-image">
+
+            <div class="placeholder">
+                🎬
+                <span>Movie Two</span>
+            </div>
+
+            <img
+                src="movie_photos/movie2.jpg"
+                alt="Movie Two"
+                onerror="this.style.display='none'"
+            >
+
+        </div>
+
+        <div class="movie-name">
+            Movie Two
+        </div>
+
+    </a>
+
+
+    <a href="movies/movie3.html"
+       class="movie"
+       data-title="Movie Three"
+       data-category="horror">
+
+        <div class="movie-image">
+
+            <div class="placeholder">
+                🎬
+                <span>Movie Three</span>
+            </div>
+
+            <img
+                src="movie_photos/movie3.jpg"
+                alt="Movie Three"
+                onerror="this.style.display='none'"
+            >
+
+        </div>
+
+        <div class="movie-name">
+            Movie Three
+        </div>
+
+    </a>
+
+
+    <a href="movies/movie4.html"
+       class="movie"
+       data-title="Movie Four"
+       data-category="scifi">
+
+        <div class="movie-image">
+
+            <div class="placeholder">
+                🎬
+                <span>Movie Four</span>
+            </div>
+
+            <img
+                src="movie_photos/movie4.jpg"
+                alt="Movie Four"
+                onerror="this.style.display='none'"
+            >
+
+        </div>
+
+        <div class="movie-name">
+            Movie Four
+        </div>
+
+    </a>
+
+
+    <a href="movies/movie5.html"
+       class="movie"
+       data-title="Movie Five"
+       data-category="animation">
+
+        <div class="movie-image">
+
+            <div class="placeholder">
+                🎬
+                <span>Movie Five</span>
+            </div>
+
+            <img
+                src="movie_photos/movie5.jpg"
+                alt="Movie Five"
+                onerror="this.style.display='none'"
+            >
+
+        </div>
+
+        <div class="movie-name">
+            Movie Five
+        </div>
+
+    </a>
+
+
+    <a href="movies/movie6.html"
+       class="movie"
+       data-title="Movie Six"
+       data-category="drama">
+
+        <div class="movie-image">
+
+            <div class="placeholder">
+                🎬
+                <span>Movie Six</span>
+            </div>
+
+            <img
+                src="movie_photos/movie6.jpg"
+                alt="Movie Six"
+                onerror="this.style.display='none'"
+            >
+
+        </div>
+
+        <div class="movie-name">
+            Movie Six
+        </div>
+
+    </a>
+
+
+    <a href="movies/movie7.html"
+       class="movie"
+       data-title="Movie Seven"
+       data-category="action">
+
+        <div class="movie-image">
+
+            <div class="placeholder">
+                🎬
+                <span>Movie Seven</span>
+            </div>
+
+            <img
+                src="movie_photos/movie7.jpg"
+                alt="Movie Seven"
+                onerror="this.style.display='none'"
+            >
+
+        </div>
+
+        <div class="movie-name">
+            Movie Seven
+        </div>
+
+    </a>
+
+
+    <a href="movies/movie8.html"
+       class="movie"
+       data-title="Movie Eight"
+       data-category="comedy">
+
+        <div class="movie-image">
+
+            <div class="placeholder">
+                🎬
+                <span>Movie Eight</span>
+            </div>
+
+            <img
+                src="movie_photos/movie8.jpg"
+                alt="Movie Eight"
+                onerror="this.style.display='none'"
+            >
+
+        </div>
+
+        <div class="movie-name">
+            Movie Eight
+        </div>
+
+    </a>
+
+
+    <a href="movies/movie9.html"
+       class="movie"
+       data-title="Movie Nine"
+       data-category="horror">
+
+        <div class="movie-image">
+
+            <div class="placeholder">
+                🎬
+                <span>Movie Nine</span>
+            </div>
+
+            <img
+                src="movie_photos/movie9.jpg"
+                alt="Movie Nine"
+                onerror="this.style.display='none'"
+            >
+
+        </div>
+
+        <div class="movie-name">
+            Movie Nine
+        </div>
+
+    </a>
+
+
+    <a href="movies/movie10.html"
+       class="movie"
+       data-title="Movie Ten"
+       data-category="scifi">
+
+        <div class="movie-image">
+
+            <div class="placeholder">
+                🎬
+                <span>Movie Ten</span>
+            </div>
+
+            <img
+                src="movie_photos/movie10.jpg"
+                alt="Movie Ten"
+                onerror="this.style.display='none'"
+            >
+
+        </div>
+
+        <div class="movie-name">
+            Movie Ten
+        </div>
+
+    </a>
+
+</main>
+
+
+<!-- SEARCH + FILTER -->
+
+<script>
+
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const movies = document.querySelectorAll(".movie");
+    const movieCount = document.getElementById("movieCount");
+
+    function filterMovies() {
+
+        const searchText =
+            search.value.toLowerCase().trim();
+
+        const selectedCategory =
+            category.value;
+
+        let visibleMovies = 0;
+
+        movies.forEach(movie => {
+
+            const title =
+                movie.dataset.title.toLowerCase();
+
+            const movieCategory =
+                movie.dataset.category;
+
+            const matchesSearch =
+                title.includes(searchText);
+
+            const matchesCategory =
+                selectedCategory === "all" ||
+                movieCategory === selectedCategory;
+
+            if (matchesSearch && matchesCategory) {
+
+                movie.style.display = "block";
+
+                visibleMovies++;
+
+            } else {
+
+                movie.style.display = "none";
+
+            }
+
+        });
+
+        movieCount.textContent =
+            `Showing ${visibleMovies} movies`;
+    }
+
+    search.addEventListener(
+        "input",
+        filterMovies
+    );
+
+    category.addEventListener(
+        "change",
+        filterMovies
+    );
+
+</script>
+
+</body> </html>
