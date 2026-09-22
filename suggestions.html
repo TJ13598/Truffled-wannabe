@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suggestions</title>
+
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height:100%}
+body{
+    background-color:#081716;
+    background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:50px 50px;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+}
+.header{text-align:center;padding-top:70px}
+.header h1{margin:0;font-size:65px;font-weight:800}
+.header p{color:#a9b6b5;margin-top:20px}
+.form-box,.saved-box{
+    width:700px;
+    max-width:calc(100% - 40px);
+    margin:45px auto;
+    background:#142a29;
+    border-radius:15px;
+    padding:30px;
+}
+.form-box h2,.saved-box h2{margin-top:0}
+label{
+    display:block;
+    margin-top:18px;
+    margin-bottom:8px;
+    font-weight:700;
+}
+input,select,textarea{
+    width:100%;
+    border:0;
+    outline:none;
+    border-radius:8px;
+    background:#192e2d;
+    color:white;
+    padding:14px;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:15px;
+}
+input,select{height:50px}
+textarea{min-height:140px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#8f9d9b}
+.submit-button{
+    width:100%;
+    height:52px;
+    margin-top:25px;
+    border:0;
+    border-radius:9px;
+    background:#28504d;
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+.submit-button:hover{background:#32635f}
+#message{
+    text-align:center;
+    color:#79d4a3;
+    margin-top:15px;
+    min-height:20px;
+}
+.suggestion{
+    background:#192e2d;
+    border-radius:10px;
+    padding:18px;
+    margin-top:15px;
+}
+.suggestion-header{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:10px;
+}
+.suggestion-name{font-weight:700}
+.suggestion-date{color:#7f918f;font-size:12px}
+.suggestion-type{
+    display:inline-block;
+    background:#28504d;
+    border-radius:5px;
+    padding:4px 8px;
+    font-size:11px;
+    margin-bottom:10px;
+}
+.suggestion-text{
+    color:#d6dfde;
+    line-height:1.5;
+    white-space:pre-wrap;
+}
+.delete-button,.clear-button{
+    border:0;
+    border-radius:7px;
+    padding:9px 13px;
+    color:white;
+    cursor:pointer;
+    font-weight:700;
+}
+.delete-button{background:#713939;margin-top:12px}
+.clear-button{background:#713939;margin-bottom:10px}
+.empty{color:#8f9d9b;text-align:center;padding:20px}
+.sidebar{
+    position:fixed;
+    top:139px;
+    right:18px;
+    width:80px;
+    padding:18px 0;
+    background:#142a29;
+    border-radius:10px;
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.side-button{
+    width:58px;
+    height:58px;
+    margin:3px 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    color:white;
+    text-decoration:none;
+    font-size:27px;
+}
+.side-button:hover{background:#203b39}
+@media(max-width:850px){
+    .header h1{font-size:50px}
+    .sidebar{
+        top:auto;
+        bottom:15px;
+        left:50%;
+        right:auto;
+        transform:translateX(-50%);
+        width:auto;
+        padding:8px 10px;
+        flex-direction:row;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="sidebar">
+    <a href="index.html" class="side-button" title="Home">🌐</a>
+    <a href="index.html" class="side-button" title="Games">🎮</a>
+    <a href="movies.html" class="side-button" title="Movies">🎥</a>
+    <a href="vpn.html" class="side-button" title="VPN">🛡️</a>
+    <a href="suggestions.html" class="side-button" title="Suggestions">💡</a>
+</nav>
+
+<header class="header">
+    <h1>Suggestions</h1>
+    <p>Have an idea? Send it in.</p>
+</header>
+
+<section class="form-box">
+
+    <h2>Submit a Suggestion</h2>
+
+    <form id="suggestionForm">
+
+        <label for="name">Name</label>
+        <input
+            type="text"
+            id="name"
+            placeholder="Your name">
+
+        <label for="type">Suggestion Type</label>
+
+        <select id="type">
+            <option value="Website">Website</option>
+            <option value="Game">Game</option>
+            <option value="Movie">Movie</option>
+            <option value="Feature">Feature</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="suggestion">Suggestion</label>
+
+        <textarea
+            id="suggestion"
+            placeholder="Tell us your idea..."
+            required></textarea>
+
+        <button type="submit" class="submit-button">
+            Submit Suggestion
+        </button>
+
+        <div id="message"></div>
+
+    </form>
+
+</section>
+
+<section class="saved-box">
+
+    <h2>Saved Suggestions</h2>
+
+    <button
+        class="clear-button"
+        onclick="clearSuggestions()">
+        Clear All
+    </button>
+
+    <div id="suggestionList"></div>
+
+</section>
+
+<script>
+
+const form = document.getElementById("suggestionForm");
+const message = document.getElementById("message");
+const suggestionList = document.getElementById("suggestionList");
+
+function getSuggestions(){
+    return JSON.parse(
+        localStorage.getItem("suggestions") || "[]"
+    );
+}
+
+function saveSuggestions(suggestions){
+    localStorage.setItem(
+        "suggestions",
+        JSON.stringify(suggestions)
+    );
+}
+
+form.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const type =
+        document.getElementById("type").value;
+
+    const suggestion =
+        document.getElementById("suggestion").value.trim();
+
+    if(!suggestion){
+        return;
+    }
+
+    const suggestions = getSuggestions();
+
+    suggestions.unshift({
+        id: Date.now(),
+        name: name || "Anonymous",
+        type: type,
+        suggestion: suggestion,
+        date: new Date().toLocaleString()
+    });
+
+    saveSuggestions(suggestions);
+
+    form.reset();
+
+    message.textContent = "Suggestion saved!";
+
+    setTimeout(function(){
+        message.textContent = "";
+    },3000);
+
+    displaySuggestions();
+});
+
+function displaySuggestions(){
+
+    const suggestions = getSuggestions();
+
+    if(suggestions.length === 0){
+        suggestionList.innerHTML =
+            '<div class="empty">No suggestions yet.</div>';
+        return;
+    }
+
+    suggestionList.innerHTML = "";
+
+    suggestions.forEach(function(item){
+
+        const div = document.createElement("div");
+
+        div.className = "suggestion";
+
+        div.innerHTML = `
+            <div class="suggestion-header">
+                <div class="suggestion-name">
+                    ${escapeHTML(item.name)}
+                </div>
+
+                <div class="suggestion-date">
+                    ${escapeHTML(item.date)}
+                </div>
+            </div>
+
+            <div class="suggestion-type">
+                ${escapeHTML(item.type)}
+            </div>
+
+            <div class="suggestion-text">
+                ${escapeHTML(item.suggestion)}
+            </div>
+
+            <button
+                class="delete-button"
+                onclick="deleteSuggestion(${item.id})">
+                Delete
+            </button>
+        `;
+
+        suggestionList.appendChild(div);
+    });
+}
+
+function deleteSuggestion(id){
+
+    const suggestions =
+        getSuggestions().filter(
+            item => item.id !== id
+        );
+
+    saveSuggestions(suggestions);
+
+    displaySuggestions();
+}
+
+function clearSuggestions(){
+
+    if(confirm("Are you sure you want to delete all suggestions?")){
+
+        localStorage.removeItem("suggestions");
+
+        displaySuggestions();
+    }
+}
+
+function escapeHTML(text){
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+displaySuggestions();
+
+</script>
+
+</body>
+</html>
