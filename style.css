@@ -1,11 +1,11 @@
-/* =========================================
-   BASIC RESET
-========================================= */
+/* =========================================================
+   RESET
+   ========================================================= */
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 
@@ -17,12 +17,11 @@ html {
 body {
     min-height: 100vh;
 
-    background-color: #081716;
+    background-color: #091918;
 
-    color: #f5f7f7;
+    color: #ffffff;
 
     font-family:
-        Inter,
         Arial,
         Helvetica,
         sans-serif;
@@ -31,24 +30,27 @@ body {
 }
 
 
-/* =========================================
-   GRID BACKGROUND
-========================================= */
+/* =========================================================
+   BACKGROUND GRID
+   ========================================================= */
 
 body::before {
+
     content: "";
 
     position: fixed;
 
     inset: 0;
 
-    z-index: -1;
+    pointer-events: none;
 
     background-image:
+
         linear-gradient(
             rgba(255,255,255,0.025) 1px,
             transparent 1px
         ),
+
         linear-gradient(
             90deg,
             rgba(255,255,255,0.025) 1px,
@@ -57,121 +59,246 @@ body::before {
 
     background-size: 50px 50px;
 
-    pointer-events: none;
+    z-index: -1;
 }
 
 
-/* =========================================
-   MAIN AREA
-========================================= */
 
-main {
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+
+    position: fixed;
+
+    top: 139px;
+
+    right: 18px;
+
+    width: 80px;
+
+    height: 490px;
+
+    background: #142a29;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 20px 0;
+
+    z-index: 1000;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.15);
+}
+
+
+/* SIDEBAR BUTTON */
+
+.sidebar-button {
+
+    width: 58px;
+
+    height: 58px;
+
+    margin-bottom: 8px;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 28px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.sidebar-button:hover {
+
+    background: #203b3a;
+
+    transform: scale(1.06);
+
+}
+
+
+.sidebar-button.active {
+
+    background: #1d3735;
+
+}
+
+
+.sidebar-button span {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.page {
+
     width: calc(100% - 120px);
 
     max-width: 1200px;
 
-    margin: 0 auto;
+    margin-left: 100px;
 
-    padding: 70px 0 100px;
+    padding-bottom: 100px;
 }
 
 
-/* =========================================
-   HEADER
-========================================= */
 
-.page-header {
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+
     text-align: center;
 
-    margin-bottom: 58px;
+    padding-top: 70px;
+
+    margin-bottom: 25px;
 }
 
 
-.page-header h1 {
-    font-size: 68px;
+.header h1 {
+
+    font-size: 70px;
+
+    line-height: 1;
 
     font-weight: 800;
 
     letter-spacing: -3px;
-
-    margin-bottom: 15px;
 }
 
 
-.page-header p {
-    font-size: 17px;
+.header p {
+
+    margin-top: 24px;
+
+    font-size: 18px;
 
     font-weight: 600;
 
-    color: #f1f3f3;
-
-    margin-bottom: 27px;
+    color: #e7eeee;
 }
 
 
-/* =========================================
-   SEARCH / FILTER
-========================================= */
+
+/* =========================================================
+   SEARCH CONTROLS
+   ========================================================= */
 
 .controls {
+
+    width: 800px;
+
+    max-width: 100%;
+
+    margin: 0 auto 59px;
+
     display: flex;
 
-    justify-content: center;
-
     gap: 10px;
-
-    width: 100%;
 }
 
 
-.controls input {
-    width: min(620px, 60vw);
+.search-box {
+
+    flex: 1;
 
     height: 53px;
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    height: 100%;
 
     border: none;
 
     outline: none;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
-    padding: 0 20px;
-
-    background: #192d2d;
+    background: #192e2d;
 
     color: white;
 
+    padding: 0 25px;
+
     font-size: 16px;
+
+    text-align: center;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.search-box input::placeholder {
+
+    color: #a6b1b0;
 
     font-style: italic;
 }
 
 
-.controls input::placeholder {
-    color: #94a4a3;
-}
+.search-box input:focus {
 
+    background: #1d3534;
 
-.controls input:focus {
     box-shadow:
-        0 0 0 2px rgba(91, 150, 145, 0.35);
+        0 0 0 2px rgba(255,255,255,0.04);
 }
 
 
-.controls select {
+#categoryFilter {
+
     width: 170px;
 
     height: 53px;
+
+    padding: 0 18px;
 
     border: none;
 
     outline: none;
 
-    border-radius: 18px;
+    border-radius: 19px;
 
-    padding: 0 18px;
-
-    background: #192d2d;
+    background: #192e2d;
 
     color: white;
 
@@ -181,100 +308,140 @@ main {
 }
 
 
-/* =========================================
-   GAME GRID
-========================================= */
+#categoryFilter option {
 
-.games-grid {
+    background: #142a29;
+
+    color: white;
+}
+
+
+
+/* =========================================================
+   GAME GRID
+   ========================================================= */
+
+.games {
+
+    width: 100%;
+
     display: grid;
 
     grid-template-columns:
         repeat(5, minmax(0, 1fr));
 
     gap: 20px;
-
-    padding-right: 70px;
 }
 
 
-/* =========================================
+
+/* =========================================================
    GAME CARD
-========================================= */
+   ========================================================= */
 
 .game-card {
+
     display: block;
 
-    text-decoration: none;
+    width: 100%;
 
     color: white;
 
+    text-decoration: none;
+
     min-width: 0;
-
-    transition:
-        transform 0.2s ease,
-        filter 0.2s ease;
 }
 
-
-.game-card:hover {
-    transform: translateY(-6px);
-
-    filter: brightness(1.08);
-}
-
-
-/* =========================================
-   GAME IMAGE
-========================================= */
 
 .game-image {
+
+    position: relative;
+
     width: 100%;
 
     aspect-ratio: 1 / 1;
 
-    border-radius: 11px;
-
     overflow: hidden;
 
-    background:
-        linear-gradient(
-            135deg,
-            #2c4645,
-            #172b2a
-        );
+    border-radius: 10px;
 
-    border: 1px solid rgba(255,255,255,0.04);
+    background: #172827;
+
+    border: 1px solid rgba(255,255,255,0.025);
 
     box-shadow:
-        0 8px 25px rgba(0,0,0,0.2);
+        0 2px 4px rgba(0,0,0,0.12);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
+.game-card:hover .game-image {
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 14px 30px rgba(0,0,0,0.30);
+}
+
+
+.game-card:active .game-image {
+
+    transform: translateY(-2px);
+}
+
+
+
+/* =========================================================
+   GAME IMAGE
+   ========================================================= */
+
 .game-image img {
+
     width: 100%;
 
     height: 100%;
 
+    object-fit: cover;
+
     display: block;
 
-    object-fit: cover;
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
 }
 
 
-/* =========================================
-   GAME NAME
-========================================= */
+.game-card:hover
+.game-image img {
 
-.game-name {
-    padding: 12px 3px 5px;
+    transform: scale(1.04);
+
+}
+
+
+
+/* =========================================================
+   GAME TITLE
+   ========================================================= */
+
+.game-title {
+
+    margin-top: 11px;
+
+    width: 100%;
 
     text-align: center;
 
-    font-size: 15px;
+    color: #ffffff;
+
+    font-size: 16px;
 
     font-weight: 700;
 
-    color: #e9eeee;
+    line-height: 1.3;
 
     white-space: nowrap;
 
@@ -284,199 +451,275 @@ main {
 }
 
 
-/* =========================================
-   SIDEBAR
-========================================= */
 
-.sidebar {
-    position: fixed;
+/* =========================================================
+   NO RESULTS
+   ========================================================= */
 
-    z-index: 100;
+.no-results {
 
-    right: 19px;
+    display: none;
 
-    top: 50%;
+    width: 100%;
 
-    transform: translateY(-50%);
+    text-align: center;
 
-    width: 80px;
+    color: #9ba9a8;
 
-    padding: 17px 0;
+    font-size: 18px;
 
-    border-radius: 9px;
-
-    background: #172b2b;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 20px;
-
-    box-shadow:
-        0 10px 40px rgba(0,0,0,0.18);
+    padding: 70px 20px;
 }
 
 
-/* =========================================
-   SIDEBAR BUTTONS
-========================================= */
+.no-results.show {
 
-.side-button {
-    width: 55px;
-
-    height: 48px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 10px;
-
-    color: #eef3f3;
-
-    text-decoration: none;
-
-    font-size: 26px;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+    display: block;
 }
 
 
-.side-button:hover {
-    background: #263d3d;
 
-    transform: scale(1.08);
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+.settings-section {
+
+    margin-top: 120px;
+
+    padding: 40px;
+
+    border-radius: 12px;
+
+    background: #102322;
+
+    text-align: center;
 }
 
 
-.side-button.active {
-    background: #203636;
+.settings-section h2 {
+
+    font-size: 28px;
+
+    margin-bottom: 12px;
 }
 
 
-/* =========================================
-   RESPONSIVE
-========================================= */
+.settings-section p {
 
-@media (max-width: 1100px) {
+    color: #aebbbb;
 
-    .games-grid {
+    font-size: 15px;
+}
+
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1150px) {
+
+    .games {
+
         grid-template-columns:
             repeat(4, minmax(0, 1fr));
+
     }
 
 }
 
 
-@media (max-width: 850px) {
 
-    main {
-        width: calc(100% - 40px);
+/* =========================================================
+   SMALL TABLET
+   ========================================================= */
 
-        padding-top: 45px;
+@media (max-width: 900px) {
+
+    .sidebar {
+
+        right: 10px;
+
+        width: 65px;
+
     }
 
 
-    .games-grid {
-        padding-right: 0;
+    .sidebar-button {
+
+        width: 50px;
+
+        height: 50px;
+
+    }
+
+
+    .page {
+
+        width: calc(100% - 100px);
+
+        margin-left: 25px;
+
+    }
+
+
+    .games {
 
         grid-template-columns:
             repeat(3, minmax(0, 1fr));
+
+    }
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .page {
+
+        width: calc(100% - 30px);
+
+        margin: 0 auto;
+
     }
 
 
     .sidebar {
-        right: 10px;
 
-        width: 60px;
+        position: sticky;
+
+        top: 10px;
+
+        right: auto;
+
+        width: calc(100% - 20px);
+
+        height: 65px;
+
+        margin: 10px auto;
+
+        padding: 5px;
+
+        flex-direction: row;
+
+        justify-content: center;
+
+        gap: 3px;
+
     }
 
 
-    .side-button {
-        width: 45px;
+    .sidebar-button {
+
+        margin: 0;
+
+        width: 50px;
+
+        height: 50px;
+
     }
 
 
-    .page-header h1 {
+    .header {
+
+        padding-top: 45px;
+
+    }
+
+
+    .header h1 {
+
         font-size: 52px;
-    }
 
-}
-
-
-@media (max-width: 600px) {
-
-    main {
-        width: calc(100% - 25px);
-
-        padding-bottom: 80px;
-    }
-
-
-    .page-header h1 {
-        font-size: 43px;
     }
 
 
     .controls {
+
         flex-direction: column;
 
-        align-items: center;
     }
 
 
-    .controls input {
+    #categoryFilter {
+
         width: 100%;
+
     }
 
 
-    .controls select {
-        width: 100%;
-    }
+    .games {
 
-
-    .games-grid {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
 
-        gap: 12px;
-    }
+        gap: 15px;
 
-
-    .sidebar {
-        position: fixed;
-
-        top: auto;
-
-        bottom: 10px;
-
-        left: 10px;
-
-        right: 10px;
-
-        width: auto;
-
-        height: 62px;
-
-        transform: none;
-
-        flex-direction: row;
-
-        justify-content: space-around;
-
-        padding: 5px;
-    }
-
-
-    .side-button {
-        height: 50px;
     }
 
 }
+
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .header h1 {
+
+        font-size: 44px;
+
+    }
+
+
+    .games {
+
+        gap: 10px;
+
+    }
+
+
+    .game-title {
+
+        font-size: 14px;
+
+    }
+
+}
+Adding games
+You do not need to touch the CSS when adding games.
+
+Inside index.html, find:
+
+<section class="games" id="games">
+Then copy this:
+
+<a
+    href="games/mygame.html"
+    class="game-card"
+    data-name="My Game"
+    data-category="arcade"
+>
+
+    <div class="game-image">
+
+        <img
+            src="images/mygame.jpg"
+            alt="My Game"
+        >
+
+    </div>
+
+    <div class="game-title">
+        My Game
+    </div>
+
+</a>
