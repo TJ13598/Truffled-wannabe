@@ -6,262 +6,556 @@
 
     <title>Games</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+                #081716;
+            background-size: 50px 50px;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            text-align: center;
+            padding-top: 75px;
+            padding-bottom: 25px;
+        }
+
+        header h1 {
+            font-size: 70px;
+            font-weight: 800;
+            letter-spacing: -3px;
+        }
+
+        header p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* =========================
+           SEARCH / FILTER
+        ========================= */
+
+        .controls {
+            width: min(800px, calc(100% - 40px));
+            margin: 0 auto 58px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search {
+            flex: 1;
+            height: 53px;
+            border: none;
+            outline: none;
+            border-radius: 9px;
+            background: #182d2c;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .search::placeholder {
+            color: #a6b2b1;
+            font-style: italic;
+        }
+
+        .category {
+            width: 170px;
+            height: 53px;
+            border: none;
+            border-radius: 20px;
+            padding: 0 18px;
+            background: #182d2c;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        /* =========================
+           GAME GRID
+        ========================= */
+
+        .games {
+            width: min(1100px, calc(100% - 220px));
+            margin-left: 100px;
+            padding-bottom: 80px;
+
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .game {
+            text-decoration: none;
+            color: white;
+            display: block;
+            min-width: 0;
+        }
+
+        .game-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #182928;
+            border: 1px solid rgba(255,255,255,0.025);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .game:hover .game-image {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Preset placeholder if you don't have an image yet */
+
+        .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #ebe3d8;
+            color: #777;
+            font-size: 75px;
+            font-weight: bold;
+        }
+
+        /* Game name underneath */
+
+        .game-name {
+            text-align: center;
+            font-size: 17px;
+            font-weight: bold;
+            margin-top: 11px;
+            color: #f5f5f5;
+        }
+
+        /* =========================
+           RIGHT SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            right: 18px;
+            top: 139px;
+
+            width: 80px;
+            height: 490px;
+
+            background: #142a29;
+            border-radius: 10px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding: 22px 0;
+
+            z-index: 100;
+        }
+
+        .side-button {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 8px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+            color: white;
+
+            font-size: 28px;
+
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .side-button:hover {
+            background: #203b3a;
+            transform: scale(1.05);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+            .games {
+                grid-template-columns: repeat(4, 1fr);
+                width: calc(100% - 150px);
+            }
+        }
+
+        @media (max-width: 800px) {
+
+            header h1 {
+                font-size: 50px;
+            }
+
+            .games {
+                margin-left: 20px;
+                width: calc(100% - 40px);
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .sidebar {
+                position: static;
+                width: calc(100% - 40px);
+                height: auto;
+                margin: 20px auto;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .side-button {
+                margin: 0 4px;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .category {
+                width: 100%;
+            }
+
+            .games {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- =========================
          RIGHT SIDEBAR
-    ========================== -->
+    ========================= -->
 
-    <aside class="sidebar">
+    <nav class="sidebar">
 
-        <a href="index.html" class="side-button active" title="Home">
-            <span>⌂</span>
+        <!-- HOME -->
+        <a href="index.html" class="side-button" title="Home">
+            🏠
         </a>
 
+        <!-- GAMES -->
         <a href="#games" class="side-button" title="Games">
-            <span>🎮</span>
+            🎮
         </a>
 
-        <a href="#categories" class="side-button" title="Categories">
-            <span>▱</span>
+        <!-- CATEGORIES -->
+        <a href="#games" class="side-button" title="Categories">
+            🗂️
         </a>
 
-        <a href="#tools" class="side-button" title="Tools">
-            <span>🛠</span>
+        <!-- TOOLS -->
+        <a href="#" class="side-button" title="Tools">
+            🛠️
         </a>
 
-        <a href="#community" class="side-button" title="Community">
-            <span>☯</span>
+        <!-- DISCORD / COMMUNITY -->
+        <a href="#" class="side-button" title="Community">
+            🎮
         </a>
 
-        <a href="#settings" class="side-button" title="Settings">
-            <span>⚙</span>
+        <!-- SETTINGS -->
+        <a href="#" class="side-button" title="Settings">
+            ⚙️
         </a>
 
-    </aside>
+    </nav>
 
 
     <!-- =========================
-         MAIN CONTENT
-    ========================== -->
+         HEADER
+    ========================= -->
 
-    <main>
+    <header>
 
-        <header class="page-header">
+        <h1>Games</h1>
 
-            <h1>Games</h1>
+        <!-- Change this number when you add/remove games -->
+        <p>Showing 6 games</p>
 
-            <p>Showing <span id="gameCount">0</span> games</p>
+    </header>
 
-            <div class="controls">
 
-                <input
-                    type="text"
-                    id="search"
-                    placeholder="Search games"
-                >
+    <!-- =========================
+         SEARCH
+    ========================= -->
 
-                <select id="categoryFilter">
-                    <option value="all">all</option>
-                    <option value="action">action</option>
-                    <option value="arcade">arcade</option>
-                    <option value="puzzle">puzzle</option>
-                    <option value="sports">sports</option>
-                    <option value="other">other</option>
-                </select>
+    <div class="controls">
+
+        <input
+            type="text"
+            class="search"
+            id="search"
+            placeholder="Search games"
+        >
+
+        <select class="category" id="category">
+            <option value="all">all</option>
+            <option value="action">Action</option>
+            <option value="arcade">Arcade</option>
+            <option value="puzzle">Puzzle</option>
+            <option value="sports">Sports</option>
+        </select>
+
+    </div>
+
+
+    <!-- =========================
+         GAMES
+         
+         ADD YOUR GAMES HERE
+    ========================= -->
+
+    <main class="games" id="games">
+
+
+        <!-- GAME 1 -->
+        <a
+            href="games/game1.html"
+            class="game"
+            data-name="Game One"
+            data-category="arcade"
+        >
+
+            <div class="game-image">
+
+                <!--
+                    PUT YOUR IMAGE HERE:
+
+                    images/game1.jpg
+
+                    If you don't have an image yet,
+                    use the placeholder below instead.
+                -->
+
+                <img src="images/game1.jpg" alt="Game One">
 
             </div>
 
-        </header>
+            <div class="game-name">
+                Game One
+            </div>
+
+        </a>
 
 
-        <!-- =========================
-             GAME GRID
-        ========================== -->
+        <!-- GAME 2 -->
+        <a
+            href="games/game2.html"
+            class="game"
+            data-name="Game Two"
+            data-category="action"
+        >
 
-        <section class="games-grid" id="games">
+            <div class="game-image">
 
-            <!--
-            ==================================================
-            ADD YOUR GAMES HERE
-            ==================================================
+                <img src="images/game2.jpg" alt="Game Two">
 
-            COPY THIS ENTIRE BLOCK FOR EVERY NEW GAME:
+            </div>
 
-            <a
-                class="game-card"
-                href="games/YOUR-GAME.html"
-                data-name="Your Game"
-                data-category="arcade"
-            >
+            <div class="game-name">
+                Game Two
+            </div>
 
-                <div class="game-image">
-                    <img
-                        src="images/YOUR-GAME.png"
-                        alt="Your Game"
-                    >
-                </div>
-
-                <div class="game-name">
-                    Your Game
-                </div>
-
-            </a>
-
-            ==================================================
-            -->
+        </a>
 
 
-            <!-- EXAMPLE GAME -->
+        <!-- GAME 3 -->
+        <a
+            href="games/game3.html"
+            class="game"
+            data-name="2048"
+            data-category="puzzle"
+        >
 
-            <a
-                class="game-card"
-                href="games/2048.html"
-                data-name="2048"
-                data-category="puzzle"
-            >
+            <div class="game-image">
 
-                <div class="game-image">
+                <img src="images/2048.jpg" alt="2048">
 
-                    <img
-                        src="images/2048.png"
-                        alt="2048"
-                    >
+            </div>
 
-                </div>
+            <div class="game-name">
+                2048
+            </div>
 
-                <div class="game-name">
-                    2048
-                </div>
-
-            </a>
+        </a>
 
 
-            <!-- ANOTHER EXAMPLE -->
+        <!-- GAME 4 -->
+        <a
+            href="games/game4.html"
+            class="game"
+            data-name="Football"
+            data-category="sports"
+        >
 
-            <a
-                class="game-card"
-                href="games/example-game.html"
-                data-name="Example Game"
-                data-category="arcade"
-            >
+            <div class="game-image">
 
-                <div class="game-image">
+                <img src="images/football.jpg" alt="Football">
 
-                    <img
-                        src="images/example-game.png"
-                        alt="Example Game"
-                    >
+            </div>
 
-                </div>
+            <div class="game-name">
+                Football
+            </div>
 
-                <div class="game-name">
-                    Example Game
-                </div>
-
-            </a>
+        </a>
 
 
-            <!--
-            ==================================================
-            YOUR NEXT GAME GOES HERE
-            ==================================================
+        <!-- GAME 5 -->
+        <a
+            href="games/game5.html"
+            class="game"
+            data-name="10 Minutes Till Dawn"
+            data-category="action"
+        >
 
-            <a
-                class="game-card"
-                href="games/my-game.html"
-                data-name="My Game"
-                data-category="action"
-            >
+            <div class="game-image">
 
-                <div class="game-image">
+                <img src="images/10-minutes.jpg" alt="10 Minutes Till Dawn">
 
-                    <img
-                        src="images/my-game.png"
-                        alt="My Game"
-                    >
+            </div>
 
-                </div>
+            <div class="game-name">
+                10 Minutes Till Dawn
+            </div>
 
-                <div class="game-name">
-                    My Game
-                </div>
+        </a>
 
-            </a>
 
-            -->
+        <!-- GAME 6 -->
+        <a
+            href="games/game6.html"
+            class="game"
+            data-name="60 Seconds"
+            data-category="arcade"
+        >
 
-        </section>
+            <div class="game-image">
+
+                <img src="images/60-seconds.jpg" alt="60 Seconds">
+
+            </div>
+
+            <div class="game-name">
+                60 Seconds
+            </div>
+
+        </a>
+
+
+        <!--
+        ==================================================
+        COPY THIS ENTIRE BLOCK TO ADD ANOTHER GAME
+        ==================================================
+
+        <a
+            href="games/my-game.html"
+            class="game"
+            data-name="My Game"
+            data-category="action"
+        >
+
+            <div class="game-image">
+
+                <img src="images/my-game.jpg" alt="My Game">
+
+            </div>
+
+            <div class="game-name">
+                My Game
+            </div>
+
+        </a>
+
+        ==================================================
+        -->
+
 
     </main>
 
 
     <!-- =========================
-         JAVASCRIPT
-    ========================== -->
+         SEARCH/FILTER SCRIPT
+    ========================= -->
 
     <script>
 
         const search = document.getElementById("search");
-        const categoryFilter = document.getElementById("categoryFilter");
-        const gameCards = document.querySelectorAll(".game-card");
-        const gameCount = document.getElementById("gameCount");
-
+        const category = document.getElementById("category");
+        const games = document.querySelectorAll(".game");
 
         function filterGames() {
 
             const searchText = search.value.toLowerCase();
-            const category = categoryFilter.value;
+            const selectedCategory = category.value;
 
-            let visibleGames = 0;
-
-            gameCards.forEach(card => {
+            games.forEach(game => {
 
                 const name =
-                    card.dataset.name.toLowerCase();
+                    game.dataset.name.toLowerCase();
 
-                const cardCategory =
-                    card.dataset.category;
+                const gameCategory =
+                    game.dataset.category;
 
                 const matchesSearch =
                     name.includes(searchText);
 
                 const matchesCategory =
-                    category === "all" ||
-                    cardCategory === category;
-
+                    selectedCategory === "all" ||
+                    gameCategory === selectedCategory;
 
                 if (matchesSearch && matchesCategory) {
-
-                    card.style.display = "";
-
-                    visibleGames++;
-
+                    game.style.display = "block";
                 } else {
-
-                    card.style.display = "none";
-
+                    game.style.display = "none";
                 }
 
             });
 
-            gameCount.textContent = visibleGames;
-
         }
 
-
         search.addEventListener("input", filterGames);
-
-        categoryFilter.addEventListener(
-            "change",
-            filterGames
-        );
-
-
-        filterGames();
+        category.addEventListener("change", filterGames);
 
     </script>
 
