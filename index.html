@@ -121,7 +121,6 @@
 
             grid-template-columns: repeat(5, minmax(0, 1fr));
 
-            /* Gap between the square elements is removed */
             gap: 0px;
 
             padding-bottom: 80px;
@@ -147,7 +146,6 @@
 
             overflow: hidden;
 
-            /* Removed card rounded corners for a unified solid block appearance */
             border-radius: 0px;
 
             background: #172827;
@@ -176,9 +174,6 @@
 
         /* =========================
            PRESET IMAGE
-           
-           Use this if you don't
-           have a picture yet.
         ========================= */
 
         .placeholder {
@@ -213,6 +208,7 @@
             font-weight: 700;
 
             color: #ffffff;
+            margin-bottom: 25px; /* Balanced room for 0px tile gap layout */
         }
 
 
@@ -342,7 +338,6 @@
             .games {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
 
-                /* Gap removed across layout variations */
                 gap: 0px;
             }
         }
@@ -359,41 +354,12 @@
 
     <nav class="sidebar">
 
-        <a href="javascript:void(0)"
-           class="side-button"
-           title="Home">
-            🏠
-        </a>
-
-        <a href="javascript:void(0)"
-           class="side-button"
-           title="Games">
-            🎮
-        </a>
-
-        <a href="javascript:void(0)"
-           class="side-button"
-           title="Categories">
-            🗂️
-        </a>
-
-        <a href="javascript:void(0)"
-           class="side-button"
-           title="Tools">
-            🛠️
-        </a>
-
-        <a href="javascript:void(0)"
-           class="side-button"
-           title="Community">
-            🎮
-        </a>
-
-        <a href="javascript:void(0)"
-           class="side-button"
-           title="Settings">
-            ⚙️
-        </a>
+        <a href="javascript:void(0)" class="side-button" title="Home">🏠</a>
+        <a href="javascript:void(0)" class="side-button" title="Games">🎮</a>
+        <a href="javascript:void(0)" class="side-button" title="Categories">🗂️</a>
+        <a href="javascript:void(0)" class="side-button" title="Tools">🛠️</a>
+        <a href="javascript:void(0)" class="side-button" title="Community">🎮</a>
+        <a href="javascript:void(0)" class="side-button" title="Settings">⚙️</a>
 
     </nav>
 
@@ -407,7 +373,7 @@
         <h1>Games</h1>
 
         <div class="game-count">
-            Showing 6 games
+            Showing 10 games
         </div>
 
     </header>
@@ -419,27 +385,12 @@
 
     <div class="controls">
 
-        <input
-            id="search"
-            class="search"
-            type="text"
-            placeholder="Search games"
-        >
+        <input id="search" class="search" type="text" placeholder="Search games">
 
         <select id="category" class="category">
-
-            <option value="all">
-                all
-            </option>
-
-            <option value="action">
-                Action
-            </option>
-
-            <option value="arcade">
-                Arcade
-            </option>
-
+            <option value="all">all</option>
+            <option value="action">Action</option>
+            <option value="arcade">Arcade</option>
         </select>
 
     </div>
@@ -451,40 +402,65 @@
 
     <main class="games">
 
-        <!-- Copy and paste this block for every game element you want to add.
-             Simply paste your game URL inside data-iframe-link when ready. -->
-        <div class="game" data-iframe-link="about:blank">
+        <!-- GAME SLOT 1 -->
+        <a href="science.html" class="game">
             <div class="game-image">
-                <div class="placeholder">🎮</div>
+                <img src="image1.jpg" alt="Poly Track">
             </div>
-            <div class="game-name">Sample Game 1</div>
-        </div>
+            <div class="game-name">Poly Track</div>
+        </a>
 
-        <div class="game" data-iframe-link="about:blank">
+        <!-- GAME SLOT 2 -->
+        <a href="game2.html" class="game">
             <div class="game-image">
-                <div class="placeholder">🕹️</div>
+                <img src="image2.jpg" alt="Game Two">
             </div>
-            <div class="game-name">Sample Game 2</div>
-        </div>
+            <div class="game-name">Game Two</div>
+        </a>
 
-        <div class="game" data-iframe-link="about:blank">
+        <!-- GAME SLOT 3 -->
+        <a href="game3.html" class="game">
             <div class="game-image">
                 <div class="placeholder">👾</div>
             </div>
-            <div class="game-name">Sample Game 3</div>
-        </div>
+            <div class="game-name">Game Three</div>
+        </a>
 
-        <div class="game" data-iframe-link="about:blank">
+        <!-- GAME SLOT 4 -->
+        <a href="game4.html" class="game">
             <div class="game-image">
                 <div class="placeholder">🎲</div>
             </div>
-            <div class="game-name">Sample Game 4</div>
-        </div>
+            <div class="game-name">Game Four</div>
+        </a>
 
-        <div class="game" data-iframe-link="about:blank">
+        <!-- GAME SLOT 5 -->
+        <a href="game5.html" class="game">
             <div class="game-image">
                 <div class="placeholder">🎯</div>
             </div>
-            <div class="game-name">Sample Game 5</div>
-        </div>
+            <div class="game-name">Game Five</div>
+        </a>
 
+        <!-- GAME SLOT 6 -->
+        <a href="game6.html" class="game">
+            <div class="game-image">
+                <div class="placeholder">⚔️</div>
+            </div>
+            <div class="game-name">Game Six</div>
+        </a>
+
+        <!-- GAME SLOT 7 -->
+        <a href="game7.html" class="game">
+            <div class="game-image">
+                <div class="placeholder">🏁</div>
+            </div>
+            <div class="game-name">Game Seven</div>
+        </a>
+
+        <!-- GAME SLOT 8 -->
+        <a href="game8.html" class="game">
+            <div class="game-image">
+                <div class="placeholder">🧱</div>
+            </div>
+            <div class="game-name">Game Eight</div>
