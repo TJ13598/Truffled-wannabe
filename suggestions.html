@@ -150,12 +150,10 @@ input::placeholder,textarea::placeholder{color:#8f9d9b}
 </section>
 
 <script>
-// --- CONFIGURATION: REPLACE THESE WITH YOUR GOOGLE FORM CONFIG ---
-const FORM_ID = "YOUR_GOOGLE_FORM_ID_HERE"; 
-const ENTRY_NAME = "entry.111111111";       // Entry ID for Name field
-const ENTRY_TYPE = "entry.222222222";       // Entry ID for Suggestion Type
-const ENTRY_TEXT = "entry.333333333";       // Entry ID for Suggestion Box
-// -----------------------------------------------------------------
+// Everything is fully configured below with your provided Form IDs!
+const FORM_ID = "1FAIpQLSfXlYqcLouA-k860-kVg93eyyiN2CFAnxr1ETRcPU6ox17RFA";
+const ENTRY_TEXT = "entry.293556321";   // Maps to "What should be added?" (Required)
+const ENTRY_NAME = "entry.1562824323";  // Maps to "Other info you would like me to know" (Optional)
 
 const form = document.getElementById("suggestionForm");
 const message = document.getElementById("message");
@@ -165,19 +163,20 @@ form.addEventListener("submit", function(event) {
 
     const name = document.getElementById("name").value.trim() || "Anonymous";
     const type = document.getElementById("type").value;
-    const suggestion = document.getElementById("suggestion").value.trim();
+    const rawSuggestion = document.getElementById("suggestion").value.trim();
 
-    if (!suggestion) return;
+    if (!rawSuggestion) return;
 
-    // Create the background payload
+    // Dynamically prefixes the suggestion with the category type chosen by the user
+    const formattedSuggestion = `[${type}] ${rawSuggestion}`;
+
+    // Generate the URL-encoded payload for Google Form submission
     const formUrl = `https://google.com{FORM_ID}/formResponse`;
     const formData = new URLSearchParams();
-    formData.append(ENTRY_NAME, name);
-    formData.append(ENTRY_TYPE, type);
-    formData.append(ENTRY_TEXT, suggestion);
+    formData.append(ENTRY_TEXT, formattedSuggestion);
+    formData.append(ENTRY_NAME, `Submitted by: ${name}`);
 
-    // Send data to Google Forms in the background
-    // mode: 'no-cors' prevents errors because Google doesn't return headers to external sites
+    // Quietly post data to Google Forms server in the background
     fetch(formUrl, {
         method: "POST",
         mode: "no-cors",
@@ -187,7 +186,7 @@ form.addEventListener("submit", function(event) {
     .then(() => {
         form.reset();
         message.style.color = "#79d4a3";
-        message.textContent = "Suggestion successfully sent to our backend!";
+        message.textContent = "Suggestion successfully sent!";
         setTimeout(() => { message.textContent = ""; }, 4000);
     })
     .catch((error) => {
