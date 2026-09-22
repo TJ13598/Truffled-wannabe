@@ -1,453 +1,658 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Games</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body {
+            background-color: #081716;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 50px 50px;
+
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            text-align: center;
+            padding-top: 70px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 70px;
+            line-height: 1;
+            font-weight: 800;
+        }
+
+        .game-count {
+            margin-top: 25px;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .controls {
+            width: 800px;
+            max-width: calc(100% - 40px);
+
+            margin: 27px auto 58px;
+
+            display: flex;
+            gap: 10px;
+        }
+
+        .search {
+            flex: 1;
+
+            height: 53px;
+
+            border: 0;
+            outline: none;
+
+            border-radius: 9px;
+
+            background: #192e2d;
+
+            color: white;
+
+            padding: 0 20px;
+
+            text-align: center;
+
+            font-size: 16px;
+        }
+
+        .search::placeholder {
+            color: #a9b6b5;
+            font-style: italic;
+        }
+
+        .category {
+            width: 170px;
+
+            height: 53px;
+
+            border: 0;
+            outline: none;
+
+            border-radius: 20px;
+
+            background: #192e2d;
+
+            color: white;
+
+            padding: 0 15px;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           GAME GRID
+        ========================= */
+
+        .games {
+            width: calc(100% - 250px);
+            max-width: 1080px;
+
+            margin-left: 100px;
+            margin-right: 130px;
+
+            display: grid;
+
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+
+            gap: 20px;
+
+            padding-bottom: 80px;
+        }
+
+
+        /* =========================
+           GAME CARD
+        ========================= */
+
+        .game {
+            display: block;
+
+            color: white;
+            text-decoration: none;
+
+            min-width: 0;
+        }
+
+        .game-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+
+            overflow: hidden;
+
+            border-radius: 10px;
+
+            background: #172827;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .game:hover .game-image {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+        }
+
+
+        /* =========================
+           PRESET IMAGE
+           
+           Use this if you don't
+           have a picture yet.
+        ========================= */
+
+        .placeholder {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #ebe3d8;
+
+            color: #777;
+
+            font-size: 70px;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           GAME NAME
+        ========================= */
+
+        .game-name {
+            margin-top: 10px;
+
+            text-align: center;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            color: #ffffff;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+
+            top: 139px;
+            right: 18px;
+
+            width: 80px;
+
+            padding: 18px 0;
+
+            background: #142a29;
+
+            border-radius: 10px;
+
+            z-index: 9999;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+        }
+
+        .side-button {
+            width: 58px;
+            height: 58px;
+
+            margin: 3px 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 27px;
+
+            transition: background 0.2s ease;
+        }
+
+        .side-button:hover {
+            background: #203b39;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1200px) {
+
+            .games {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+
+                width: calc(100% - 220px);
+
+                margin-left: 40px;
+                margin-right: 140px;
+            }
+        }
+
+        @media (max-width: 850px) {
+
+            .header h1 {
+                font-size: 55px;
+            }
+
+            .games {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+
+                width: calc(100% - 40px);
+
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            .sidebar {
+                position: fixed;
+
+                top: auto;
+                bottom: 15px;
+
+                left: 50%;
+
+                right: auto;
+
+                transform: translateX(-50%);
+
+                width: auto;
+
+                padding: 8px 10px;
+
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .header {
+                padding-top: 45px;
+            }
+
+            .header h1 {
+                font-size: 45px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .category {
+                width: 100%;
+            }
+
+            .games {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+
+                gap: 14px;
+            }
+        }
+    </style>
 </head>
 
 
 <body>
 
-    <!-- =====================================================
+
+    <!-- =========================
          SIDEBAR
-         ===================================================== -->
+    ========================= -->
 
-    <aside class="sidebar">
+    <nav class="sidebar">
 
-        <!-- HOME -->
-        <a href="index.html" class="sidebar-button active" title="Home">
-            <span>⌂</span>
+        <a href="index.html"
+           class="side-button"
+           title="Home">
+            🏠
         </a>
 
-        <!-- GAMES -->
-        <a href="#games" class="sidebar-button" title="Games">
-            <span>🎮</span>
+        <a href="#games"
+           class="side-button"
+           title="Games">
+            🎮
         </a>
 
-        <!-- CATEGORIES -->
-        <a href="#games" class="sidebar-button" title="Categories">
-            <span>▱</span>
+        <a href="#games"
+           class="side-button"
+           title="Categories">
+            🗂️
         </a>
 
-        <!-- TOOLS -->
-        <a href="#games" class="sidebar-button" title="Tools">
-            <span>⚒</span>
+        <a href="#"
+           class="side-button"
+           title="Tools">
+            🛠️
         </a>
 
-        <!-- COMMUNITY -->
-        <!-- CHANGE THIS LINK -->
-        <a
-            href="https://discord.com/"
-            target="_blank"
-            class="sidebar-button"
-            title="Community"
+        <a href="#"
+           class="side-button"
+           title="Community">
+            🎮
+        </a>
+
+        <a href="#"
+           class="side-button"
+           title="Settings">
+            ⚙️
+        </a>
+
+    </nav>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="header">
+
+        <h1>Games</h1>
+
+        <div class="game-count">
+            Showing 6 games
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         SEARCH
+    ========================= -->
+
+    <div class="controls">
+
+        <input
+            id="search"
+            class="search"
+            type="text"
+            placeholder="Search games"
         >
-            <span>♣</span>
-        </a>
 
-        <!-- SETTINGS -->
-        <a href="#settings" class="sidebar-button" title="Settings">
-            <span>⚙</span>
-        </a>
+        <select id="category" class="category">
 
-    </aside>
+            <option value="all">
+                all
+            </option>
 
+            <option value="action">
+                Action
+            </option>
 
+            <option value="arcade">
+                Arcade
+            </option>
 
-    <!-- =====================================================
-         MAIN PAGE
-         ===================================================== -->
+            <option value="puzzle">
+                Puzzle
+            </option>
 
-    <main class="page">
+            <option value="sports">
+                Sports
+            </option>
 
+        </select>
 
-        <!-- =================================================
-             HEADER
-             ================================================= -->
-
-        <section class="header">
-
-            <h1>Games</h1>
-
-            <p>
-                Choose a game to play
-            </p>
-
-        </section>
+    </div>
 
 
+    <!-- =========================
+         GAMES
+    ========================= -->
 
-        <!-- =================================================
-             SEARCH + CATEGORY
-             ================================================= -->
+    <main class="games" id="games">
 
-        <section class="controls">
 
-            <div class="search-box">
+        <!-- GAME 1 -->
 
-                <input
-                    type="text"
-                    id="gameSearch"
-                    placeholder="Search games"
-                    autocomplete="off"
+        <a
+            class="game"
+            href="games/game1.html"
+            data-name="Game One"
+            data-category="arcade"
+        >
+
+            <div class="game-image">
+
+                <img
+                    src="images/game1.jpg"
+                    alt="Game One"
                 >
 
             </div>
 
+            <div class="game-name">
+                Game One
+            </div>
 
-            <select id="categoryFilter">
-
-                <option value="all">
-                    all
-                </option>
-
-                <option value="action">
-                    Action
-                </option>
-
-                <option value="arcade">
-                    Arcade
-                </option>
-
-                <option value="puzzle">
-                    Puzzle
-                </option>
-
-                <option value="sports">
-                    Sports
-                </option>
-
-                <option value="other">
-                    Other
-                </option>
-
-            </select>
-
-        </section>
+        </a>
 
 
+        <!-- GAME 2 -->
 
-        <!-- =================================================
-             GAME GRID
-             
-             ADD YOUR GAMES INSIDE THIS SECTION
-             ================================================= -->
-
-        <section
-            class="games"
-            id="games"
+        <a
+            class="game"
+            href="games/game2.html"
+            data-name="Game Two"
+            data-category="action"
         >
 
+            <div class="game-image">
 
-            <!-- =================================================
-                 GAME #1
-                 ================================================= -->
+                <img
+                    src="images/game2.jpg"
+                    alt="Game Two"
+                >
 
-            <a
-                href="slope.html"
-                class="game-card"
-                data-name="Game One"
-                data-category="arcade"
-            >
+            </div>
 
-                <div class="images (30).jpeg">
+            <div class="game-name">
+                Game Two
+            </div>
 
-                    <!-- YOUR GAME IMAGE -->
+        </a>
 
-                    <img
-                        src="images/game1.jpg"
-                        alt="Game One"
-                    >
 
-                </div>
+        <!-- GAME 3 -->
 
-                <div class="game-title">
-                    Game One
-                </div>
-
-            </a>
-
-
-
-            <!-- =================================================
-                 GAME #2
-                 ================================================= -->
-
-            <a
-                href="games/game2.html"
-                class="game-card"
-                data-name="Game Two"
-                data-category="action"
-            >
-
-                <div class="game-image">
-
-                    <img
-                        src="images/game2.jpg"
-                        alt="Game Two"
-                    >
-
-                </div>
-
-                <div class="game-title">
-                    Game Two
-                </div>
-
-            </a>
-
-
-
-            <!-- =================================================
-                 GAME #3
-                 ================================================= -->
-
-            <a
-                href="games/game3.html"
-                class="game-card"
-                data-name="2048"
-                data-category="puzzle"
-            >
-
-                <div class="game-image">
-
-                    <img
-                        src="images/2048.jpg"
-                        alt="2048"
-                    >
-
-                </div>
-
-                <div class="game-title">
-                    2048
-                </div>
-
-            </a>
-
-
-
-            <!-- =================================================
-                 GAME #4
-                 ================================================= -->
-
-            <a
-                href="games/game4.html"
-                class="game-card"
-                data-name="Football"
-                data-category="sports"
-            >
-
-                <div class="game-image">
-
-                    <img
-                        src="images/football.jpg"
-                        alt="Football"
-                    >
-
-                </div>
-
-                <div class="game-title">
-                    Football
-                </div>
-
-            </a>
-
-
-
-            <!-- =================================================
-                 GAME #5
-                 ================================================= -->
-
-            <a
-                href="games/game5.html"
-                class="game-card"
-                data-name="10 Minutes Till Dawn"
-                data-category="action"
-            >
-
-                <div class="game-image">
-
-                    <img
-                        src="images/10-minutes.jpg"
-                        alt="10 Minutes Till Dawn"
-                    >
-
-                </div>
-
-                <div class="game-title">
-                    10 Minutes Till Dawn
-                </div>
-
-            </a>
-
-
-
-            <!-- =================================================
-                 GAME #6
-                 ================================================= -->
-
-            <a
-                href="games/game6.html"
-                class="game-card"
-                data-name="60 Seconds"
-                data-category="arcade"
-            >
-
-                <div class="game-image">
-
-                    <img
-                        src="images/60-seconds.jpg"
-                        alt="60 Seconds"
-                    >
-
-                </div>
-
-                <div class="game-title">
-                    60 Seconds
-                </div>
-
-            </a>
-
-
-
-            <!-- =================================================
-                 COPY THIS FOR EVERY NEW GAME
-                 ================================================= -->
-
-
-            <!--
-
-            <a
-                href="games/YOUR-GAME.html"
-                class="game-card"
-                data-name="YOUR GAME NAME"
-                data-category="arcade"
-            >
-
-                <div class="game-image">
-
-                    <img
-                        src="images/YOUR-IMAGE.jpg"
-                        alt="YOUR GAME NAME"
-                    >
-
-                </div>
-
-                <div class="game-title">
-                    YOUR GAME NAME
-                </div>
-
-            </a>
-
-            -->
-
-
-        </section>
-
-
-
-        <!-- =================================================
-             NO RESULTS MESSAGE
-             ================================================= -->
-
-        <div
-            id="noResults"
-            class="no-results"
+        <a
+            class="game"
+            href="games/game3.html"
+            data-name="2048"
+            data-category="puzzle"
         >
 
-            No games found.
+            <div class="game-image">
 
-        </div>
+                <img
+                    src="images/2048.jpg"
+                    alt="2048"
+                >
+
+            </div>
+
+            <div class="game-name">
+                2048
+            </div>
+
+        </a>
 
 
+        <!-- GAME 4 -->
 
-        <!-- =================================================
-             SETTINGS ANCHOR
-             ================================================= -->
+        <a
+            class="game"
+            href="games/game4.html"
+            data-name="Football"
+            data-category="sports"
+        >
 
-        <section id="settings" class="settings-section">
+            <div class="game-image">
 
-            <h2>Settings</h2>
+                <img
+                    src="images/football.jpg"
+                    alt="Football"
+                >
 
-            <p>
-                Add and edit your games directly inside
-                <strong>index.html</strong>.
-            </p>
+            </div>
 
-        </section>
+            <div class="game-name">
+                Football
+            </div>
+
+        </a>
+
+
+        <!-- GAME 5 -->
+
+        <a
+            class="game"
+            href="games/game5.html"
+            data-name="10 Minutes Till Dawn"
+            data-category="action"
+        >
+
+            <div class="game-image">
+
+                <img
+                    src="images/10-minutes.jpg"
+                    alt="10 Minutes Till Dawn"
+                >
+
+            </div>
+
+            <div class="game-name">
+                10 Minutes Till Dawn
+            </div>
+
+        </a>
+
+
+        <!-- GAME 6 -->
+
+        <a
+            class="game"
+            href="games/game6.html"
+            data-name="60 Seconds"
+            data-category="arcade"
+        >
+
+            <div class="game-image">
+
+                <img
+                    src="images/60-seconds.jpg"
+                    alt="60 Seconds"
+                >
+
+            </div>
+
+            <div class="game-name">
+                60 Seconds
+            </div>
+
+        </a>
 
 
     </main>
 
 
-
-    <!-- =====================================================
-         SEARCH + FILTER JAVASCRIPT
-         ===================================================== -->
+    <!-- =========================
+         SEARCH SCRIPT
+    ========================= -->
 
     <script>
 
-        const searchInput =
-            document.getElementById("gameSearch");
-
-        const categoryFilter =
-            document.getElementById("categoryFilter");
-
-        const gameCards =
-            document.querySelectorAll(".game-card");
-
-        const noResults =
-            document.getElementById("noResults");
-
+        const search = document.getElementById("search");
+        const category = document.getElementById("category");
+        const games = document.querySelectorAll(".game");
 
         function filterGames() {
 
             const searchValue =
-                searchInput.value
-                    .toLowerCase()
-                    .trim();
+                search.value.toLowerCase().trim();
 
             const categoryValue =
-                categoryFilter.value;
+                category.value;
 
-            let visibleGames = 0;
+            games.forEach(function(game) {
 
-
-            gameCards.forEach(function(game) {
-
-                const gameName =
-                    game.dataset.name
-                        .toLowerCase();
+                const name =
+                    game.dataset.name.toLowerCase();
 
                 const gameCategory =
                     game.dataset.category;
 
+                const searchMatch =
+                    name.includes(searchValue);
 
-                const matchesSearch =
-                    gameName.includes(searchValue);
-
-
-                const matchesCategory =
+                const categoryMatch =
                     categoryValue === "all" ||
                     gameCategory === categoryValue;
 
+                if (searchMatch && categoryMatch) {
 
-                if (
-                    matchesSearch &&
-                    matchesCategory
-                ) {
-
-                    game.style.display = "";
-
-                    visibleGames++;
+                    game.style.display = "block";
 
                 } else {
 
@@ -457,33 +662,19 @@
 
             });
 
-
-            if (visibleGames === 0) {
-
-                noResults.classList.add("show");
-
-            } else {
-
-                noResults.classList.remove("show");
-
-            }
-
         }
 
-
-        searchInput.addEventListener(
+        search.addEventListener(
             "input",
             filterGames
         );
 
-
-        categoryFilter.addEventListener(
+        category.addEventListener(
             "change",
             filterGames
         );
 
     </script>
-
 
 </body>
 </html>
