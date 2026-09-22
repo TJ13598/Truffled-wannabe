@@ -3,82 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Library</title>
+
+    <title>Games</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Right Sidebar -->
+    <!-- =========================
+         RIGHT SIDEBAR
+    ========================== -->
+
     <aside class="sidebar">
-        <div class="side-icon active">⌂</div>
-        <div class="side-icon">🎮</div>
-        <div class="side-icon">▱</div>
-        <div class="side-icon">🛠</div>
-        <div class="side-icon">🎭</div>
-        <div class="side-icon">⚙</div>
+
+        <a href="index.html" class="side-button active" title="Home">
+            <span>⌂</span>
+        </a>
+
+        <a href="#games" class="side-button" title="Games">
+            <span>🎮</span>
+        </a>
+
+        <a href="#categories" class="side-button" title="Categories">
+            <span>▱</span>
+        </a>
+
+        <a href="#tools" class="side-button" title="Tools">
+            <span>🛠</span>
+        </a>
+
+        <a href="#community" class="side-button" title="Community">
+            <span>☯</span>
+        </a>
+
+        <a href="#settings" class="side-button" title="Settings">
+            <span>⚙</span>
+        </a>
+
     </aside>
 
 
-    <main class="main">
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
 
-        <!-- Header -->
-        <header>
+    <main>
+
+        <header class="page-header">
+
             <h1>Games</h1>
+
             <p>Showing <span id="gameCount">0</span> games</p>
+
+            <div class="controls">
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search games"
+                >
+
+                <select id="categoryFilter">
+                    <option value="all">all</option>
+                    <option value="action">action</option>
+                    <option value="arcade">arcade</option>
+                    <option value="puzzle">puzzle</option>
+                    <option value="sports">sports</option>
+                    <option value="other">other</option>
+                </select>
+
+            </div>
+
         </header>
 
 
-        <!-- Search -->
-        <section class="controls">
+        <!-- =========================
+             GAME GRID
+        ========================== -->
 
-            <input
-                type="text"
-                id="search"
-                placeholder="Search games"
+        <section class="games-grid" id="games">
+
+            <!--
+            ==================================================
+            ADD YOUR GAMES HERE
+            ==================================================
+
+            COPY THIS ENTIRE BLOCK FOR EVERY NEW GAME:
+
+            <a
+                class="game-card"
+                href="games/YOUR-GAME.html"
+                data-name="Your Game"
+                data-category="arcade"
             >
 
-            <select id="category">
-                <option value="all">all</option>
-                <option value="action">action</option>
-                <option value="arcade">arcade</option>
-                <option value="puzzle">puzzle</option>
-                <option value="sports">sports</option>
-            </select>
+                <div class="game-image">
+                    <img
+                        src="images/YOUR-GAME.png"
+                        alt="Your Game"
+                    >
+                </div>
+
+                <div class="game-name">
+                    Your Game
+                </div>
+
+            </a>
+
+            ==================================================
+            -->
+
+
+            <!-- EXAMPLE GAME -->
+
+            <a
+                class="game-card"
+                href="games/2048.html"
+                data-name="2048"
+                data-category="puzzle"
+            >
+
+                <div class="game-image">
+
+                    <img
+                        src="images/2048.png"
+                        alt="2048"
+                    >
+
+                </div>
+
+                <div class="game-name">
+                    2048
+                </div>
+
+            </a>
+
+
+            <!-- ANOTHER EXAMPLE -->
+
+            <a
+                class="game-card"
+                href="games/example-game.html"
+                data-name="Example Game"
+                data-category="arcade"
+            >
+
+                <div class="game-image">
+
+                    <img
+                        src="images/example-game.png"
+                        alt="Example Game"
+                    >
+
+                </div>
+
+                <div class="game-name">
+                    Example Game
+                </div>
+
+            </a>
+
+
+            <!--
+            ==================================================
+            YOUR NEXT GAME GOES HERE
+            ==================================================
+
+            <a
+                class="game-card"
+                href="games/my-game.html"
+                data-name="My Game"
+                data-category="action"
+            >
+
+                <div class="game-image">
+
+                    <img
+                        src="images/my-game.png"
+                        alt="My Game"
+                    >
+
+                </div>
+
+                <div class="game-name">
+                    My Game
+                </div>
+
+            </a>
+
+            -->
 
         </section>
-
-
-        <!-- Games -->
-        <section id="games" class="games-grid"></section>
 
     </main>
 
 
-    <!-- Game Popup -->
-    <div id="gameModal" class="modal">
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
 
-        <div class="modal-content">
+    <script>
 
-            <button id="closeModal" class="close-button">
-                ×
-            </button>
-
-            <h2 id="modalTitle">Game</h2>
-
-            <iframe
-                id="gameFrame"
-                src=""
-                frameborder="0"
-                allowfullscreen>
-            </iframe>
-
-        </div>
-
-    </div>
+        const search = document.getElementById("search");
+        const categoryFilter = document.getElementById("categoryFilter");
+        const gameCards = document.querySelectorAll(".game-card");
+        const gameCount = document.getElementById("gameCount");
 
 
-    <script src="script.js"></script>
+        function filterGames() {
+
+            const searchText = search.value.toLowerCase();
+            const category = categoryFilter.value;
+
+            let visibleGames = 0;
+
+            gameCards.forEach(card => {
+
+                const name =
+                    card.dataset.name.toLowerCase();
+
+                const cardCategory =
+                    card.dataset.category;
+
+                const matchesSearch =
+                    name.includes(searchText);
+
+                const matchesCategory =
+                    category === "all" ||
+                    cardCategory === category;
+
+
+                if (matchesSearch && matchesCategory) {
+
+                    card.style.display = "";
+
+                    visibleGames++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+            gameCount.textContent = visibleGames;
+
+        }
+
+
+        search.addEventListener("input", filterGames);
+
+        categoryFilter.addEventListener(
+            "change",
+            filterGames
+        );
+
+
+        filterGames();
+
+    </script>
 
 </body>
 </html>
