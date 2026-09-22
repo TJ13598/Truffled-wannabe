@@ -121,7 +121,8 @@
 
             grid-template-columns: repeat(5, minmax(0, 1fr));
 
-            gap: 20px;
+            /* Gap between the square elements is removed */
+            gap: 0px;
 
             padding-bottom: 80px;
         }
@@ -146,7 +147,8 @@
 
             overflow: hidden;
 
-            border-radius: 10px;
+            /* Removed card rounded corners for a unified solid block appearance */
+            border-radius: 0px;
 
             background: #172827;
 
@@ -340,7 +342,8 @@
             .games {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
 
-                gap: 14px;
+                /* Gap removed across layout variations */
+                gap: 0px;
             }
         }
     </style>
@@ -356,37 +359,37 @@
 
     <nav class="sidebar">
 
-        <a href="index.html"
+        <a href="javascript:void(0)"
            class="side-button"
            title="Home">
             🏠
         </a>
 
-        <a href="#games"
+        <a href="javascript:void(0)"
            class="side-button"
            title="Games">
             🎮
         </a>
 
-        <a href="#games"
+        <a href="javascript:void(0)"
            class="side-button"
            title="Categories">
             🗂️
         </a>
 
-        <a href="#"
+        <a href="javascript:void(0)"
            class="side-button"
            title="Tools">
             🛠️
         </a>
 
-        <a href="#"
+        <a href="javascript:void(0)"
            class="side-button"
            title="Community">
             🎮
         </a>
 
-        <a href="#"
+        <a href="javascript:void(0)"
            class="side-button"
            title="Settings">
             ⚙️
@@ -437,237 +440,51 @@
                 Arcade
             </option>
 
-            <option value="puzzle">
-                Puzzle
-            </option>
-
-            <option value="sports">
-                Sports
-            </option>
-
         </select>
 
     </div>
 
 
     <!-- =========================
-         GAMES
+         GAME GRID
     ========================= -->
 
-    <main class="games" id="games">
+    <main class="games">
 
-
-        <!-- GAME 1 -->
-
-        <a
-            class="game"
-            href="slope.html"
-            data-name="Slope"
-            data-category="arcade"
-        >
-
+        <!-- Copy and paste this block for every game element you want to add.
+             Simply paste your game URL inside data-iframe-link when ready. -->
+        <div class="game" data-iframe-link="about:blank">
             <div class="game-image">
-
-                <img
-                    src="images (30).jpeg"
-                    alt="Game One"
-                >
-
+                <div class="placeholder">🎮</div>
             </div>
+            <div class="game-name">Sample Game 1</div>
+        </div>
 
-            <div class="game-name">
-                Slope
-            </div>
-
-        </a>
-
-
-        <!-- GAME 2 -->
-
-        <a
-            class="game"
-            href="games/game2.html"
-            data-name="Game Two"
-            data-category="action"
-        >
-
+        <div class="game" data-iframe-link="about:blank">
             <div class="game-image">
-
-                <img
-                    src="images/game2.jpg"
-                    alt="Game Two"
-                >
-
+                <div class="placeholder">🕹️</div>
             </div>
+            <div class="game-name">Sample Game 2</div>
+        </div>
 
-            <div class="game-name">
-                Game Two
-            </div>
-
-        </a>
-
-
-        <!-- GAME 3 -->
-
-        <a
-            class="game"
-            href="games/game3.html"
-            data-name="2048"
-            data-category="puzzle"
-        >
-
+        <div class="game" data-iframe-link="about:blank">
             <div class="game-image">
-
-                <img
-                    src="images/2048.jpg"
-                    alt="2048"
-                >
-
+                <div class="placeholder">👾</div>
             </div>
+            <div class="game-name">Sample Game 3</div>
+        </div>
 
-            <div class="game-name">
-                2048
-            </div>
-
-        </a>
-
-
-        <!-- GAME 4 -->
-
-        <a
-            class="game"
-            href="games/game4.html"
-            data-name="Football"
-            data-category="sports"
-        >
-
+        <div class="game" data-iframe-link="about:blank">
             <div class="game-image">
-
-                <img
-                    src="images/football.jpg"
-                    alt="Football"
-                >
-
+                <div class="placeholder">🎲</div>
             </div>
+            <div class="game-name">Sample Game 4</div>
+        </div>
 
-            <div class="game-name">
-                Football
-            </div>
-
-        </a>
-
-
-        <!-- GAME 5 -->
-
-        <a
-            class="game"
-            href="games/game5.html"
-            data-name="10 Minutes Till Dawn"
-            data-category="action"
-        >
-
+        <div class="game" data-iframe-link="about:blank">
             <div class="game-image">
-
-                <img
-                    src="images/10-minutes.jpg"
-                    alt="10 Minutes Till Dawn"
-                >
-
+                <div class="placeholder">🎯</div>
             </div>
+            <div class="game-name">Sample Game 5</div>
+        </div>
 
-            <div class="game-name">
-                10 Minutes Till Dawn
-            </div>
-
-        </a>
-
-
-        <!-- GAME 6 -->
-
-        <a
-            class="game"
-            href="games/game6.html"
-            data-name="60 Seconds"
-            data-category="arcade"
-        >
-
-            <div class="game-image">
-
-                <img
-                    src="images/60-seconds.jpg"
-                    alt="60 Seconds"
-                >
-
-            </div>
-
-            <div class="game-name">
-                60 Seconds
-            </div>
-
-        </a>
-
-
-    </main>
-
-
-    <!-- =========================
-         SEARCH SCRIPT
-    ========================= -->
-
-    <script>
-
-        const search = document.getElementById("search");
-        const category = document.getElementById("category");
-        const games = document.querySelectorAll(".game");
-
-        function filterGames() {
-
-            const searchValue =
-                search.value.toLowerCase().trim();
-
-            const categoryValue =
-                category.value;
-
-            games.forEach(function(game) {
-
-                const name =
-                    game.dataset.name.toLowerCase();
-
-                const gameCategory =
-                    game.dataset.category;
-
-                const searchMatch =
-                    name.includes(searchValue);
-
-                const categoryMatch =
-                    categoryValue === "all" ||
-                    gameCategory === categoryValue;
-
-                if (searchMatch && categoryMatch) {
-
-                    game.style.display = "block";
-
-                } else {
-
-                    game.style.display = "none";
-
-                }
-
-            });
-
-        }
-
-        search.addEventListener(
-            "input",
-            filterGames
-        );
-
-        category.addEventListener(
-            "change",
-            filterGames
-        );
-
-    </script>
-
-</body>
-</html>
