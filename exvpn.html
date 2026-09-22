@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>External VPNs</title>
+
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height:100%}
+body{
+    background-color:#081716;
+    background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:50px 50px;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+}
+.header{text-align:center;padding-top:70px}
+.header h1{margin:0;font-size:65px;font-weight:800}
+.header p{color:#a9b6b5;margin-top:20px}
+.vpn-list{
+    width:800px;
+    max-width:calc(100% - 40px);
+    margin:50px auto 100px;
+}
+.vpn-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    background:#142a29;
+    padding:25px;
+    margin-bottom:15px;
+    border-radius:12px;
+    transition:.2s;
+}
+.vpn-card:hover{
+    transform:translateY(-3px);
+    background:#193331;
+}
+.vpn-info h2{margin:0 0 8px;font-size:21px}
+.vpn-info p{margin:0;color:#a9b6b5;font-size:14px}
+.vpn-button{
+    flex-shrink:0;
+    padding:13px 20px;
+    border-radius:8px;
+    background:#28504d;
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+}
+.vpn-button:hover{background:#32635f}
+.sidebar{
+    position:fixed;
+    top:139px;
+    right:18px;
+    width:80px;
+    padding:18px 0;
+    background:#142a29;
+    border-radius:10px;
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.side-button{
+    width:58px;
+    height:58px;
+    margin:3px 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    color:white;
+    text-decoration:none;
+    font-size:27px;
+}
+.side-button:hover{background:#203b39}
+@media(max-width:700px){
+    .vpn-card{flex-direction:column;align-items:stretch}
+    .vpn-button{text-align:center}
+    .header h1{font-size:48px}
+    .sidebar{
+        top:auto;
+        bottom:15px;
+        left:50%;
+        right:auto;
+        transform:translateX(-50%);
+        width:auto;
+        padding:8px 10px;
+        flex-direction:row;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="sidebar">
+    <a href="index.html" class="side-button" title="Home">🌐</a>
+    <a href="index.html" class="side-button" title="Games">🎮</a>
+    <a href="movies.html" class="side-button" title="Movies">🎥</a>
+    <a href="vpn.html" class="side-button" title="VPN">🛡️</a>
+    <a href="suggestions.html" class="side-button" title="Suggestions">💡</a>
+</nav>
+
+<header class="header">
+    <h1>External VPNs</h1>
+    <p>VPN services available outside this website</p>
+</header>
+
+<main class="vpn-list">
+
+    <div class="vpn-card">
+        <div class="vpn-info">
+            <h2>VPN Service 1</h2>
+            <p>Add your VPN description here.</p>
+        </div>
+        <a href="https://example.com"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="vpn-button">Visit</a>
+    </div>
+
+    <div class="vpn-card">
+        <div class="vpn-info">
+            <h2>VPN Service 2</h2>
+            <p>Add your VPN description here.</p>
+        </div>
+        <a href="https://example.com"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="vpn-button">Visit</a>
+    </div>
+
+    <div class="vpn-card">
+        <div class="vpn-info">
+            <h2>VPN Service 3</h2>
+            <p>Add your VPN description here.</p>
+        </div>
+        <a href="https://example.com"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="vpn-button">Visit</a>
+    </div>
+
+    <div class="vpn-card">
+        <div class="vpn-info">
+            <h2>VPN Service 4</h2>
+            <p>Add your VPN description here.</p>
+        </div>
+        <a href="https://example.com"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="vpn-button">Visit</a>
+    </div>
+
+</main>
+
+</body>
+</html>
