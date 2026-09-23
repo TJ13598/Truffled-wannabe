@@ -86,18 +86,17 @@
             font-style: italic;
         }
 
-.category {
-    width: 170px;
-    height: 53px;
-    border: 0;
-    outline: none;
-    border-radius: 6px; /* Changed from 20px to 6px */
-    background: #192e2d;
-    color: white;
-    padding: 0 15px;
-    font-size: 15px;
-}
-
+        .category {
+            width: 170px;
+            height: 53px;
+            border: 0;
+            outline: none;
+            border-radius: 6px; 
+            background: #192e2d;
+            color: white;
+            padding: 0 15px;
+            font-size: 15px;
+        }
 
 
         /* =========================
@@ -115,22 +114,20 @@
 
             grid-template-columns: repeat(5, minmax(0, 1fr));
 
-            gap: 0px;
+            gap: 20px; /* Added spacing so dilated elements don't heavily overlap */
 
             padding-bottom: 80px;
         }
 
 
         /* =========================
-           GAME CARD
+           GAME CARD & ANIMATIONS
         ========================= */
 
         .game {
             display: block;
-
             color: white;
             text-decoration: none;
-
             min-width: 0;
         }
 
@@ -138,33 +135,75 @@
             position: relative;
             width: 100%;
             aspect-ratio: 1 / 1;
-
             overflow: hidden;
-
-            border-radius: 0px;
-
+            border-radius: 8px; /* Cleaned up card corners slightly */
             background: #172827;
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
+            transition: box-shadow 0.3s ease;
         }
 
+        /* 1. The Dilation Animation on Hover */
         .game:hover .game-image {
-            transform: translateY(-5px);
+            animation: dilateAndShrink 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            z-index: 10; /* Places current hovered item over its adjacent grid neighbors */
+        }
 
-            box-shadow:
-                0 12px 30px rgba(0, 0, 0, 0.45);
+        @keyframes dilateAndShrink {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.12); /* Dilates larger */
+            }
+            80% {
+                transform: scale(1.03); /* Shrinks slightly below peak */
+            }
+            100% {
+                transform: scale(1.05); /* Settles on a clean scale */
+            }
+        }
+
+        /* 2. The Opaque Black Cover & Centered Text via Data Attribute */
+        .game-image::after {
+            content: attr(data-title); /* Dynamically grabs text from HTML data-title */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75); /* Opaque black cover */
+            
+            /* Core alignment rules */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+            
+            /* Text layout */
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            
+            /* Default Hidden State */
+            opacity: 0;
+            z-index: 3;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Fade in the overlay cover on hover */
+        .game:hover .game-image::after {
+            opacity: 1;
         }
 
         .game-image img {
             width: 100%;
             height: 100%;
-
             display: block;
-
             object-fit: cover;
-            
             position: relative;
             z-index: 2;
         }
@@ -202,13 +241,9 @@
 
         .game-name {
             margin-top: 10px;
-
             text-align: center;
-
             font-size: 16px;
-
             font-weight: 700;
-
             color: #ffffff;
             margin-bottom: 25px;
         }
@@ -340,7 +375,7 @@
             .games {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
 
-                gap: 0px;
+                gap: 15px;
             }
         }
     </style>
@@ -349,35 +384,28 @@
 
 <body>
 
-
     <!-- =========================
          SIDEBAR
     ========================= -->
-
-           <nav class="sidebar">
+    <nav class="sidebar">
         <a href="bivpn.html" class="side-button" title="Home">🌐</a>
         <a href="index.html" class="side-button" title="Games">🎮</a>
         <a href="movies.html" class="side-button" title="Categories">🎥</a>
         <a href="exvpn.html" class="side-button" title="Tools">🛠️</a>
-
         <a href="suggestions.html" class="side-button" title="Settings">💭</a>
     </nav>
-
 
     <!-- =========================
          HEADER
     ========================= -->
-
     <header class="header">
         <h1>Games</h1>
         <div class="game-count">Showing 5 games</div>
     </header>
 
-
     <!-- =========================
          SEARCH
     ========================= -->
-
     <div class="controls">
         <input id="search" class="search" type="text" placeholder="Search games">
         <select id="category" class="category">
@@ -387,82 +415,11 @@
         </select>
     </div>
 
-
     <!-- =========================
          GAME GRID
     ========================= -->
-
     <main class="games">
 
         <!-- GAME SLOT 1 -->
-        <a href="games/polytrack.html" class="game">
-            <div class="game-image">
-                <div class="placeholder">🏎️</div>
-                <img src="game_photos/polytrack.jpg" alt="Poly Track" onerror="this.style.display='none'">
-            </div>
-        </a>
-
-        <!-- GAME SLOT 2 -->
-               <a href="games/slope.html" class="game">
-            <div class="game-image">
-                <div class="placeholder">🕹️</div>
-               <img src="game_photos/slope.jpeg" alt="Poly Track" onerror="this.style.display='none'">
-            </div>
-        </a>
-
-        <!-- GAME SLOT 3 -->
-              <a href="games/snowrider.html" class="game">
-            <div class="game-image">
-                <div class="placeholder">👾</div>
-              <img src="game_photos/snowrider.jpg" alt="Poly Track" onerror="this.style.display='none'">
-            </div>
-        </a>
-
-        <!-- GAME SLOT 4 -->
-               <a href="games/balatro.html" class="game">
-            <div class="game-image">
-                <div class="placeholder">🎲</div>
-               <img src="game_photos/balatro.jpeg" alt="Poly Track" onerror="this.style.display='none'">
-            </div>
-        </a>
-
-        <!-- GAME SLOT 5 -->
-         <a href="games/crossyroad.html" class="game">
-            <div class="game-image">
-                <div class="placeholder">🎯</div>
-               <img src="game_photos/crossy.jpg" alt="Balatro" onerror="this.style.display='none'">            </div>
-        </a>
-          <!-- GAME SLOT 6 -->
-        <a href="games/subway.html" class="game">
-            <div class="game-image">
-                <div class="placeholder">🎯</div>
-               <img src="game_photos/subway.jpg" alt="Balatro" onerror="this.style.display='none'">            </div>
-        </a>
-        <!-- GAME SLOT 7 -->
-        <a href="games/<!--gamefile here-->" class="game">
-            <div class="game-image">
-                <div class="placeholder">🎯</div>
-               <img src="game_photos/comingsoon.jpg" alt="Balatro" onerror="this.style.display='none'">            </div>
-        </a>
-        <!-- GAME SLOT 8 -->
-          <a href="games/<!--gamefile here-->" class="game">
-            <div class="game-image">
-                <div class="placeholder">🎯</div>
-               <img src="game_photos/comingsoon.jpg" alt="Balatro" onerror="this.style.display='none'">            </div>
-        </a>
-        <!-- GAME SLOT 9 -->
-          <a href="games/<!--gamefile here-->" class="game">
-            <div class="game-image">
-                <div class="placeholder">🎯</div>
-               <img src="game_photos/comingsoon.jpg" alt="Balatro" onerror="this.style.display='none'">            </div>
-  
-        </a>
-        <!-- GAME SLOT 10 -->
-          <a href="games/<!--gamefile here-->" class="game">
-            <div class="game-image">
-                <div class="placeholder">🎯</div>
-               <img src="game_photos/comingsoon.jpg" alt="Balatro" onerror="this.style.display='none'">            </div>
-    
-        </a>
-
-
+        <a href="game1.html" class="game">
+            <div class="game-image" data-title="Play Now">
