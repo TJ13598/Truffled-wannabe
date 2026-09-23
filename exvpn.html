@@ -61,18 +61,22 @@ body {
 }
 
 /* MINI ROUNDED RECTANGLE BUTTONS */
+/* MINI ROUNDED RECTANGLE BUTTONS */
 .vpn-button {
     display: inline-block;
-    padding: 10px 14px;
+    padding: 14px 22px;      /* ⬅️ INCREASED: First number is top/bottom thickness, second is left/right width */
+    min-width: 90px;         /* ⬅️ ADDED: Ensures all boxes have a matching, comfortable baseline size */
+    text-align: center;      /* ⬅️ ADDED: Keeps the link text perfectly centered inside the larger box */
     border-radius: 8px;
     background: #28504d;
     color: white;
     text-decoration: none;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 14px;         /* ⬅️ OPTIONAL: Slightly bumped up font size to match the bigger box scale */
     white-space: nowrap;
     transition: background .2s, transform .1s;
 }
+
 .vpn-button:hover {
     background: #00bcd4;
     transform: scale(1.03);
