@@ -40,9 +40,6 @@
         body.theme-orange { --primary-color: #a66a32; }
         body.theme-pink { --primary-color: #9c4577; }
 
-        /* Default fallback accent color */
-        body { --primary-color: #1f766d; }
-
         /* =========================
            HEADER
         ========================= */
@@ -341,7 +338,7 @@
 
             text-decoration: none;
 
-            font-size: 20px;
+            font-size: 27px;
 
             transition: background 0.2s ease;
         }
@@ -352,7 +349,6 @@
 
         .side-button.active {
             background: #203b39;
-            border-left: 3px solid var(--primary-color);
         }
 
 
@@ -420,47 +416,48 @@
 
 <body>
 
-    <!-- SIDEBAR -->
+    <!-- =========================
+         SIDEBAR (Your original design cleanly closed)
+    ========================= -->
     <div class="sidebar">
-        <a href="#" class="side-button">⚙️</a>
-        <a href="#" class="side-button active">🎨</a>
-        <a href="#" class="side-button">👤</a>
+        <a href="#home" class="side-button">🏠</a>
+        <a href="#settings" class="side-button active">⚙️</a>
+        <a href="#profile" class="side-button">👤</a>
     </div>
 
-    <!-- HEADER -->
+    <!-- =========================
+         HEADER 
+    ========================= -->
     <div class="header">
-        <h1>Settings</h1>
-        <p>Customize and manage your profile settings</p>
+        <h1>Personalization</h1>
+        <p>Customize your experience and choose your favorite theme color.</p>
     </div>
 
-    <!-- SETTINGS CONTAINER -->
+    <!-- =========================
+         SETTINGS CONTAINER
+    ========================= -->
     <div class="settings">
-        
-        <!-- CARD 1: Accent Color -->
+
+        <!-- Card 1: Theme Selector -->
         <div class="setting-card">
-            <div class="setting-title">Theme Color</div>
-            <div class="setting-description">Choose your preferred primary accent color for UI elements.</div>
+            <div class="setting-title">Accent Color</div>
+            <div class="setting-description">Select a dynamic primary theme color for your user interface.</div>
             <div class="colors">
-                <div class="color green active" data-theme="green"></div>
-                <div class="color blue" data-theme="blue"></div>
-                <div class="color purple" data-theme="purple"></div>
-                <div class="color red" data-theme="red"></div>
-                <div class="color orange" data-theme="orange"></div>
-                <div class="color pink" data-theme="pink"></div>
+                <div class="color green active" data-color="green"></div>
+                <div class="color blue" data-color="blue"></div>
+                <div class="color purple" data-color="purple"></div>
+                <div class="color red" data-color="red"></div>
+                <div class="color orange" data-color="orange"></div>
+                <div class="color pink" data-color="pink"></div>
             </div>
         </div>
 
-        <!-- CARD 2: Dropdown Menu -->
+        <!-- Card 2: Language Selector Dropdown -->
         <div class="setting-card">
-            <div class="setting-title">Language</div>
-            <div class="setting-description">Select your interface language preference.</div>
-            <select id="language-select">
+            <div class="setting-title">System Language</div>
+            <div class="setting-description">Choose your preferred default display language.</div>
+            <select id="lang-select">
                 <option value="en">English (US)</option>
                 <option value="es">Español</option>
                 <option value="fr">Français</option>
-            </select>
-        </div>
-
-        <!-- CARD 3: Toggles -->
-        <div class="setting-card">
-            <div class="setting-title">Preferences</div>
+                <option value="de">Deutsch</option>
