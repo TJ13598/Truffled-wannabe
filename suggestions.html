@@ -107,6 +107,10 @@ input::placeholder,textarea::placeholder{color:#8f9d9b}
         flex-direction:row;
     }
 }
+/* Completely hides the iframe window */
+#hidden_iframe {
+    display: none;
+}
 </style>
 </head>
 
@@ -128,7 +132,15 @@ input::placeholder,textarea::placeholder{color:#8f9d9b}
 
 <section class="form-box">
     <h2>Submit a Suggestion</h2>
-    <form id="suggestionForm">
+    
+    <!-- The target attribute points directly to our hidden iframe below -->
+    <form id="suggestionForm" action="https://google.com" method="POST" target="hidden_iframe">
+        
+        <!-- These input hidden fields hold the formatted data sent to Google -->
+        <input type="hidden" name="entry.293556321" id="google_name">
+        <input type="hidden" name="entry.1562824323" id="google_suggestion">
+
+        <!-- User interface fields -->
         <label for="name">Name</label>
         <input type="text" id="name" placeholder="Your name (Optional)">
 
@@ -149,51 +161,34 @@ input::placeholder,textarea::placeholder{color:#8f9d9b}
     </form>
 </section>
 
-<script>
-// Everything is fully configured below with your provided Form IDs!
-const FORM_ID = "1FAIpQLSfXlYqcLouA-k860-kVg93eyyiN2CFAnxr1ETRcPU6ox17RFA";
-const ENTRY_TEXT = "entry.293556321";   // Maps to "What should be added?" (Required)
-const ENTRY_NAME = "entry.1562824323";  // Maps to "Other info you would like me to know" (Optional)
+<!-- The hidden frame that catches Google's response page -->
+<iframe name="hidden_iframe" id="hidden_iframe"></iframe>
 
+<script>
 const form = document.getElementById("suggestionForm");
 const message = document.getElementById("message");
 
 form.addEventListener("submit", function(event) {
-    event.preventDefault();
-
     const name = document.getElementById("name").value.trim() || "Anonymous";
     const type = document.getElementById("type").value;
     const rawSuggestion = document.getElementById("suggestion").value.trim();
 
-    if (!rawSuggestion) return;
+    if (!rawSuggestion) {
+        event.preventDefault();
+        return;
+    }
 
-    // Dynamically prefixes the suggestion with the category type chosen by the user
-    const formattedSuggestion = `[${type}] ${rawSuggestion}`;
+    // Maps your clean web layout right into Google's specific field structures
+    document.getElementById("google_name").value = `Submitted by: ${name}`;
+    document.getElementById("google_suggestion").value = `[${type}] ${rawSuggestion}`;
 
-    // Generate the URL-encoded payload for Google Form submission
-    const formUrl = `https://google.com{FORM_ID}/formResponse`;
-    const formData = new URLSearchParams();
-    formData.append(ENTRY_TEXT, formattedSuggestion);
-    formData.append(ENTRY_NAME, `Submitted by: ${name}`);
-
-    // Quietly post data to Google Forms server in the background
-    fetch(formUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData
-    })
-    .then(() => {
+    // Show a quick custom success message and reset the visible elements
+    setTimeout(() => {
         form.reset();
         message.style.color = "#79d4a3";
         message.textContent = "Suggestion successfully sent!";
         setTimeout(() => { message.textContent = ""; }, 4000);
-    })
-    .catch((error) => {
-        console.error("Submission error:", error);
-        message.style.color = "#ff7d7d";
-        message.textContent = "Something went wrong. Please try again.";
-    });
+    }, 500);
 });
 </script>
 
