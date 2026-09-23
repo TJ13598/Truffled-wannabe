@@ -21,7 +21,7 @@ body {
 .header h1 { margin: 0; font-size: 65px; font-weight: 800; }
 .header p { color: #a9b6b5; margin-top: 20px; }
 
-/* OPTIMIZED CONTAINER WIDTH FOR 6 HORIZONTAL BUTTONS */
+/* OPTIMIZED CONTAINER WIDTH FOR HORIZONTAL LAYOUT */
 .vpn-list {
     width: 950px;
     max-width: calc(100% - 40px);
@@ -29,9 +29,9 @@ body {
 }
 .vpn-card {
     display: flex;
-    flex-direction: row; /* Enforces horizontal arrangement */
+    flex-direction: row; 
     align-items: center;
-    justify-content: space-between; /* Pushes links to the left and text to the right */
+    justify-content: space-between; /* Pushes text to the left and links to the right */
     gap: 30px;
     background: #142a29;
     padding: 25px;
@@ -44,18 +44,24 @@ body {
     background: #193331;
 }
 
-/* 6 MINI LINKS ALIGNED TO THE FAR LEFT */
+/* TEXT AREA ALIGNED TO THE FAR LEFT */
+.vpn-info {
+    text-align: left; /* Text aligns cleanly to the left edge */
+    min-width: 0;
+}
+.vpn-info h2 { margin: 0 0 8px; font-size: 21px; }
+.vpn-info p { margin: 0; color: #a9b6b5; font-size: 14px; }
+
+/* 6 MINI LINKS ALIGNED TO THE FAR RIGHT */
 .mini-links-row {
     display: flex;
     flex-direction: row;
     gap: 8px;
     flex-shrink: 0;
-    order: 1; /* Forces the link cluster to remain on the left side */
 }
 
 /* MINI ROUNDED RECTANGLE BUTTONS */
 .vpn-button {
-    text-align: right;
     display: inline-block;
     padding: 10px 14px;
     border-radius: 8px;
@@ -71,15 +77,6 @@ body {
     background: #00bcd4;
     transform: scale(1.03);
 }
-
-/* FIXED TO THE TOP RIGHT CORNER */
-.vpn-info {
-    text-align: left; /* Text aligns to the right side edge */
-    min-width: 0;
-    order: 2; /* Forces the text grouping to remain on the right side */
-}
-.vpn-info h2 { margin: 0 0 8px; font-size: 21px; }
-.vpn-info p { margin: 0; color: #a9b6b5; font-size: 14px; }
 
 /* SIDEBAR */
 .sidebar {
@@ -112,7 +109,7 @@ body {
 /* RESPONSIVE LAYOUT */
 @media(max-width: 900px) {
     .vpn-card { 
-        flex-direction: column-reverse; /* Stack links beneath description blocks on tablet */
+        flex-direction: column; /* Stack details sequentially on smaller layouts */
         align-items: stretch; 
         gap: 20px; 
     }
@@ -155,6 +152,10 @@ body {
 
     <!-- Card 1 -->
     <div class="vpn-card">
+        <div class="vpn-info">
+            <h2>VPN Service 1</h2>
+            <p>Add your VPN description here.</p>
+        </div>
         <div class="mini-links-row">
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 1</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 2</a>
@@ -162,15 +163,15 @@ body {
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 4</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 5</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 6</a>
-        </div>
-        <div class="vpn-info">
-            <h2>VPN Service 1</h2>
-            <p>Add your VPN description here.</p>
         </div>
     </div>
 
     <!-- Card 2 -->
     <div class="vpn-card">
+        <div class="vpn-info">
+            <h2>VPN Service 2</h2>
+            <p>Add your VPN description here.</p>
+        </div>
         <div class="mini-links-row">
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 1</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 2</a>
@@ -178,15 +179,15 @@ body {
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 4</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 5</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 6</a>
-        </div>
-        <div class="vpn-info">
-            <h2>VPN Service 2</h2>
-            <p>Add your VPN description here.</p>
         </div>
     </div>
 
     <!-- Card 3 -->
     <div class="vpn-card">
+        <div class="vpn-info">
+            <h2>VPN Service 3</h2>
+            <p>Add your VPN description here.</p>
+        </div>
         <div class="mini-links-row">
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 1</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 2</a>
@@ -194,15 +195,15 @@ body {
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 4</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 5</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 6</a>
-        </div>
-        <div class="vpn-info">
-            <h2>VPN Service 3</h2>
-            <p>Add your VPN description here.</p>
         </div>
     </div>
 
     <!-- Card 4 -->
     <div class="vpn-card">
+        <div class="vpn-info">
+            <h2>VPN Service 4</h2>
+            <p>Add your VPN description here.</p>
+        </div>
         <div class="mini-links-row">
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 1</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 2</a>
@@ -210,10 +211,6 @@ body {
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 4</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 5</a>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 6</a>
-        </div>
-        <div class="vpn-info">
-            <h2>VPN Service 4</h2>
-            <p>Add your VPN description here.</p>
         </div>
     </div>
 
