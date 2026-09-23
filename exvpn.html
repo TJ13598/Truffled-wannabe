@@ -21,7 +21,7 @@ body {
 .header h1 { margin: 0; font-size: 65px; font-weight: 800; }
 .header p { color: #a9b6b5; margin-top: 20px; }
 
-/* RECONFIGURED LIST WIDTH FOR EXTRA BUTTON SPACE */
+/* OPTIMIZED CONTAINER WIDTH FOR HORIZONTAL LINKS */
 .vpn-list {
     width: 950px;
     max-width: calc(100% - 40px);
@@ -30,7 +30,7 @@ body {
 .vpn-card {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* Ensures extreme left/right separation */
     gap: 30px;
     background: #142a29;
     padding: 25px;
@@ -43,14 +43,14 @@ body {
     background: #193331;
 }
 
-/* HORIZONTAL 6-BUTTON CLUSTER (FAR LEFT) */
+/* 6 MINI LINKS ALIGNED TO THE FAR LEFT */
 .mini-links-row {
     display: flex;
     gap: 8px;
     flex-shrink: 0;
 }
 
-/* MINI ROUNDED RECTANGLE LINKS */
+/* MINI ROUNDED RECTANGLE BUTTONS */
 .vpn-button {
     display: inline-block;
     padding: 10px 14px;
@@ -64,14 +64,14 @@ body {
     transition: background .2s, transform .1s;
 }
 .vpn-button:hover {
-    background: #00bcd4; /* Accent color on direct link hover */
+    background: #00bcd4;
     transform: scale(1.03);
 }
 
-/* TOP RIGHT INFO CONTENT ALIGNMENT */
+/* RESTORED TO TOP RIGHT CONTENT ALIGNMENT */
 .vpn-info {
     text-align: right;
-    min-width: 0; /* Prevents text overflow */
+    min-width: 0;
 }
 .vpn-info h2 { margin: 0 0 8px; font-size: 21px; }
 .vpn-info p { margin: 0; color: #a9b6b5; font-size: 14px; }
@@ -104,9 +104,8 @@ body {
 }
 .side-button:hover { background: #203b39; }
 
-/* RESPONSIVE DESIGN */
+/* RESPONSIVE LAYOUT */
 @media(max-width: 900px) {
-    /* Shifts main layout to support narrower window views gracefully */
     .vpn-card { flex-direction: column-reverse; align-items: stretch; gap: 20px; }
     .vpn-info { text-align: center; }
     .mini-links-row { justify-content: center; flex-wrap: wrap; }
