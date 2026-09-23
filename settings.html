@@ -40,6 +40,9 @@
         body.theme-orange { --primary-color: #a66a32; }
         body.theme-pink { --primary-color: #9c4577; }
 
+        /* Default fallback accent color */
+        body { --primary-color: #1f766d; }
+
         /* =========================
            HEADER
         ========================= */
@@ -338,7 +341,7 @@
 
             text-decoration: none;
 
-            font-size: 27px;
+            font-size: 20px;
 
             transition: background 0.2s ease;
         }
@@ -349,6 +352,7 @@
 
         .side-button.active {
             background: #203b39;
+            border-left: 3px solid var(--primary-color);
         }
 
 
@@ -416,45 +420,47 @@
 
 <body>
 
-    <!-- =========================
-         SIDEBAR
-    ========================= -->
-    <nav class="sidebar">
-        <a href="bivpn.html" class="side-button" title="Home">🌐</a>
-        <a href="index.html" class="side-button" title="Games">🎮</a>
-        <a href="movies.html" class="side-button" title="Categories">🎥</a>
-        <a href="exvpn.html" class="side-button" title="Tools">🛠️</a>
-        <a href="settings.html" class="side-button active" title="Settings">⚙️</a>
-    </nav>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <a href="#" class="side-button">⚙️</a>
+        <a href="#" class="side-button active">🎨</a>
+        <a href="#" class="side-button">👤</a>
+    </div>
 
-    <!-- =========================
-         MAIN CONTENT
-    ========================= -->
-    <header class="header">
+    <!-- HEADER -->
+    <div class="header">
         <h1>Settings</h1>
-        <p>Personalize your panel look and configurations</p>
-    </header>
+        <p>Customize and manage your profile settings</p>
+    </div>
 
-    <main class="settings">
-        <!-- Accent Theme Card -->
+    <!-- SETTINGS CONTAINER -->
+    <div class="settings">
+        
+        <!-- CARD 1: Accent Color -->
         <div class="setting-card">
-            <div class="setting-title">Accent Color</div>
-            <div class="setting-description">Choose a custom focus theme color for active elements.</div>
+            <div class="setting-title">Theme Color</div>
+            <div class="setting-description">Choose your preferred primary accent color for UI elements.</div>
             <div class="colors">
-                <div class="color green active" data-color="green"></div>
-                <div class="color blue" data-color="blue"></div>
-                <div class="color purple" data-color="purple"></div>
-                <div class="color red" data-color="red"></div>
-                <div class="color orange" data-color="orange"></div>
-                <div class="color pink" data-color="pink"></div>
+                <div class="color green active" data-theme="green"></div>
+                <div class="color blue" data-theme="blue"></div>
+                <div class="color purple" data-theme="purple"></div>
+                <div class="color red" data-theme="red"></div>
+                <div class="color orange" data-theme="orange"></div>
+                <div class="color pink" data-theme="pink"></div>
             </div>
         </div>
 
-        <!-- Notification Toggle Card -->
+        <!-- CARD 2: Dropdown Menu -->
+        <div class="setting-card">
+            <div class="setting-title">Language</div>
+            <div class="setting-description">Select your interface language preference.</div>
+            <select id="language-select">
+                <option value="en">English (US)</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+
+        <!-- CARD 3: Toggles -->
         <div class="setting-card">
             <div class="setting-title">Preferences</div>
-            <div class="setting-description">Manage standard display choices.</div>
-            <div class="toggle-row">
-                <span class="toggle-text">Enable Animations</span>
-                <label class="toggle">
-                    <input type="checkbox" id="animationToggle" checked>
