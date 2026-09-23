@@ -81,14 +81,14 @@
             font-size: 15px;
         }
 
-        /* MOVIE CONTAINER (STRICT 2-COLUMN GRID) */
+        /* MOVIE CONTAINER (MAIN 2-COLUMN GRID) */
         .movies {
             width: calc(100% - 250px);
             max-width: 1200px;
             margin-left: 100px;
             margin-right: 130px;
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr)); /* Exactly 2 columns across */
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 20px;
             padding-bottom: 80px;
         }
@@ -112,20 +112,22 @@
             background: #193433;
         }
 
-        /* BUTTON WRAPPER (FAR LEFT STACK) */
+        /* BUTTON WRAPPER (MODIFIED TO 2x2 MINI GRID) */
         .mini-links-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Forms two distinct columns */
+            gap: 8px; /* Spaces buttons out evenly */
+            width: fit-content;
+            flex-shrink: 0;
         }
 
-        /* 4 MINI ROUNDED RECTANGLE LINKS */
+        /* MINI ROUNDED RECTANGLE LINKS */
         .mini-link {
             display: inline-block;
             background-color: #1f4240;
             color: #ffffff;
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 10px;
             font-size: 13px;
             font-weight: 700;
@@ -209,7 +211,7 @@
 
         @media (max-width: 950px) {
             .movies {
-                grid-template-columns: 1fr; /* Switch to 1 column on smaller tablets for layout spacing */
+                grid-template-columns: 1fr; /* Adapts main stack to 1 column on smaller tablets */
             }
         }
 
@@ -254,11 +256,7 @@
                 align-items: stretch;
             }
             .mini-links-stack {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            .mini-link {
-                flex: 1;
+                width: 100%; /* Spans full horizontal screen width on mobile phones */
             }
             .movie-info {
                 text-align: center;
@@ -287,7 +285,7 @@
 
     <!-- SEARCH -->
     <div class="controls">
-        <input id="search" class="search" type="text" placeholder="Search Movie Sites">
+        <input id="search" class="search" type="text" placeholder="Search movies">
         <select id="category" class="category">
             <option value="all">all</option>
             <option value="action">Action</option>
@@ -299,7 +297,7 @@
         </select>
     </div>
 
-    <!-- MOVIES CONTAINER (6 BOXES IN A 2x3 GRID) -->
+    <!-- MOVIES CONTAINER (6 BOXES IN A 2-COLUMN GRID) -->
     <main class="movies" id="movieContainer">
         <!-- Card 1 -->
         <div class="movie" data-title="Movie One" data-category="action">
@@ -328,32 +326,8 @@
                 <div class="movie-url">movies/movie2.html</div>
             </div>
         </div>
- <!-- Card 3 -->
-        <div class="movie" data-title="Movie Two" data-category="comedy">
+
+        <!-- Card 3 -->
+        <div class="movie" data-title="Movie Three" data-category="horror">
             <div class="mini-links-stack">
-                <a href="movies/movie2-link1.html" class="mini-link">Link 1</a>
-                <a href="movies/movie2-link2.html" class="mini-link">Link 2</a>
-                <a href="movies/movie2-link3.html" class="mini-link">Link 3</a>
-                <a href="movies/movie2-link4.html" class="mini-link">Link 4</a>
-            </div>
-            <div class="movie-info">
-                <div class="movie-name">Movie Three</div>
-                <div class="movie-url">movies/movie2.html</div>
-            </div>
-        </div>
- <!-- Card 4 -->
-        <div class="movie" data-title="Movie Four" data-category="comedy">
-            <div class="mini-links-stack">
-                <a href="movies/movie2-link1.html" class="mini-link">Link 1</a> <a href="movies/movie2-link3.html" class="mini-link">Link 3</a>
-                <a href="movies/movie2-link2.html" class="mini-link">Link 2</a> <a href="movies/movie2-link4.html" class="mini-link">Link 4</a>
-
-    
-               
-            </div>
-            <div class="movie-info">
-                <div class="movie-name">Movie Four/div>
-                <div class="movie-url">movies/movie2.html</div>
-            </div>
-        </div>
-
-
+                <a href="movies/movie3-link1.html" class="mini-link">Link 1</a>
