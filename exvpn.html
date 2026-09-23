@@ -21,7 +21,7 @@ body {
 .header h1 { margin: 0; font-size: 65px; font-weight: 800; }
 .header p { color: #a9b6b5; margin-top: 20px; }
 
-/* OPTIMIZED CONTAINER WIDTH FOR HORIZONTAL LINKS */
+/* OPTIMIZED CONTAINER WIDTH FOR 6 HORIZONTAL BUTTONS */
 .vpn-list {
     width: 950px;
     max-width: calc(100% - 40px);
@@ -29,8 +29,9 @@ body {
 }
 .vpn-card {
     display: flex;
+    flex-direction: row; /* Enforces horizontal arrangement */
     align-items: center;
-    justify-content: space-between; /* Ensures extreme left/right separation */
+    justify-content: space-between; /* Pushes links to the left and text to the right */
     gap: 30px;
     background: #142a29;
     padding: 25px;
@@ -46,8 +47,10 @@ body {
 /* 6 MINI LINKS ALIGNED TO THE FAR LEFT */
 .mini-links-row {
     display: flex;
+    flex-direction: row;
     gap: 8px;
     flex-shrink: 0;
+    order: 1; /* Forces the link cluster to remain on the left side */
 }
 
 /* MINI ROUNDED RECTANGLE BUTTONS */
@@ -68,10 +71,11 @@ body {
     transform: scale(1.03);
 }
 
-/* RESTORED TO TOP RIGHT CONTENT ALIGNMENT */
+/* FIXED TO THE TOP RIGHT CORNER */
 .vpn-info {
-    text-align: right;
+    text-align: right; /* Text aligns to the right side edge */
     min-width: 0;
+    order: 2; /* Forces the text grouping to remain on the right side */
 }
 .vpn-info h2 { margin: 0 0 8px; font-size: 21px; }
 .vpn-info p { margin: 0; color: #a9b6b5; font-size: 14px; }
@@ -106,7 +110,11 @@ body {
 
 /* RESPONSIVE LAYOUT */
 @media(max-width: 900px) {
-    .vpn-card { flex-direction: column-reverse; align-items: stretch; gap: 20px; }
+    .vpn-card { 
+        flex-direction: column-reverse; /* Stack links beneath description blocks on tablet */
+        align-items: stretch; 
+        gap: 20px; 
+    }
     .vpn-info { text-align: center; }
     .mini-links-row { justify-content: center; flex-wrap: wrap; }
     .vpn-button { flex: 1; text-align: center; min-width: 80px; }
