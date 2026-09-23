@@ -32,14 +32,6 @@
                 color 0.3s ease;
         }
 
-        /* Dynamic primary theme colors applied via JavaScript */
-        body.theme-green { --primary-color: #1f766d; }
-        body.theme-blue { --primary-color: #315f9c; }
-        body.theme-purple { --primary-color: #69459c; }
-        body.theme-red { --primary-color: #9c4545; }
-        body.theme-orange { --primary-color: #a66a32; }
-        body.theme-pink { --primary-color: #9c4577; }
-
         /* =========================
            HEADER
         ========================= */
@@ -167,12 +159,29 @@
             border-color: white;
         }
 
-        .green { background: #1f766d; }
-        .blue { background: #315f9c; }
-        .purple { background: #69459c; }
-        .red { background: #9c4545; }
-        .orange { background: #a66a32; }
-        .pink { background: #9c4577; }
+        .green {
+            background: #1f766d;
+        }
+
+        .blue {
+            background: #315f9c;
+        }
+
+        .purple {
+            background: #69459c;
+        }
+
+        .red {
+            background: #9c4545;
+        }
+
+        .orange {
+            background: #a66a32;
+        }
+
+        .pink {
+            background: #9c4577;
+        }
 
 
         /* =========================
@@ -238,7 +247,7 @@
         }
 
         input:checked + .slider {
-            background: var(--primary-color, #1f766d);
+            background: #1f766d;
         }
 
         input:checked + .slider:before {
@@ -279,10 +288,6 @@
 
         button:hover {
             transform: translateY(-2px);
-        }
-
-        .save {
-            background: var(--primary-color, #1f766d);
         }
 
         .reset {
@@ -414,50 +419,558 @@
     </style>
 </head>
 
+
 <body>
 
     <!-- =========================
-         SIDEBAR (Your original design cleanly closed)
+         SIDEBAR
     ========================= -->
-    <div class="sidebar">
-        <a href="#home" class="side-button">🏠</a>
-        <a href="#settings" class="side-button active">⚙️</a>
-        <a href="#profile" class="side-button">👤</a>
-    </div>
+
+        <nav class="sidebar">
+        <a href="bivpn.html" class="side-button" title="Home">🌐</a>
+        <a href="index.html" class="side-button" title="Games">🎮</a>
+        <a href="movies.html" class="side-button" title="Categories">🎥</a>
+        <a href="exvpn.html" class="side-button" title="Tools">🛠️</a>
+        <a href="settings.html" class="side-button" title="Community">⚙️</a>
+        <a href="suggestions.html" class="side-button" title="Settings">💭</a>
+    </nav>
+
 
     <!-- =========================
-         HEADER 
+         HEADER
     ========================= -->
-    <div class="header">
+
+    <header class="header">
         <h1>Personalization</h1>
-        <p>Customize your experience and choose your favorite theme color.</p>
-    </div>
+
+        <p>
+            Customize the way the site looks and feels.
+        </p>
+    </header>
+
 
     <!-- =========================
-         SETTINGS CONTAINER
+         SETTINGS
     ========================= -->
-    <div class="settings">
 
-        <!-- Card 1: Theme Selector -->
-        <div class="setting-card">
-            <div class="setting-title">Accent Color</div>
-            <div class="setting-description">Select a dynamic primary theme color for your user interface.</div>
-            <div class="colors">
-                <div class="color green active" data-color="green"></div>
-                <div class="color blue" data-color="blue"></div>
-                <div class="color purple" data-color="purple"></div>
-                <div class="color red" data-color="red"></div>
-                <div class="color orange" data-color="orange"></div>
-                <div class="color pink" data-color="pink"></div>
+    <main class="settings">
+
+
+        <!-- ACCENT COLOR -->
+
+        <section class="setting-card">
+
+            <div class="setting-title">
+                Accent Color
             </div>
-        </div>
 
-        <!-- Card 2: Language Selector Dropdown -->
-        <div class="setting-card">
-            <div class="setting-title">System Language</div>
-            <div class="setting-description">Choose your preferred default display language.</div>
-            <select id="lang-select">
-                <option value="en">English (US)</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
+            <div class="setting-description">
+                Choose the color used throughout the site.
+            </div>
+
+            <div class="colors">
+
+                <div class="color green"
+                     data-color="#1f766d"
+                     title="Green">
+                </div>
+
+                <div class="color blue"
+                     data-color="#315f9c"
+                     title="Blue">
+                </div>
+
+                <div class="color purple"
+                     data-color="#69459c"
+                     title="Purple">
+                </div>
+
+                <div class="color red"
+                     data-color="#9c4545"
+                     title="Red">
+                </div>
+
+                <div class="color orange"
+                     data-color="#a66a32"
+                     title="Orange">
+                </div>
+
+                <div class="color pink"
+                     data-color="#9c4577"
+                     title="Pink">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BACKGROUND -->
+
+        <section class="setting-card">
+
+            <div class="setting-title">
+                Background
+            </div>
+
+            <div class="setting-description">
+                Choose the background style.
+            </div>
+
+            <select id="background">
+
+                <option value="grid">
+                    Grid
+                </option>
+
+                <option value="plain">
+                    Plain
+                </option>
+
+                <option value="dots">
+                    Dots
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- FONT SIZE -->
+
+        <section class="setting-card">
+
+            <div class="setting-title">
+                Font Size
+            </div>
+
+            <div class="setting-description">
+                Adjust the overall text size.
+            </div>
+
+            <select id="fontSize">
+
+                <option value="small">
+                    Small
+                </option>
+
+                <option value="normal" selected>
+                    Normal
+                </option>
+
+                <option value="large">
+                    Large
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- ROUNDED CORNERS -->
+
+        <section class="setting-card">
+
+            <div class="setting-title">
+                Appearance
+            </div>
+
+            <div class="setting-description">
+                Change small visual effects across the site.
+            </div>
+
+            <div class="toggle-row">
+
+                <span class="toggle-text">
+                    Rounded corners
+                </span>
+
+                <label class="toggle">
+
+                    <input
+                        type="checkbox"
+                        id="rounded"
+                        checked
+                    >
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="toggle-row">
+
+                <span class="toggle-text">
+                    Hover animations
+                </span>
+
+                <label class="toggle">
+
+                    <input
+                        type="checkbox"
+                        id="animations"
+                        checked
+                    >
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESET -->
+
+        <section class="setting-card">
+
+            <div class="setting-title">
+                Reset Settings
+            </div>
+
+            <div class="setting-description">
+                Restore all personalization settings to their defaults.
+            </div>
+
+            <div class="buttons">
+
+                <button
+                    class="reset"
+                    onclick="resetSettings()">
+                    Reset to Default
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        const root = document.documentElement;
+
+        const colors = document.querySelectorAll(".color");
+
+        const background = document.getElementById("background");
+
+        const fontSize = document.getElementById("fontSize");
+
+        const rounded = document.getElementById("rounded");
+
+        const animations = document.getElementById("animations");
+
+
+        /* =========================
+           DEFAULT SETTINGS
+        ========================= */
+
+        const defaults = {
+            color: "#1f766d",
+            background: "grid",
+            fontSize: "normal",
+            rounded: true,
+            animations: true
+        };
+
+
+        /* =========================
+           APPLY SETTINGS
+        ========================= */
+
+        function applySettings(settings) {
+
+            /* Accent color */
+
+            root.style.setProperty(
+                "--accent",
+                settings.color
+            );
+
+            document.querySelectorAll(
+                ".slider"
+            ).forEach(slider => {
+
+                slider.style.setProperty(
+                    "--slider-color",
+                    settings.color
+                );
+
+            });
+
+
+            /* Background */
+
+            if (settings.background === "plain") {
+
+                document.body.style.backgroundImage =
+                    "none";
+
+            }
+
+            else if (settings.background === "dots") {
+
+                document.body.style.backgroundImage =
+                    "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)";
+
+                document.body.style.backgroundSize =
+                    "25px 25px";
+
+            }
+
+            else {
+
+                document.body.style.backgroundImage =
+                    `
+                    linear-gradient(
+                        rgba(255,255,255,0.025) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(255,255,255,0.025) 1px,
+                        transparent 1px
+                    )
+                    `;
+
+                document.body.style.backgroundSize =
+                    "50px 50px";
+            }
+
+
+            /* Font size */
+
+            if (settings.fontSize === "small") {
+
+                document.body.style.fontSize = "14px";
+
+            }
+
+            else if (settings.fontSize === "large") {
+
+                document.body.style.fontSize = "18px";
+
+            }
+
+            else {
+
+                document.body.style.fontSize = "16px";
+
+            }
+
+
+            /* Rounded corners */
+
+            const radius =
+                settings.rounded ? "10px" : "0px";
+
+            document.querySelectorAll(
+                ".setting-card, select, button, .side-button"
+            ).forEach(element => {
+
+                element.style.borderRadius = radius;
+
+            });
+
+
+            /* Animations */
+
+            if (!settings.animations) {
+
+                document.body.classList.add(
+                    "no-animations"
+                );
+
+            }
+
+            else {
+
+                document.body.classList.remove(
+                    "no-animations"
+                );
+
+            }
+
+
+            /* Active color */
+
+            colors.forEach(color => {
+
+                color.classList.toggle(
+                    "active",
+                    color.dataset.color === settings.color
+                );
+
+            });
+
+        }
+
+
+        /* =========================
+           SAVE SETTINGS
+        ========================= */
+
+        function saveSettings() {
+
+            const settings = {
+
+                color:
+                    root.style.getPropertyValue("--accent")
+                    || defaults.color,
+
+                background:
+                    background.value,
+
+                fontSize:
+                    fontSize.value,
+
+                rounded:
+                    rounded.checked,
+
+                animations:
+                    animations.checked
+
+            };
+
+            localStorage.setItem(
+                "sitePersonalization",
+                JSON.stringify(settings)
+            );
+
+            applySettings(settings);
+        }
+
+
+        /* =========================
+           COLOR CLICK
+        ========================= */
+
+        colors.forEach(color => {
+
+            color.addEventListener(
+                "click",
+                () => {
+
+                    root.style.setProperty(
+                        "--accent",
+                        color.dataset.color
+                    );
+
+                    saveSettings();
+
+                }
+            );
+
+        });
+
+
+        /* =========================
+           OTHER SETTINGS
+        ========================= */
+
+        background.addEventListener(
+            "change",
+            saveSettings
+        );
+
+        fontSize.addEventListener(
+            "change",
+            saveSettings
+        );
+
+        rounded.addEventListener(
+            "change",
+            saveSettings
+        );
+
+        animations.addEventListener(
+            "change",
+            saveSettings
+        );
+
+
+        /* =========================
+           RESET
+        ========================= */
+
+        function resetSettings() {
+
+            localStorage.removeItem(
+                "sitePersonalization"
+            );
+
+            background.value =
+                defaults.background;
+
+            fontSize.value =
+                defaults.fontSize;
+
+            rounded.checked =
+                defaults.rounded;
+
+            animations.checked =
+                defaults.animations;
+
+            root.style.setProperty(
+                "--accent",
+                defaults.color
+            );
+
+            applySettings(defaults);
+        }
+
+
+        /* =========================
+           LOAD SETTINGS
+        ========================= */
+
+        let saved =
+            localStorage.getItem(
+                "sitePersonalization"
+            );
+
+        if (saved) {
+
+            try {
+
+                const settings =
+                    JSON.parse(saved);
+
+                background.value =
+                    settings.background;
+
+                fontSize.value =
+                    settings.fontSize;
+
+                rounded.checked =
+                    settings.rounded;
+
+                animations.checked =
+                    settings.animations;
+
+                applySettings(settings);
+
+            }
+
+            catch {
+
+                applySettings(defaults);
+
+            }
+
+        }
+
+        else {
+
+            applySettings(defaults);
+
+        }
+
+    </script>
+
+</body>
+</html>
