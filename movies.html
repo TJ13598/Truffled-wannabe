@@ -81,14 +81,14 @@
             font-size: 15px;
         }
 
-        /* MOVIE CONTAINER (TWO-COLUMN GRID STACK) */
+        /* MOVIE CONTAINER (STRICT 2-COLUMN GRID) */
         .movies {
             width: calc(100% - 250px);
-            max-width: 1200px; /* Slightly wider to give room for 4 buttons */
+            max-width: 1200px;
             margin-left: 100px;
             margin-right: 130px;
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr)); /* Exactly 2 columns across */
             gap: 20px;
             padding-bottom: 80px;
         }
@@ -116,7 +116,7 @@
         .mini-links-stack {
             display: flex;
             flex-direction: column;
-            gap: 8px; /* Spaces out the 4 buttons */
+            gap: 8px;
         }
 
         /* 4 MINI ROUNDED RECTANGLE LINKS */
@@ -126,7 +126,7 @@
             color: #ffffff;
             text-decoration: none;
             padding: 8px 16px;
-            border-radius: 10px; /* Mini rounded rectangle */
+            border-radius: 10px;
             font-size: 13px;
             font-weight: 700;
             text-align: center;
@@ -135,7 +135,7 @@
         }
 
         .mini-link:hover {
-            background-color: #00bcd4 !important; /* Vibrant color when hovering a specific link */
+            background-color: #00bcd4 !important;
             transform: scale(1.03);
         }
 
@@ -207,9 +207,9 @@
             }
         }
 
-        @media (max-width: 1050px) {
+        @media (max-width: 950px) {
             .movies {
-                grid-template-columns: 1fr; /* Switch to 1 column if workspace gets narrow */
+                grid-template-columns: 1fr; /* Switch to 1 column on smaller tablets for layout spacing */
             }
         }
 
@@ -254,7 +254,7 @@
                 align-items: stretch;
             }
             .mini-links-stack {
-                flex-direction: row; /* Layout buttons side-by-side on mobile */
+                flex-direction: row;
                 justify-content: space-between;
             }
             .mini-link {
@@ -299,7 +299,7 @@
         </select>
     </div>
 
-    <!-- MOVIES CONTAINER (TWO COLUMNS, 4 MINI-LINKS EACH) -->
+    <!-- MOVIES CONTAINER (6 BOXES IN A 2x3 GRID) -->
     <main class="movies" id="movieContainer">
         <!-- Card 1 -->
         <div class="movie" data-title="Movie One" data-category="action">
@@ -332,3 +332,5 @@
         <!-- Card 3 -->
         <div class="movie" data-title="Movie Three" data-category="horror">
             <div class="mini-links-stack">
+                <a href="movies/movie3-link1.html" class="mini-link">Link 1</a>
+                <a href="movies/movie3-link2.html" class="mini-link">Link 2</a>
