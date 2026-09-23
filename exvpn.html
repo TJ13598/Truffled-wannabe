@@ -6,98 +6,130 @@
 <title>External VPNs</title>
 
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;min-height:100%}
-body{
-    background-color:#081716;
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; min-height: 100%; }
+body {
+    background-color: #081716;
     background-image:
     linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:50px 50px;
-    color:white;
-    font-family:Arial,Helvetica,sans-serif;
+    background-size: 50px 50px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
-.header{text-align:center;padding-top:70px}
-.header h1{margin:0;font-size:65px;font-weight:800}
-.header p{color:#a9b6b5;margin-top:20px}
-.vpn-list{
-    width:800px;
-    max-width:calc(100% - 40px);
-    margin:50px auto 100px;
+.header { text-align: center; padding-top: 70px; }
+.header h1 { margin: 0; font-size: 65px; font-weight: 800; }
+.header p { color: #a9b6b5; margin-top: 20px; }
+
+/* RECONFIGURED LIST WIDTH FOR EXTRA BUTTON SPACE */
+.vpn-list {
+    width: 950px;
+    max-width: calc(100% - 40px);
+    margin: 50px auto 100px;
 }
-.vpn-card{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    background:#142a29;
-    padding:25px;
-    margin-bottom:15px;
-    border-radius:12px;
-    transition:.2s;
+.vpn-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    background: #142a29;
+    padding: 25px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    transition: .2s;
 }
-.vpn-card:hover{
-    transform:translateY(-3px);
-    background:#193331;
+.vpn-card:hover {
+    transform: translateY(-3px);
+    background: #193331;
 }
-.vpn-info h2{margin:0 0 8px;font-size:21px}
-.vpn-info p{margin:0;color:#a9b6b5;font-size:14px}
-.vpn-button{
-    flex-shrink:0;
-    padding:13px 20px;
-    border-radius:8px;
-    background:#28504d;
-    color:white;
-    text-decoration:none;
-    font-weight:700;
+
+/* HORIZONTAL 6-BUTTON CLUSTER (FAR LEFT) */
+.mini-links-row {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
 }
-.vpn-button:hover{background:#32635f}
-.sidebar{
-    position:fixed;
-    top:139px;
-    right:18px;
-    width:80px;
-    padding:18px 0;
-    background:#142a29;
-    border-radius:10px;
-    z-index:9999;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+
+/* MINI ROUNDED RECTANGLE LINKS */
+.vpn-button {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: #28504d;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: background .2s, transform .1s;
 }
-.side-button{
-    width:58px;
-    height:58px;
-    margin:3px 0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:10px;
-    color:white;
-    text-decoration:none;
-    font-size:27px;
+.vpn-button:hover {
+    background: #00bcd4; /* Accent color on direct link hover */
+    transform: scale(1.03);
 }
-.side-button:hover{background:#203b39}
-@media(max-width:700px){
-    .vpn-card{flex-direction:column;align-items:stretch}
-    .vpn-button{text-align:center}
-    .header h1{font-size:48px}
-    .sidebar{
-        top:auto;
-        bottom:15px;
-        left:50%;
-        right:auto;
-        transform:translateX(-50%);
-        width:auto;
-        padding:8px 10px;
-        flex-direction:row;
+
+/* TOP RIGHT INFO CONTENT ALIGNMENT */
+.vpn-info {
+    text-align: right;
+    min-width: 0; /* Prevents text overflow */
+}
+.vpn-info h2 { margin: 0 0 8px; font-size: 21px; }
+.vpn-info p { margin: 0; color: #a9b6b5; font-size: 14px; }
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 139px;
+    right: 18px;
+    width: 80px;
+    padding: 18px 0;
+    background: #142a29;
+    border-radius: 10px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.side-button {
+    width: 58px;
+    height: 58px;
+    margin: 3px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 27px;
+}
+.side-button:hover { background: #203b39; }
+
+/* RESPONSIVE DESIGN */
+@media(max-width: 900px) {
+    /* Shifts main layout to support narrower window views gracefully */
+    .vpn-card { flex-direction: column-reverse; align-items: stretch; gap: 20px; }
+    .vpn-info { text-align: center; }
+    .mini-links-row { justify-content: center; flex-wrap: wrap; }
+    .vpn-button { flex: 1; text-align: center; min-width: 80px; }
+}
+@media(max-width: 700px) {
+    .header h1 { font-size: 48px; }
+    .sidebar {
+        top: auto;
+        bottom: 15px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: auto;
+        padding: 8px 10px;
+        flex-direction: row;
     }
 }
 </style>
 </head>
 
 <body>
-        <nav class="sidebar">
+    <nav class="sidebar">
         <a href="bivpn.html" class="side-button" title="Home">🌐</a>
         <a href="index.html" class="side-button" title="Games">🎮</a>
         <a href="movies.html" class="side-button" title="Categories">🎥</a>
@@ -113,48 +145,68 @@ body{
 
 <main class="vpn-list">
 
+    <!-- Card 1 -->
     <div class="vpn-card">
+        <div class="mini-links-row">
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 1</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 2</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 3</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 4</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 5</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 6</a>
+        </div>
         <div class="vpn-info">
             <h2>VPN Service 1</h2>
             <p>Add your VPN description here.</p>
         </div>
-        <a href="https://example.com"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="vpn-button">Visit</a>
     </div>
 
+    <!-- Card 2 -->
     <div class="vpn-card">
+        <div class="mini-links-row">
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 1</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 2</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 3</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 4</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 5</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 6</a>
+        </div>
         <div class="vpn-info">
             <h2>VPN Service 2</h2>
             <p>Add your VPN description here.</p>
         </div>
-        <a href="https://example.com"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="vpn-button">Visit</a>
     </div>
 
+    <!-- Card 3 -->
     <div class="vpn-card">
+        <div class="mini-links-row">
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 1</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 2</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 3</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 4</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 5</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 6</a>
+        </div>
         <div class="vpn-info">
             <h2>VPN Service 3</h2>
             <p>Add your VPN description here.</p>
         </div>
-        <a href="https://example.com"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="vpn-button">Visit</a>
     </div>
 
+    <!-- Card 4 -->
     <div class="vpn-card">
+        <div class="mini-links-row">
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 1</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 2</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 3</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 4</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 5</a>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="vpn-button">Link 6</a>
+        </div>
         <div class="vpn-info">
             <h2>VPN Service 4</h2>
             <p>Add your VPN description here.</p>
         </div>
-        <a href="https://example.com"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="vpn-button">Visit</a>
     </div>
 
 </main>
