@@ -60,9 +60,9 @@ body::before {
     mask-image: linear-gradient(to bottom, black, transparent 90%);
 }
 
-/* =========================
+/* =========================================================
    SIDEBAR
-========================= */
+========================================================= */
 
 .sidebar {
     position: fixed;
@@ -111,9 +111,9 @@ body::before {
     box-shadow: 0 0 25px rgba(0,255,157,.25);
 }
 
-/* =========================
+/* =========================================================
    PAGE
-========================= */
+========================================================= */
 
 .page {
     width: min(1350px, calc(100% - 150px));
@@ -121,9 +121,9 @@ body::before {
     padding: 55px 0 80px;
 }
 
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 .header {
     text-align: center;
@@ -171,9 +171,9 @@ body::before {
     margin: auto;
 }
 
-/* =========================
+/* =========================================================
    BALANCE
-========================= */
+========================================================= */
 
 .balance-card {
     width: min(460px, 100%);
@@ -215,9 +215,9 @@ body::before {
     font-size: 32px;
 }
 
-/* =========================
+/* =========================================================
    GAME GRID
-========================= */
+========================================================= */
 
 .games-grid {
     display: grid;
@@ -303,9 +303,9 @@ body::before {
     padding: 18px 25px 25px;
 }
 
-/* =========================
+/* =========================================================
    BUTTONS / INPUTS
-========================= */
+========================================================= */
 
 .btn {
     border: 0;
@@ -649,6 +649,8 @@ body::before {
     margin-bottom: 5px;
 }
 
+/* QUICK CARD ANIMATION */
+
 .card {
     width: 74px;
     height: 108px;
@@ -674,7 +676,10 @@ body::before {
     box-shadow:
         0 9px 22px rgba(0,0,0,.32);
 
-    animation: cardIn .22s ease;
+    animation:
+        quickCardDeal .18s cubic-bezier(.2,.8,.2,1) both;
+
+    will-change: transform, opacity;
 }
 
 .card.red {
@@ -709,16 +714,38 @@ body::before {
     margin-top: 3px;
 }
 
-@keyframes cardIn {
-    from {
+@keyframes quickCardDeal {
+
+    0% {
         opacity: 0;
-        transform: translateY(-18px) rotate(-3deg) scale(.88);
+        transform:
+            translateY(-20px)
+            translateX(8px)
+            rotate(4deg)
+            scale(.88);
     }
 
-    to {
+    65% {
         opacity: 1;
-        transform: translateY(0) rotate(0) scale(1);
+        transform:
+            translateY(2px)
+            translateX(0)
+            rotate(-1deg)
+            scale(1.02);
     }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(0)
+            scale(1);
+    }
+}
+
+.dealer-area .card {
+    animation-duration: .16s;
 }
 
 .score {
@@ -761,9 +788,9 @@ body::before {
     margin-right: 6px;
 }
 
-/* =========================
-   ROULETTE CASINO TABLE
-========================= */
+/* =========================================================
+   ROULETTE TABLE
+========================================================= */
 
 .roulette-table {
     padding: 26px;
@@ -858,7 +885,7 @@ body::before {
     transform: rotate(0deg);
 
     transition:
-        transform 3.8s cubic-bezier(.08,.82,.12,1);
+        transform 3.5s cubic-bezier(.08,.82,.12,1);
 
     box-shadow:
         inset 0 0 0 14px #071310,
@@ -867,10 +894,6 @@ body::before {
 
     overflow: hidden;
 }
-
-/* =========================
-   WHEEL NUMBERS
-========================= */
 
 .wheel-number {
     position: absolute;
@@ -915,10 +938,6 @@ body::before {
         0 1px 3px #000;
 }
 
-/* =========================
-   WHEEL CENTER
-========================= */
-
 .roulette-wheel::after {
     content: "";
 
@@ -951,10 +970,6 @@ body::before {
     z-index: 5;
 }
 
-/* =========================
-   POINTER
-========================= */
-
 .pointer {
     position: absolute;
 
@@ -977,9 +992,158 @@ body::before {
         drop-shadow(0 0 5px rgba(255,200,87,.5));
 }
 
-/* =========================
-   ROULETTE BETTING LAYOUT
-========================= */
+/* =========================================================
+   ROULETTE MULTI BET
+========================================================= */
+
+.roulette-mode {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.roulette-mode button {
+    flex: 1;
+    min-height: 38px;
+
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 9px;
+
+    background: #091311;
+    color: var(--muted);
+
+    font-size: 11px;
+    font-weight: 900;
+
+    cursor: pointer;
+    transition: .18s ease;
+}
+
+.roulette-mode button:hover {
+    color: white;
+    background: #10211d;
+}
+
+.roulette-mode button.active {
+    background: var(--green);
+    color: #00150d;
+    box-shadow: 0 0 18px rgba(0,255,157,.15);
+}
+
+.bet-slip {
+    margin-top: 14px;
+    padding: 12px;
+
+    background: rgba(0,0,0,.2);
+
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 12px;
+}
+
+.bet-slip-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.bet-slip-total {
+    color: var(--green);
+}
+
+.bet-slip-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bet-slip-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    padding: 8px 9px;
+
+    background: rgba(255,255,255,.025);
+
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 8px;
+
+    font-size: 11px;
+}
+
+.bet-slip-item strong {
+    color: white;
+    flex: 1;
+}
+
+.bet-slip-item span {
+    color: var(--gold);
+    font-weight: 900;
+}
+
+.remove-bet {
+    width: 22px;
+    height: 22px;
+
+    border: 0;
+    border-radius: 6px;
+
+    background: rgba(227,38,53,.12);
+    color: var(--red);
+
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.remove-bet:hover {
+    background: rgba(227,38,53,.25);
+}
+
+.clear-bets {
+    width: 100%;
+    margin-top: 8px;
+
+    padding: 7px;
+
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 7px;
+
+    background: transparent;
+    color: var(--muted);
+
+    font-size: 10px;
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+.clear-bets:hover {
+    color: white;
+    background: rgba(255,255,255,.04);
+}
+
+.empty-bets {
+    color: rgba(255,255,255,.25);
+
+    text-align: center;
+
+    font-size: 10px;
+    padding: 5px;
+}
+
+/* =========================================================
+   ROULETTE BETTING GRID
+========================================================= */
 
 .roulette-betting {
     margin-top: 25px;
@@ -1125,9 +1289,9 @@ body::before {
     letter-spacing: .8px;
 }
 
-/* =========================
+/* =========================================================
    CHIPS
-========================= */
+========================================================= */
 
 .chip-row {
     display: flex;
@@ -1193,9 +1357,9 @@ body::before {
     background: #7339ad;
 }
 
-/* =========================
+/* =========================================================
    SLOTS
-========================= */
+========================================================= */
 
 .slots-machine {
     padding: 28px 20px;
@@ -1366,9 +1530,9 @@ body::before {
     margin-bottom: 3px;
 }
 
-/* =========================
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 .footer {
     margin-top: 28px;
@@ -1380,9 +1544,9 @@ body::before {
     font-size: 11px;
 }
 
-/* =========================
+/* =========================================================
    RESPONSIVE
-========================= */
+========================================================= */
 
 @media (max-width: 1100px) {
 
@@ -1517,6 +1681,19 @@ body::before {
 
     .wheel-number {
         font-size: 9px;
+    }
+
+    .bet-row {
+        flex-wrap: wrap;
+    }
+
+    .bet-row .bet-input {
+        width: 100%;
+        flex-basis: 100%;
+    }
+
+    .roulette-mode {
+        flex-direction: column;
     }
 }
 </style>
@@ -1657,7 +1834,7 @@ body::before {
                 id="deal-button"
                 onclick="startBlackjack()"
             >
-                Deal
+                DEAL
             </button>
 
         </div>
@@ -1725,7 +1902,6 @@ body::before {
 
 </article>
 
-
 <!-- =====================================================
      ROULETTE
 ===================================================== -->
@@ -1745,22 +1921,92 @@ body::before {
 
     <div class="game-body">
 
+        <!-- SINGLE / MULTI MODE -->
+
+        <div class="roulette-mode">
+
+            <button
+                id="single-bet-mode"
+                class="active"
+                onclick="setRouletteMode('single')"
+            >
+                SINGLE BET
+            </button>
+
+            <button
+                id="multi-bet-mode"
+                onclick="setRouletteMode('multi')"
+            >
+                MULTI BET
+            </button>
+
+        </div>
+
+        <!-- CUSTOM BET AMOUNT -->
+
         <div class="bet-row">
 
             <input
                 type="number"
                 id="roulette-bet"
                 class="bet-input"
-                value="10"
+                value="25"
                 min="1"
+                step="1"
+                placeholder="Custom bet amount"
             >
+
+            <button
+                class="btn"
+                id="roulette-add-bet"
+                onclick="addRouletteBet()"
+            >
+                ADD BET
+            </button>
 
             <button
                 class="btn"
                 id="roulette-spin"
                 onclick="spinRoulette()"
             >
-                SPIN
+                SPIN WHEEL
+            </button>
+
+        </div>
+
+        <!-- BET SLIP -->
+
+        <div class="bet-slip">
+
+            <div class="bet-slip-header">
+
+                <span>
+                    ACTIVE BETS
+                </span>
+
+                <span class="bet-slip-total">
+                    TOTAL:
+                    $<span id="roulette-total-bet">0</span>
+                </span>
+
+            </div>
+
+            <div
+                class="bet-slip-list"
+                id="roulette-bet-list"
+            >
+
+                <div class="empty-bets">
+                    Select a wager to add it here.
+                </div>
+
+            </div>
+
+            <button
+                class="clear-bets"
+                onclick="clearRouletteBets()"
+            >
+                CLEAR ALL BETS
             </button>
 
         </div>
@@ -1793,6 +2039,8 @@ body::before {
                     >
                         Choose a number or outside bet.
                     </div>
+
+                    <!-- CHIPS -->
 
                     <div class="chip-row">
 
@@ -1836,6 +2084,8 @@ body::before {
                 </div>
 
             </div>
+
+            <!-- ROULETTE BETTING GRID -->
 
             <div class="roulette-betting">
 
@@ -1918,7 +2168,6 @@ body::before {
     </div>
 
 </article>
-
 
 <!-- =====================================================
      SLOTS
@@ -2035,7 +2284,6 @@ body::before {
 
 </main>
 
-
 <script>
 
 /* =========================================================
@@ -2077,7 +2325,9 @@ let blackjackActive = false;
 let dealerTurn = false;
 
 
-/* ---------- Player Count ---------- */
+/* =========================================================
+   PLAYER COUNT
+========================================================= */
 
 function setBlackjackPlayers(count) {
 
@@ -2126,7 +2376,9 @@ function setBlackjackPlayers(count) {
 }
 
 
-/* ---------- Shoe ---------- */
+/* =========================================================
+   SHOE
+========================================================= */
 
 function createShoe() {
 
@@ -2185,7 +2437,9 @@ function drawCard() {
 }
 
 
-/* ---------- Card Values ---------- */
+/* =========================================================
+   CARD VALUES
+========================================================= */
 
 function cardValue(card) {
 
@@ -2242,15 +2496,19 @@ function isBlackjack(hand) {
 
 
 /* =========================================================
-   BLACKJACK RENDERING
+   RENDER CARD
 ========================================================= */
 
-function renderCard(card, hidden = false) {
+function renderCard(
+    card,
+    hidden = false
+) {
 
     const div =
         document.createElement("div");
 
-    div.className = "card";
+    div.className =
+        "card";
 
     if (hidden) {
 
@@ -2288,6 +2546,10 @@ function renderCard(card, hidden = false) {
     return div;
 }
 
+
+/* =========================================================
+   BLACKJACK RENDER
+========================================================= */
 
 function renderBlackjack() {
 
@@ -2338,11 +2600,17 @@ function renderBlackjack() {
                 !dealerTurn &&
                 index === 1;
 
-            dealerCards.appendChild(
+            const cardElement =
                 renderCard(
                     card,
                     hidden
-                )
+                );
+
+            cardElement.style.animationDelay =
+                `${index * 45}ms`;
+
+            dealerCards.appendChild(
+                cardElement
             );
         }
     );
@@ -2462,10 +2730,16 @@ function renderBlackjack() {
                         );
 
                     hand.cards.forEach(
-                        card => {
+                        (card, cardIndex) => {
+
+                            const cardElement =
+                                renderCard(card);
+
+                            cardElement.style.animationDelay =
+                                `${cardIndex * 45}ms`;
 
                             cards.appendChild(
-                                renderCard(card)
+                                cardElement
                             );
 
                         }
@@ -2492,7 +2766,7 @@ function renderBlackjack() {
 
 
 /* =========================================================
-   BLACKJACK START
+   START BLACKJACK
 ========================================================= */
 
 function startBlackjack() {
@@ -2549,7 +2823,9 @@ function startBlackjack() {
             ? bet1 + bet2
             : bet1;
 
-    if (totalBet > balance) {
+    if (
+        totalBet > balance
+    ) {
 
         showMessage(
             "bj-message",
@@ -2582,9 +2858,11 @@ function startBlackjack() {
                 : bet2;
 
         blackjackHands.push({
+
             player: i + 1,
 
             hands: [
+
                 {
                     cards: [
                         drawCard(),
@@ -2595,7 +2873,9 @@ function startBlackjack() {
 
                     finished: false
                 }
+
             ]
+
         });
     }
 
@@ -2742,7 +3022,7 @@ function checkInitialBlackjacks() {
 
 
 /* =========================================================
-   FIND NEXT PLAYABLE HAND
+   NEXT PLAYABLE HAND
 ========================================================= */
 
 function moveToNextPlayableHand() {
@@ -2832,7 +3112,7 @@ function hitCurrentHand() {
 
         setTimeout(
             moveToNextPlayableHand,
-            350
+            220
         );
 
         return;
@@ -2846,7 +3126,7 @@ function hitCurrentHand() {
 
         setTimeout(
             moveToNextPlayableHand,
-            350
+            220
         );
 
         return;
@@ -2907,7 +3187,9 @@ function doubleCurrentHand() {
         return;
     }
 
-    if (balance < hand.bet) {
+    if (
+        balance < hand.bet
+    ) {
 
         showMessage(
             "bj-message",
@@ -2944,7 +3226,7 @@ function doubleCurrentHand() {
 
     setTimeout(
         moveToNextPlayableHand,
-        350
+        220
     );
 }
 
@@ -2981,7 +3263,9 @@ function splitCurrentHand() {
         return;
     }
 
-    if (balance < hand.bet) {
+    if (
+        balance < hand.bet
+    ) {
 
         showMessage(
             "bj-message",
@@ -3057,13 +3341,13 @@ function dealerPlay() {
 
         setTimeout(
             dealerStep,
-            650
+            280
         );
     }
 
     setTimeout(
         dealerStep,
-        700
+        300
     );
 }
 
@@ -3289,10 +3573,6 @@ const redNumbers = [
     27, 30, 32, 34, 36
 ];
 
-/*
- * REAL EUROPEAN ROULETTE WHEEL ORDER
- */
-
 const rouletteWheelNumbers = [
     0,
     32,
@@ -3333,173 +3613,66 @@ const rouletteWheelNumbers = [
     26
 ];
 
-let rouletteBet = null;
 let selectedChip = 25;
+
 let rouletteSpinning = false;
+
+let rouletteMode = "single";
+
+let rouletteBets = [];
+
+let pendingRouletteSelection = null;
 
 
 /* =========================================================
-   CREATE NUMBERED WHEEL
+   ROULETTE MODE
 ========================================================= */
 
-function createWheelNumbers() {
+function setRouletteMode(mode) {
 
-    const wheel =
-        document.getElementById("wheel");
+    if (rouletteSpinning) {
+        return;
+    }
 
-    wheel
-        .querySelectorAll(".wheel-number")
-        .forEach(
-            element => element.remove()
+    rouletteMode = mode;
+
+    document
+        .getElementById("single-bet-mode")
+        .classList.toggle(
+            "active",
+            mode === "single"
         );
 
-    const total =
-        rouletteWheelNumbers.length;
+    document
+        .getElementById("multi-bet-mode")
+        .classList.toggle(
+            "active",
+            mode === "multi"
+        );
 
-    const slice =
-        360 / total;
+    if (mode === "single") {
 
-    /*
-     * Distance from center.
-     * This places the numbers inside
-     * their colored pockets.
-     */
-    const radius = 101;
+        rouletteBets = [];
 
-    rouletteWheelNumbers.forEach(
-        (number, index) => {
+        pendingRouletteSelection = null;
 
-            const angle =
-                index * slice +
-                slice / 2;
+        clearRouletteSelection();
 
-            const radians =
-                angle * Math.PI / 180;
+        updateRouletteBetSlip();
+    }
 
-            const x =
-                Math.sin(radians) *
-                radius;
-
-            const y =
-                -Math.cos(radians) *
-                radius;
-
-            const label =
-                document.createElement("div");
-
-            label.className =
-                "wheel-number";
-
-            if (number === 0) {
-
-                label.classList.add("zero");
-
-            } else if (
-                redNumbers.includes(number)
-            ) {
-
-                label.classList.add("red");
-
-            } else {
-
-                label.classList.add("black");
-            }
-
-            label.textContent =
-                number;
-
-            label.style.transform =
-                `translate(${x}px, ${y}px)`;
-
-            wheel.appendChild(label);
-        }
+    showMessage(
+        "roulette-selection",
+        mode === "multi"
+            ? "MULTI BET enabled — add multiple wagers."
+            : "Single bet mode enabled.",
+        ""
     );
 }
 
 
 /* =========================================================
-   CREATE ROULETTE BETTING GRID
-========================================================= */
-
-function createRouletteTable() {
-
-    const grid =
-        document.getElementById(
-            "roulette-grid"
-        );
-
-    grid.innerHTML = "";
-
-    const zero =
-        document.createElement(
-            "button"
-        );
-
-    zero.className =
-        "roulette-zero";
-
-    zero.textContent = "0";
-
-    zero.onclick = () => {
-
-        selectRouletteBet(
-            0,
-            zero
-        );
-    };
-
-    grid.appendChild(zero);
-
-    for (
-        let row = 0;
-        row < 3;
-        row++
-    ) {
-
-        for (
-            let col = 0;
-            col < 12;
-            col++
-        ) {
-
-            const number =
-                col * 3 +
-                (3 - row);
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-            button.className =
-                "roulette-number " +
-                (
-                    redNumbers.includes(
-                        number
-                    )
-                        ? "red"
-                        : "black"
-                );
-
-            button.textContent =
-                number;
-
-            button.onclick = () => {
-
-                selectRouletteBet(
-                    number,
-                    button
-                );
-            };
-
-            grid.appendChild(button);
-        }
-    }
-}
-
-
-/* =========================================================
-   CHIPS
+   CHIP
 ========================================================= */
 
 function selectChip(
@@ -3515,7 +3688,6 @@ function selectChip(
         )
         .forEach(
             chip => {
-
                 chip.classList.remove(
                     "active"
                 );
@@ -3526,11 +3698,41 @@ function selectChip(
         "active"
     );
 
+    document.getElementById(
+        "roulette-bet"
+    ).value = value;
+
     showMessage(
         "roulette-selection",
-        `Chip selected: $${value}`,
+        `Bet amount selected: $${value}`,
         ""
     );
+}
+
+
+/* =========================================================
+   GET CUSTOM BET
+========================================================= */
+
+function getRouletteAmount() {
+
+    const input =
+        document.getElementById(
+            "roulette-bet"
+        );
+
+    const amount =
+        Number(input.value);
+
+    if (
+        !Number.isFinite(amount) ||
+        amount <= 0
+    ) {
+
+        return 0;
+    }
+
+    return Math.floor(amount);
 }
 
 
@@ -3543,6 +3745,211 @@ function selectRouletteBet(
     element
 ) {
 
+    if (rouletteSpinning) {
+        return;
+    }
+
+    if (
+        rouletteMode === "single"
+    ) {
+
+        document
+            .querySelectorAll(
+                ".roulette-number, " +
+                ".roulette-zero, " +
+                ".outside-bet"
+            )
+            .forEach(
+                button => {
+                    button.classList.remove(
+                        "selected"
+                    );
+                }
+            );
+
+        element.classList.add(
+            "selected"
+        );
+
+        pendingRouletteSelection =
+            bet;
+
+        showMessage(
+            "roulette-selection",
+            `Selected ${formatRouletteBet(bet)} — $${getRouletteAmount()}`,
+            ""
+        );
+
+        return;
+    }
+
+    /*
+     * MULTI MODE:
+     * Clicking a wager immediately
+     * adds it to the bet slip.
+     */
+
+    const amount =
+        getRouletteAmount();
+
+    if (amount <= 0) {
+
+        showMessage(
+            "roulette-selection",
+            "Enter a valid bet amount first.",
+            "lose"
+        );
+
+        return;
+    }
+
+    addRouletteWager(
+        bet,
+        amount
+    );
+
+    element.classList.add(
+        "selected"
+    );
+
+    setTimeout(
+        () => {
+            element.classList.remove(
+                "selected"
+            );
+        },
+        250
+    );
+}
+
+
+/* =========================================================
+   ADD BET
+========================================================= */
+
+function addRouletteBet() {
+
+    if (rouletteSpinning) {
+        return;
+    }
+
+    if (
+        pendingRouletteSelection === null
+    ) {
+
+        showMessage(
+            "roulette-selection",
+            "Select a number or outside bet first.",
+            "lose"
+        );
+
+        return;
+    }
+
+    const amount =
+        getRouletteAmount();
+
+    if (amount <= 0) {
+
+        showMessage(
+            "roulette-selection",
+            "Enter a valid bet amount.",
+            "lose"
+        );
+
+        return;
+    }
+
+    addRouletteWager(
+        pendingRouletteSelection,
+        amount
+    );
+
+    pendingRouletteSelection =
+        null;
+
+    clearRouletteSelection();
+}
+
+
+/* =========================================================
+   ADD WAGER
+========================================================= */
+
+function addRouletteWager(
+    bet,
+    amount
+) {
+
+    rouletteBets.push({
+        bet,
+        amount
+    });
+
+    updateRouletteBetSlip();
+
+    showMessage(
+        "roulette-selection",
+        `Added $${amount.toLocaleString()} on ${formatRouletteBet(bet)}.`,
+        "win"
+    );
+}
+
+
+/* =========================================================
+   REMOVE BET
+========================================================= */
+
+function removeRouletteBet(
+    index
+) {
+
+    if (rouletteSpinning) {
+        return;
+    }
+
+    rouletteBets.splice(
+        index,
+        1
+    );
+
+    updateRouletteBetSlip();
+}
+
+
+/* =========================================================
+   CLEAR BETS
+========================================================= */
+
+function clearRouletteBets() {
+
+    if (rouletteSpinning) {
+        return;
+    }
+
+    rouletteBets = [];
+
+    pendingRouletteSelection =
+        null;
+
+    clearRouletteSelection();
+
+    updateRouletteBetSlip();
+
+    showMessage(
+        "roulette-selection",
+        "All roulette bets cleared.",
+        ""
+    );
+}
+
+
+/* =========================================================
+   CLEAR SELECTION
+========================================================= */
+
+function clearRouletteSelection() {
+
     document
         .querySelectorAll(
             ".roulette-number, " +
@@ -3551,26 +3958,96 @@ function selectRouletteBet(
         )
         .forEach(
             button => {
-
                 button.classList.remove(
                     "selected"
                 );
             }
         );
-
-    element.classList.add(
-        "selected"
-    );
-
-    rouletteBet = bet;
-
-    showMessage(
-        "roulette-selection",
-        `Wager: $${selectedChip} on ${formatRouletteBet(bet)}`,
-        ""
-    );
 }
 
+
+/* =========================================================
+   BET SLIP
+========================================================= */
+
+function updateRouletteBetSlip() {
+
+    const list =
+        document.getElementById(
+            "roulette-bet-list"
+        );
+
+    const totalElement =
+        document.getElementById(
+            "roulette-total-bet"
+        );
+
+    if (!list || !totalElement) {
+        return;
+    }
+
+    list.innerHTML = "";
+
+    if (
+        rouletteBets.length === 0
+    ) {
+
+        list.innerHTML = `
+            <div class="empty-bets">
+                Select a wager to add it here.
+            </div>
+        `;
+
+        totalElement.textContent =
+            "0";
+
+        return;
+    }
+
+    let total = 0;
+
+    rouletteBets.forEach(
+        (wager, index) => {
+
+            total += wager.amount;
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "bet-slip-item";
+
+            row.innerHTML = `
+                <strong>
+                    ${formatRouletteBet(wager.bet)}
+                </strong>
+
+                <span>
+                    $${wager.amount.toLocaleString()}
+                </span>
+
+                <button
+                    class="remove-bet"
+                    onclick="removeRouletteBet(${index})"
+                >
+                    ×
+                </button>
+            `;
+
+            list.appendChild(row);
+        }
+    );
+
+    totalElement.textContent =
+        total.toLocaleString();
+}
+
+
+/* =========================================================
+   FORMAT BET
+========================================================= */
 
 function formatRouletteBet(
     bet
@@ -3588,7 +4065,7 @@ function formatRouletteBet(
 
 
 /* =========================================================
-   ROULETTE WIN CHECK
+   ROULETTE WIN
 ========================================================= */
 
 function rouletteWon(
@@ -3650,6 +4127,10 @@ function rouletteWon(
 }
 
 
+/* =========================================================
+   ROULETTE PAYOUT
+========================================================= */
+
 function rouletteMultiplier(
     bet
 ) {
@@ -3666,7 +4147,7 @@ function rouletteMultiplier(
 
 
 /* =========================================================
-   GET NUMBER ANGLE
+   WHEEL ANGLE
 ========================================================= */
 
 function getRouletteNumberAngle(
@@ -3703,34 +4184,75 @@ function spinRoulette() {
         return;
     }
 
-    if (rouletteBet === null) {
-
-        showMessage(
-            "roulette-message",
-            "Place a wager on the table first.",
-            "lose"
-        );
-
-        return;
-    }
-
-    const amount =
-        selectedChip;
+    /*
+     * In single mode, automatically commit
+     * the selected wager if necessary.
+     */
 
     if (
-        amount > balance
+        rouletteMode === "single" &&
+        pendingRouletteSelection !== null
+    ) {
+
+        const amount =
+            getRouletteAmount();
+
+        if (amount <= 0) {
+
+            showMessage(
+                "roulette-message",
+                "Enter a valid bet.",
+                "lose"
+            );
+
+            return;
+        }
+
+        addRouletteWager(
+            pendingRouletteSelection,
+            amount
+        );
+
+        pendingRouletteSelection =
+            null;
+
+        clearRouletteSelection();
+    }
+
+    if (
+        rouletteBets.length === 0
     ) {
 
         showMessage(
             "roulette-message",
-            "Not enough demo credits.",
+            "Add at least one wager before spinning.",
             "lose"
         );
 
         return;
     }
 
-    balance -= amount;
+    const totalBet =
+        rouletteBets.reduce(
+            (total, wager) =>
+                total + wager.amount,
+            0
+        );
+
+    if (
+        totalBet > balance
+    ) {
+
+        showMessage(
+            "roulette-message",
+            `You need $${totalBet.toLocaleString()} but only have $${Math.floor(balance).toLocaleString()}.`,
+            "lose"
+        );
+
+        return;
+    }
+
+    balance -= totalBet;
 
     updateBalance();
 
@@ -3744,7 +4266,7 @@ function spinRoulette() {
     button.disabled = true;
 
     /*
-     * RANDOM RESULT FROM 0 THROUGH 36
+     * Random result 0-36.
      */
 
     const winningNumber =
@@ -3753,46 +4275,111 @@ function spinRoulette() {
         );
 
     /*
-     * 4–7 COMPLETE ROTATIONS
+     * EXACTLY 3 OR 4 FULL ROTATIONS.
      */
 
     const fullRotations =
+        3 +
         Math.floor(
-            Math.random() * 4
-        ) + 4;
-
-    /*
-     * Find the exact location of
-     * the winning number on the wheel.
-     */
+            Math.random() * 2
+        );
 
     const targetAngle =
         getRouletteNumberAngle(
             winningNumber
         );
 
-    /*
-     * The pointer is at 12 o'clock.
-     *
-     * We rotate the wheel backwards
-     * by the target angle so that the
-     * selected number finishes directly
-     * underneath the pointer.
-     */
-
-    const finalRotation =
-        fullRotations * 360 -
-        targetAngle;
-
-    const duration =
-        3500 +
-        fullRotations * 450 +
-        Math.random() * 500;
-
     const wheel =
         document.getElementById(
             "wheel"
         );
+
+    /*
+     * Read current wheel angle so repeated spins
+     * continue smoothly.
+     */
+
+    let currentDegrees = 0;
+
+    const transform =
+        getComputedStyle(
+            wheel
+        ).transform;
+
+    if (
+        transform &&
+        transform !== "none"
+    ) {
+
+        const match =
+            transform.match(
+                /matrix\(([^)]+)\)/
+            );
+
+        if (match) {
+
+            const values =
+                match[1]
+                    .split(",")
+                    .map(Number);
+
+            const a = values[0];
+            const b = values[1];
+
+            currentDegrees =
+                Math.atan2(
+                    b,
+                    a
+                ) *
+                180 /
+                Math.PI;
+        }
+    }
+
+    /*
+     * Normalize current position.
+     */
+
+    const normalized =
+        (
+            currentDegrees % 360 +
+            360
+        ) % 360;
+
+    /*
+     * Put the winning pocket beneath
+     * the pointer at 12 o'clock.
+     */
+
+    const destination =
+        360 -
+        targetAngle;
+
+    let extra =
+        destination -
+        normalized;
+
+    if (extra <= 0) {
+        extra += 360;
+    }
+
+    /*
+     * At least 3 COMPLETE revolutions.
+     */
+
+    const finalRotation =
+        currentDegrees +
+        fullRotations * 360 +
+        extra;
+
+    /*
+     * Quick enough to feel responsive,
+     * long enough to clearly show the spin.
+     */
+
+    const duration =
+        3000 +
+        Math.random() * 450;
 
     wheel.style.transition =
         `transform ${duration}ms cubic-bezier(.08,.82,.12,1)`;
@@ -3804,37 +4391,66 @@ function spinRoulette() {
 
     showMessage(
         "roulette-message",
-        `🎡 Spinning ${fullRotations} rounds...`,
+        `🎡 Spinning ${fullRotations} full rotations...`,
         ""
     );
 
     setTimeout(
         () => {
 
-            const won =
-                rouletteWon(
-                    rouletteBet,
-                    winningNumber
-                );
+            let totalPayout = 0;
+            let wins = 0;
+            let losses = 0;
 
-            if (won) {
+            rouletteBets.forEach(
+                wager => {
 
-                const multiplier =
-                    rouletteMultiplier(
-                        rouletteBet
-                    );
+                    if (
+                        rouletteWon(
+                            wager.bet,
+                            winningNumber
+                        )
+                    ) {
 
-                const payout =
-                    amount *
-                    (multiplier + 1);
+                        const multiplier =
+                            rouletteMultiplier(
+                                wager.bet
+                            );
 
-                balance += payout;
+                        /*
+                         * Stake + winnings.
+                         */
+
+                        totalPayout +=
+                            wager.amount *
+                            (multiplier + 1);
+
+                        wins++;
+
+                    } else {
+
+                        losses++;
+                    }
+                }
+            );
+
+            balance += totalPayout;
+
+            updateBalance();
+
+            const net =
+                totalPayout -
+                totalBet;
+
+            if (wins > 0) {
 
                 showMessage(
                     "roulette-message",
-                    `🎉 ${winningNumber} — WIN +$${(
-                        payout - amount
-                    ).toLocaleString()}!`,
+                    `🎉 ${winningNumber} — ${wins} winning bet${wins !== 1 ? "s" : ""}! ${
+                        net >= 0
+                            ? `+$${net.toLocaleString()}`
+                            : `-$${Math.abs(net).toLocaleString()}`
+                    }`,
                     "win"
                 );
 
@@ -3842,20 +4458,211 @@ function spinRoulette() {
 
                 showMessage(
                     "roulette-message",
-                    `🎡 ${winningNumber} — Bet lost.`,
+                    `🎡 ${winningNumber} — All bets lost. -$${totalBet.toLocaleString()}`,
                     "lose"
                 );
             }
-
-            updateBalance();
 
             rouletteSpinning = false;
 
             button.disabled = false;
 
+            /*
+             * New round starts empty.
+             */
+
+            rouletteBets = [];
+
+            pendingRouletteSelection =
+                null;
+
+            clearRouletteSelection();
+
+            updateRouletteBetSlip();
+
         },
         duration + 100
     );
+}
+
+
+/* =========================================================
+   CREATE WHEEL NUMBERS
+========================================================= */
+
+function createWheelNumbers() {
+
+    const wheel =
+        document.getElementById(
+            "wheel"
+        );
+
+    wheel
+        .querySelectorAll(
+            ".wheel-number"
+        )
+        .forEach(
+            element =>
+                element.remove()
+        );
+
+    const total =
+        rouletteWheelNumbers.length;
+
+    const slice =
+        360 / total;
+
+    const radius = 101;
+
+    rouletteWheelNumbers.forEach(
+        (number, index) => {
+
+            const angle =
+                index * slice +
+                slice / 2;
+
+            const radians =
+                angle *
+                Math.PI /
+                180;
+
+            const x =
+                Math.sin(radians) *
+                radius;
+
+            const y =
+                -Math.cos(radians) *
+                radius;
+
+            const label =
+                document.createElement(
+                    "div"
+                );
+
+            label.className =
+                "wheel-number";
+
+            if (
+                number === 0
+            ) {
+
+                label.classList.add(
+                    "zero"
+                );
+
+            } else if (
+                redNumbers.includes(
+                    number
+                )
+            ) {
+
+                label.classList.add(
+                    "red"
+                );
+
+            } else {
+
+                label.classList.add(
+                    "black"
+                );
+            }
+
+            label.textContent =
+                number;
+
+            label.style.transform =
+                `translate(${x}px, ${y}px)`;
+
+            wheel.appendChild(
+                label
+            );
+        }
+    );
+}
+
+
+/* =========================================================
+   CREATE ROULETTE TABLE
+========================================================= */
+
+function createRouletteTable() {
+
+    const grid =
+        document.getElementById(
+            "roulette-grid"
+        );
+
+    grid.innerHTML = "";
+
+    const zero =
+        document.createElement(
+            "button"
+        );
+
+    zero.className =
+        "roulette-zero";
+
+    zero.textContent = "0";
+
+    zero.onclick = () => {
+
+        selectRouletteBet(
+            0,
+            zero
+        );
+    };
+
+    grid.appendChild(
+        zero
+    );
+
+    for (
+        let row = 0;
+        row < 3;
+        row++
+    ) {
+
+        for (
+            let col = 0;
+            col < 12;
+            col++
+        ) {
+
+            const number =
+                col * 3 +
+                (3 - row);
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "roulette-number " +
+                (
+                    redNumbers.includes(
+                        number
+                    )
+                        ? "red"
+                        : "black"
+                );
+
+            button.textContent =
+                number;
+
+            button.onclick = () => {
+
+                selectRouletteBet(
+                    number,
+                    button
+                );
+            };
+
+            grid.appendChild(
+                button
+            );
+        }
+    }
 }
 
 
@@ -4078,7 +4885,9 @@ function spinReel(
                 ];
         }
 
-        reel.appendChild(symbol);
+        reel.appendChild(
+            symbol
+        );
     }
 
     reel.style.transition =
@@ -4225,7 +5034,7 @@ function showMessage(
 
 
 /* =========================================================
-   INITIALIZE EVERYTHING
+   INITIALIZE
 ========================================================= */
 
 createShoe();
@@ -4239,6 +5048,8 @@ initializeSlots();
 updateBalance();
 
 renderBlackjack();
+
+updateRouletteBetSlip();
 
 </script>
 
