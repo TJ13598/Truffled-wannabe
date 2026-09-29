@@ -1,1 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Money Casino Simulator</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --text-main: #f8fafc;
+            --felt-green: #065f46;
+        }
 
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--card-bg);
+            padding: 15px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            margin-bottom: 20px;
+        }
+
+        .balance-container {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .balance-amount {
+            color: var(--accent-green);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid transparent;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            border-color: var(--accent-green);
+            background-color: #334155;
+        }
+
+        .game-container {
+            background-color: var(--felt-green);
+            border: 8px solid #334155;
+            border-radius: 16px;
+            padding: 30px;
+            min-height: 400px;
+            display: none;
+            position: relative;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+        }
+
+        .game-container.active {
+            display: block;
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        input[type="number"] {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid #475569;
+            padding: 10px;
+            border-radius: 6px;
+            width: 100px;
+            font-size: 1rem;
+        }
+
+        button.action-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button.action-btn:hover { background-color: #1d4ed8; }
+
+        /* Game Elements */
+        .card-display {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            min-height: 120px;
+        }
+
+        .playing-card {
+            background: white;
+            color: black;
+            width: 80px;
+            height: 120px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .playing-card.red { color: var(--accent-red); }
+
+        .game-status {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 15px 0;
+            min-height: 30px;
+        }
+
+        /* Roulette Layout */
+        .roulette-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .roulette-btn {
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-red { background-color: var(--accent-red); }
+        .btn-black { background-color: #000; }
+        .btn-green { background-color: var(--accent-green); }
+
+        /* Poker Specifics */
+        .poker-card {
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: transform 0.2s;
+        }
+        .poker-card.held {
+            border-color: #f59e0b;
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎰 PseudoCasino</h1>
+        <div class="balance-container">
+            Fake Chips: <span class="balance-amount" id="balance">$1,000</span>
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <button class="tab-btn active" onclick="switchGame('blackjack')">Blackjack</button>
+        <button class="tab-btn" onclick="switchGame('roulette')">Roulette</button>
+        <button class="tab-btn" onclick="switchGame('poker')">Video Poker</button>
+    </nav>
+
+    <!-- BLACKJACK -->
+    <section id="blackjack" class="game-container active">
+        <h2>Blackjack</h2>
+        <div class="game-status" id="bj-status">Place your bet to start!</div>
+        
+        <h3>Dealer Hand (<span id="bj-dealer-score">0</span>)</h3>
+        <div class="card-display" id="bj-dealer-cards"></div>
+
+        <h3>Your Hand (<span id="bj-player-score">0</span>)</h3>
+        <div class="card-display" id="bj-player-cards"></div>
+
+        <div class="controls">
+            <label>Bet Amount:</label>
+            <input type="number" id="bj-bet" value="50" min="10">
+            <button class="action-btn" id="bj-deal-btn" onclick="startBlackjack()">Deal</button>
+            <button class="action-btn" id="bj-hit-btn" onclick="blackjackHit()" disabled>Hit</button>
+            <button class="action-btn" id="bj-stand-btn" onclick="blackjackStand()" disabled>Stand</button>
+        </div>
+    </section>
+
+    <!-- ROULETTE -->
+    <section id="roulette" class="game-container">
+        <h2>Roulette</h2>
+        <div class="game-status" id="roulette-status">Pick a color/group and place your bet!</div>
+        
+        <div class="roulette-grid">
+            <button class="roulette-btn btn-red" onclick="setRouletteBet('Red')">Red (2x Payout)</button>
+            <button class="roulette-btn btn-black" onclick="setRouletteBet('Black')">Black (2x Payout)</button>
+            <button class="roulette-btn btn-green" onclick="setRouletteBet('0')">Number 0 (35x Payout)</button>
+            <button class="roulette-btn btn-green" onclick="setRouletteBet('Even')">Even Numbers (2x Payout)</button>
+        </div>
+
+        <div class="controls">
+            <div>Selected Bet: <strong id="selected-roulette-bet">None</strong></div>
+            <label>Bet Amount:</label>
+            <input type="number" id="roulette-bet-amount" value="50" min="10">
+            <button class="action-btn" onclick="spinRoulette()">Spin Wheel</button>
+        </div>
+    </section>
+
+    <!-- VIDEO POKER -->
+    <section id="poker" class="game-container">
+        <h2>Video Poker (Jacks or Better)</h2>
+        <div class="game-status" id="poker-status">Place your bet and click Deal!</div>
+        
+        <div class="card-display" id="poker-cards"></div>
+
+        <div class="controls">
+            <label>Bet Amount:</label>
+            <input type="number" id="poker-bet" value="50" min="10">
+            <button class="action-btn" id="poker-deal-btn" onclick="pokerDeal()">Deal</button>
+            <button class="action-btn" id="poker-draw-btn" onclick="pokerDraw()" disabled>Draw / Swap</button>
+        </div>
+    </section>
+
+    <script>
+        // --- Core Wallet System ---
+        let balance = 1000;
+        function updateBalanceDisplay() {
+            document.getElementById('balance').innerText = `$${balance.toLocaleString()}`;
+        }
+
+        function switchGame(gameId) {
+            document.querySelectorAll('.game-container').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(gameId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // --- Shared Deck Mechanics ---
+        const suits = ['♠', '♥', '♦', '♣'];
+        const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+        
+        function getDeck() {
+            let deck = [];
+            for (let suit of suits) {
+                for (let value of values) {
+                    deck.push({ suit, value });
+                }
+            }
+            return deck.sort(() => Math.random() - 0.5);
+        }
+
+        function createCardUI(card) {
+            const el = document.createElement('div');
+            el.className = `playing-card ${(card.suit === '♥' || card.suit === '♦') ? 'red' : ''}`;
+            el.innerHTML = `<div>${card.value}</div><div style="align-self: center; font-size: 2rem;">${card.suit}</div><div style="align-self: flex-end;">${card.value}</div>`;
+            return el;
+        }
+
+        // --- Blackjack Rules & Logic ---
+        let bjDeck, bjPlayerHand, bjDealerHand, bjBet;
+
+        function getBJScore(hand) {
+            let score = 0;
+            let aces = 0;
+            for (let card of hand) {
+                if (['J', 'Q', 'K'].includes(card.value)) score += 10;
+                else if (card.value === 'A') { score += 11; aces++; }
+                else score += parseInt(card.value);
+            }
+            while (score > 21 && aces > 0) { score -= 10; aces--; }
+            return score;
+        }
+
+        function startBlackjack() {
+            bjBet = parseInt(document.getElementById('bj-bet').value);
