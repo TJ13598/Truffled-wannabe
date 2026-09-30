@@ -288,31 +288,34 @@
             align-items: center;
         }
 
-        .side-button {
-            width: 58px;
-            height: 58px;
+       .side-button {
+    width: 54px;
+    height: 54px;
+    margin: 3px auto;
 
-            margin: 3px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            display: flex;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
 
-            align-items: center;
-            justify-content: center;
+    border-radius: 14px;
+    transition: .2s ease;
+}
 
-            border-radius: 10px;
+.side-button:hover {
+    background: rgba(0,255,157,.1);
+    transform: translateY(-2px);
+}
 
-            color: white;
+.side-button.active {
+    background: var(--green);
+    color: #00150d;
+    box-shadow: 0 0 25px rgba(0,255,157,.25);
+}
 
-            text-decoration: none;
-
-            font-size: 27px;
-
-            transition: background 0.2s ease;
-        }
-
-        .side-button:hover {
-            background: #203b39;
-        }
 
 
         /* =========================
