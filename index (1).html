@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truffled Wannabe - Premium Games</title>
+    <style>
+        /* Modern Reset & Dark Theme */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f0f12;
+            color: #f1f1f4;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Layout Container */
+        .site-container {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 260px;
+            background-color: #16161a;
+            border-right: 1px solid #232329;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .logo-area {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #3b82f6;
+            padding-left: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #a1a1aa;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+            background-color: #232329;
+        }
+
+        .nav-links a.active {
+            border-left: 4px solid #3b82f6;
+            background-color: #1e1e24;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 260px;
+            flex-grow: 1;
+            padding: 40px;
+            max-width: 1400px;
+        }
+
+        /* Top Header Area */
+        header {
+            margin-bottom: 32px;
+        }
+
+        header h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        /* Filter Tags as Pill Buttons */
+        .filter-container {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #232329;
+            padding-bottom: 16px;
+        }
+
+        .filter-btn {
+            background-color: #16161a;
+            color: #a1a1aa;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid #232329;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #3b82f6;
+            color: #ffffff;
+            border-color: #3b82f6;
+        }
+
+        /* Clean Game Card Grid */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .game-card {
+            background-color: #16161a;
+            border: 1px solid #232329;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: #3b82f6;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Thumbnail Image & Styled Fallback Box */
+        .thumbnail-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #1e1e24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thumbnail-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Placeholder graphic if game lacks an image */
+        .placeholder-thumb {
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        /* Game Card Info */
+        .game-info {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .game-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .game-category {
+            font-size: 0.75rem;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+                padding: 24px 8px;
+            }
+            .logo-area, .nav-text {
+                display: none;
+            }
+            .main-content {
+                margin-left: 70px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="site-container">
+        
+        <!-- Sidebar Menu Framework (Replicable across all 6 pages) -->
+        <aside class="sidebar">
+            <div class="logo-area">Truffled</div>
+            <ul class="nav-links">
+                <!-- Page 1 (Active) -->
+                <li><a href="index.html" class="active"><span class="nav-icon">🎮</span> <span class="nav-text">All Games</span></a></li>
+                <!-- Placeholders for your other 5 connected pages -->
+                <li><a href="trending.html"><span class="nav-icon">🔥</span> <span class="nav-text">Trending</span></a></li>
+                <li><a href="action.html"><span class="nav-icon">⚔️</span> <span class="nav-text">Action</span></a></li>
+                <li><a href="arcade.html"><span class="nav-icon">🕹️</span> <span class="nav-text">Arcade</span></a></li>
+                <li><a href="driving.html"><span class="nav-icon">🏎️</span> <span class="nav-text">Driving</span></a></li>
+                <li><a href="settings.html"><span class="nav-icon">🛠️</span> <span class="nav-text">Tools</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Stream -->
+        <main class="main-content">
+            
+            <header>
+                <h1>Explore Games</h1>
+                
+                <!-- Polished Category Selection Pill Buttons -->
+                <ul class="filter-container">
+                    <li><button class="filter-btn active">All</button></li>
+                    <li><button class="filter-btn">Action</button></li>
+                    <li><button class="filter-btn">Arcade</button></li>
+                    <li><button class="filter-btn">Driving</button></li>
+                    <li><button class="filter-btn">Casual</button></li>
+                </ul>
+            </header>
+
+            <!-- Fixed Game Grid Layout (No multi-title overlaps) -->
+            <section class="game-grid">
+                
+                <!-- Game 1 -->
+                <a href="games/polytrack.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <!-- Replace with real image paths later if available: <img src="images/polytrack.jpg" alt="Poly Track"> -->
+                        <div class="placeholder-thumb">🏎️</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">Poly Track</span>
+                        <span class="game-category">Driving</span>
+                    </div>
+                </a>
+
+                <!-- Game 2 -->
+                <a href="games/slope.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🕹️</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">Slope</span>
+                        <span class="game-category">Arcade</span>
+                    </div>
+                </a>
+
+                <!-- Game 3 -->
+                <a href="games/snowrider.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">👾</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">Snow Rider</span>
+                        <span class="game-category">Arcade</span>
+                    </div>
+                </a>
+
+                <!-- Game 4 -->
+                <a href="games/balatro.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🎲</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">Balatro</span>
+                        <span class="game-category">Casual</span>
+                    </div>
+                </a>
+
+                <!-- Game 5 -->
+                <a href="games/crossyroad.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🎯</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">Crossy Road</span>
+                        <span class="game-category">Casual</span>
+                    </div>
+                </a>
+
+                <!-- Game 6 -->
+                <a href="games/subwaysurfers.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🏃</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">Subway Surfers</span>
+                        <span class="game-category">Action</span>
+                    </div>
+                </a>
+
+                <!-- Game 7 -->
+                <a href="games/adofai.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🎵</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">ADOFAI</span>
+                        <span class="game-category">Arcade</span>
+                    </div>
+                </a>
+
+                <!-- Game 8 -->
+                <a href="games/adventurecapitalist.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">💼</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">AdVenture Capitalist</span>
+                        <span class="game-category">Casual</span>
+                    </div>
+                </a>
+
+                <!-- Game 9 -->
+                <a href="games/btd1.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🎈</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">BTD 1</span>
+                        <span class="game-category">Action</span>
+                    </div>
+                </a>
+
+                <!-- Game 10 -->
+                <a href="games/btd2.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🎈</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">BTD 2</span>
+                        <span class="game-category">Action</span>
+                    </div>
+                </a>
+
+                <!-- Game 11 -->
+                <a href="games/btd4.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🎈</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">BTD 4</span>
+                        <span class="game-category">Action</span>
+                    </div>
+                </a>
+
+                <!-- Game 12 -->
+                <a href="games/drifthunters.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🚗</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">Drift Hunters</span>
+                        <span class="game-category">Driving</span>
+                    </div>
+                </a>
+
+                <!-- Game 13 -->
+                <a href="games/basketballstars.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🏀</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">Basketball Stars</span>
+                        <span class="game-category">Sports</span>
+                    </div>
+                </a>
+
+                <!-- Game 14 -->
+                <a href="games/retrobowl.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🏈</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">Retro Bowl</span>
+                        <span class="game-category">Sports</span>
+                    </div>
+                </a>
+
+                <!-- Game 15 -->
+                <a href="games/retrobowlcollege.html" class="game-card">
+                    <div class="thumbnail-container">
+                        <div class="placeholder-thumb">🎓</div>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-title">Retro Bowl College</span>
+                        <span class="game-category">Sports</span>
+                    </div>
+                </a>
+
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
