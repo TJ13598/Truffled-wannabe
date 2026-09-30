@@ -2443,10 +2443,12 @@ function drawCard() {
 
 function cardValue(card) {
 
+    // Ace starts as 11.
     if (card.rank === "A") {
         return 11;
     }
 
+    // Face cards are worth 10.
     if (
         card.rank === "K" ||
         card.rank === "Q" ||
@@ -2455,6 +2457,7 @@ function cardValue(card) {
         return 10;
     }
 
+    // Number cards keep their numeric value.
     return Number(card.rank);
 }
 
@@ -2473,10 +2476,11 @@ function handValue(hand) {
         }
     }
 
-    while (
-        total > 21 &&
-        aces > 0
-    ) {
+    /*
+     * Convert an Ace from 11 to 1 whenever
+     * the hand would otherwise be over 21.
+     */
+    while (total > 21 && aces > 0) {
 
         total -= 10;
         aces--;
@@ -2484,6 +2488,7 @@ function handValue(hand) {
 
     return total;
 }
+
 
 
 function isBlackjack(hand) {
