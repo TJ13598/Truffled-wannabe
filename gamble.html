@@ -7,658 +7,562 @@
 
 <style>
 :root {
-    --bg: #030807;
-    --felt: #06382a;
-    --felt-dark: #04271e;
-    --panel: #0b1714;
-    --panel-2: #10231f;
-    --panel-3: #17352e;
-    --green: #00ff9d;
-    --green-dark: #00b978;
-    --gold: #ffc857;
-    --red: #e32635;
-    --white: #f5fffb;
-    --muted: #89a39d;
-    --border: rgba(0,255,157,.14);
-    --shadow: 0 25px 70px rgba(0,0,0,.5);
+    --bg:#030807;
+    --felt:#06382a;
+    --felt-dark:#04271e;
+    --panel:#0b1714;
+    --panel-2:#10231f;
+    --panel-3:#17352e;
+    --green:#00ff9d;
+    --green-dark:#00b978;
+    --gold:#ffc857;
+    --red:#e32635;
+    --white:#f5fffb;
+    --muted:#89a39d;
+    --border:rgba(0,255,157,.14);
+    --shadow:0 25px 70px rgba(0,0,0,.5);
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior:smooth;
 }
 
 body {
-    min-height: 100vh;
-    color: var(--white);
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    overflow-x: hidden;
-
+    min-height:100vh;
+    color:var(--white);
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
     background:
-        radial-gradient(circle at 50% -10%, rgba(0,255,157,.14), transparent 35%),
-        radial-gradient(circle at 90% 50%, rgba(0,180,130,.07), transparent 30%),
+        radial-gradient(circle at 50% -10%,rgba(0,255,157,.14),transparent 35%),
+        radial-gradient(circle at 90% 50%,rgba(0,180,130,.07),transparent 30%),
         var(--bg);
 }
 
 body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    opacity: .22;
-
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.22;
     background-image:
-        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-
-    background-size: 45px 45px;
-    mask-image: linear-gradient(to bottom, black, transparent 90%);
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:45px 45px;
+    mask-image:linear-gradient(to bottom,black,transparent 90%);
 }
 
 /* SIDEBAR */
 
 .sidebar {
-    position: fixed;
-    top: 139px;
-    right: 18px;
-    width: 80px;
-    padding: 18px 0;
-    background: #142a29;
-    border-radius: 10px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position:fixed;
+    top:139px;
+    right:18px;
+    width:80px;
+    padding:18px 0;
+    background:#142a29;
+    border-radius:10px;
+    z-index:9999;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
 .side-button {
-    width: 54px;
-    height: 54px;
-    margin: 3px auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: white;
-    text-decoration: none;
-    font-size: 24px;
-
-    border-radius: 14px;
-    transition: .2s ease;
+    width:54px;
+    height:54px;
+    margin:3px auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    text-decoration:none;
+    font-size:24px;
+    border-radius:14px;
+    transition:.2s ease;
 }
 
 .side-button:hover {
-    background: rgba(0,255,157,.1);
-    transform: translateY(-2px);
+    background:rgba(0,255,157,.1);
+    transform:translateY(-2px);
 }
 
 .side-button.active {
-    background: var(--green);
-    color: #00150d;
-    box-shadow: 0 0 25px rgba(0,255,157,.25);
+    background:var(--green);
+    color:#00150d;
+    box-shadow:0 0 25px rgba(0,255,157,.25);
 }
 
 /* PAGE */
 
 .page {
-    width: min(1350px, calc(100% - 150px));
-    margin: 0 auto;
-    padding: 55px 0 80px;
+    width:min(1350px,calc(100% - 150px));
+    margin:0 auto;
+    padding:55px 0 80px;
 }
 
 /* HEADER */
 
 .header {
-    text-align: center;
-    margin-bottom: 42px;
+    text-align:center;
+    margin-bottom:42px;
 }
 
 .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    padding: 7px 14px;
-
-    border: 1px solid rgba(0,255,157,.18);
-    background: rgba(0,255,157,.05);
-    color: var(--green);
-
-    border-radius: 999px;
-
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-
-    margin-bottom: 18px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 14px;
+    border:1px solid rgba(0,255,157,.18);
+    background:rgba(0,255,157,.05);
+    color:var(--green);
+    border-radius:999px;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:18px;
 }
 
 .header h1 {
-    font-size: clamp(48px, 7vw, 82px);
-    line-height: .95;
-    letter-spacing: -4px;
-    font-weight: 900;
-    margin-bottom: 18px;
+    font-size:clamp(48px,7vw,82px);
+    line-height:.95;
+    letter-spacing:-4px;
+    font-weight:900;
+    margin-bottom:18px;
 }
 
 .header h1 span {
-    color: var(--green);
-    text-shadow: 0 0 35px rgba(0,255,157,.25);
+    color:var(--green);
+    text-shadow:0 0 35px rgba(0,255,157,.25);
 }
 
 .subtitle {
-    color: var(--muted);
-    font-size: 15px;
-    max-width: 600px;
-    margin: auto;
+    color:var(--muted);
+    font-size:15px;
+    max-width:600px;
+    margin:auto;
 }
 
-/* BALANCE */
-
 .balance-card {
-    width: min(460px, 100%);
-    margin: 28px auto 0;
-    padding: 18px 24px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+    width:min(460px,100%);
+    margin:28px auto 0;
+    padding:18px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
     background:
-        linear-gradient(
-            135deg,
-            rgba(0,255,157,.11),
-            rgba(0,255,157,.025)
-        );
-
-    border: 1px solid rgba(0,255,157,.2);
-    border-radius: 18px;
-
-    box-shadow: 0 0 40px rgba(0,255,157,.05);
+        linear-gradient(135deg,rgba(0,255,157,.11),rgba(0,255,157,.025));
+    border:1px solid rgba(0,255,157,.2);
+    border-radius:18px;
+    box-shadow:0 0 40px rgba(0,255,157,.05);
 }
 
 .balance-label {
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color:var(--muted);
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
 }
 
 .balance-value {
-    color: var(--green);
-    font-size: 28px;
-    font-weight: 900;
+    color:var(--green);
+    font-size:28px;
+    font-weight:900;
 }
 
 .balance-cash {
-    font-size: 32px;
+    font-size:32px;
 }
 
 /* GAME GRID */
 
 .games-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
-    align-items: start;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+    align-items:start;
 }
 
 .game-card {
-    position: relative;
-    overflow: hidden;
-
+    position:relative;
+    overflow:hidden;
     background:
-        linear-gradient(145deg, rgba(255,255,255,.025), transparent 40%),
+        linear-gradient(145deg,rgba(255,255,255,.025),transparent 40%),
         var(--panel);
-
-    border: 1px solid var(--border);
-    border-radius: 24px;
-
-    box-shadow: var(--shadow);
+    border:1px solid var(--border);
+    border-radius:24px;
+    box-shadow:var(--shadow);
 }
 
 .game-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 25px;
-    right: 25px;
-    height: 2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--green),
-            transparent
-        );
-
-    opacity: .55;
+    content:"";
+    position:absolute;
+    top:0;
+    left:25px;
+    right:25px;
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--green),transparent);
+    opacity:.55;
 }
 
 .blackjack-card {
-    grid-column: span 2;
+    grid-column:span 2;
 }
 
 .game-header {
-    padding: 25px 25px 10px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding:25px 25px 10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .game-header h2 {
-    font-size: 23px;
-    font-weight: 900;
+    font-size:23px;
+    font-weight:900;
 }
 
 .game-header p {
-    margin-top: 4px;
-    color: var(--muted);
-    font-size: 12px;
+    margin-top:4px;
+    color:var(--muted);
+    font-size:12px;
 }
 
 .game-icon {
-    width: 46px;
-    height: 46px;
-
-    border-radius: 14px;
-
-    display: grid;
-    place-items: center;
-
-    background: rgba(0,255,157,.08);
-    border: 1px solid rgba(0,255,157,.12);
-
-    font-size: 23px;
+    width:46px;
+    height:46px;
+    border-radius:14px;
+    display:grid;
+    place-items:center;
+    background:rgba(0,255,157,.08);
+    border:1px solid rgba(0,255,157,.12);
+    font-size:23px;
 }
 
 .game-body {
-    padding: 18px 25px 25px;
+    padding:18px 25px 25px;
 }
 
 /* BUTTONS */
 
 .btn {
-    border: 0;
-    border-radius: 12px;
-
-    padding: 12px 19px;
-
-    background: var(--green);
-    color: #00150d;
-
-    font-size: 14px;
-    font-weight: 900;
-
-    cursor: pointer;
-    transition: .2s ease;
+    border:0;
+    border-radius:12px;
+    padding:12px 19px;
+    background:var(--green);
+    color:#00150d;
+    font-size:14px;
+    font-weight:900;
+    cursor:pointer;
+    transition:.2s ease;
 }
 
 .btn:hover {
-    background: #35ffb0;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,255,157,.16);
+    background:#35ffb0;
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(0,255,157,.16);
 }
 
 .btn:active {
-    transform: translateY(0);
+    transform:translateY(0);
 }
 
 .btn:disabled {
-    opacity: .35;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+    opacity:.35;
+    cursor:not-allowed;
+    transform:none;
+    box-shadow:none;
 }
 
 .btn-secondary {
-    background: var(--panel-3);
-    color: var(--white);
-    border: 1px solid rgba(255,255,255,.08);
+    background:var(--panel-3);
+    color:var(--white);
+    border:1px solid rgba(255,255,255,.08);
 }
 
 .btn-secondary:hover {
-    background: #203b37;
+    background:#203b37;
 }
 
 .bet-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
+    display:flex;
+    gap:8px;
+    margin-bottom:20px;
 }
 
 .bet-input {
-    flex: 1;
-    min-width: 0;
-
-    height: 44px;
-
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 11px;
-
-    background: #091311;
-    color: white;
-
-    padding: 0 13px;
-
-    font-size: 14px;
-    outline: none;
+    flex:1;
+    min-width:0;
+    height:44px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:11px;
+    background:#091311;
+    color:white;
+    padding:0 13px;
+    font-size:14px;
+    outline:none;
 }
 
 .bet-input:focus {
-    border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(0,255,157,.07);
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(0,255,157,.07);
 }
 
 .section-label {
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
+    color:var(--muted);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:8px;
 }
 
 .message {
-    min-height: 24px;
-    text-align: center;
-    margin: 16px 0 5px;
-
-    color: var(--muted);
-    font-size: 14px;
-    font-weight: 800;
+    min-height:24px;
+    text-align:center;
+    margin:16px 0 5px;
+    color:var(--muted);
+    font-size:14px;
+    font-weight:800;
 }
 
 .message.win {
-    color: var(--green);
+    color:var(--green);
 }
 
 .message.lose {
-    color: var(--red);
+    color:var(--red);
 }
 
 .message.tie {
-    color: var(--gold);
+    color:var(--gold);
 }
 
 /* BLACKJACK */
 
 .blackjack-top-controls {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 18px;
-    align-items: end;
-    margin-bottom: 18px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:18px;
+    align-items:end;
+    margin-bottom:18px;
 }
 
 .player-selector {
-    display: flex;
-    gap: 6px;
-    padding: 5px;
-
-    background: #091311;
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 12px;
+    display:flex;
+    gap:6px;
+    padding:5px;
+    background:#091311;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;
 }
 
 .player-option {
-    border: 0;
-    background: transparent;
-    color: var(--muted);
-
-    padding: 9px 16px;
-    border-radius: 8px;
-
-    font-size: 12px;
-    font-weight: 900;
-
-    cursor: pointer;
-    transition: .2s ease;
+    border:0;
+    background:transparent;
+    color:var(--muted);
+    padding:9px 16px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:900;
+    cursor:pointer;
+    transition:.2s ease;
 }
 
 .player-option:hover {
-    color: white;
+    color:white;
 }
 
 .player-option.active {
-    background: var(--green);
-    color: #00150d;
-    box-shadow: 0 0 15px rgba(0,255,157,.15);
+    background:var(--green);
+    color:#00150d;
+    box-shadow:0 0 15px rgba(0,255,157,.15);
 }
 
 .player-bets {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin-bottom: 18px;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    margin-bottom:18px;
 }
 
 .player-bet {
-    display: none;
+    display:none;
 }
 
 .player-bet.visible {
-    display: block;
+    display:block;
 }
 
 .player-bet label {
-    display: block;
-    margin-bottom: 6px;
-
-    color: var(--muted);
-    font-size: 10px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    display:block;
+    margin-bottom:6px;
+    color:var(--muted);
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1px;
 }
 
 .blackjack-table {
-    position: relative;
-
-    padding: 28px;
-    min-height: 420px;
-
-    border-radius: 24px;
-
+    position:relative;
+    padding:28px;
+    min-height:420px;
+    border-radius:24px;
     background:
-        radial-gradient(
-            ellipse at center,
-            rgba(0,255,157,.09),
-            transparent 65%
-        ),
-        linear-gradient(
-            145deg,
-            #073b2d,
-            #04261e
-        );
-
-    border: 7px solid #172b28;
-
+        radial-gradient(ellipse at center,rgba(0,255,157,.09),transparent 65%),
+        linear-gradient(145deg,#073b2d,#04261e);
+    border:7px solid #172b28;
     box-shadow:
         inset 0 0 45px rgba(0,0,0,.4),
         0 18px 40px rgba(0,0,0,.35);
 }
 
 .blackjack-table::before {
-    content: "";
-    position: absolute;
-    inset: 14px;
-
-    border: 1px solid rgba(255,255,255,.055);
-    border-radius: 18px;
-
-    pointer-events: none;
+    content:"";
+    position:absolute;
+    inset:14px;
+    border:1px solid rgba(255,255,255,.055);
+    border-radius:18px;
+    pointer-events:none;
 }
 
 .table-label {
-    text-align: center;
-
-    color: rgba(255,255,255,.35);
-
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-
-    margin-bottom: 20px;
+    text-align:center;
+    color:rgba(255,255,255,.35);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:20px;
 }
 
 .dealer-area {
-    text-align: center;
-    margin-bottom: 20px;
+    text-align:center;
+    margin-bottom:20px;
 }
 
 .dealer-area .cards {
-    min-height: 125px;
+    min-height:125px;
 }
 
 .player-hands {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-    align-items: stretch;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+    align-items:stretch;
 }
 
 .player-panel {
-    min-width: 0;
-
-    padding: 18px;
-
-    background: rgba(0,0,0,.13);
-
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: 16px;
-
-    transition: .2s ease;
+    min-width:0;
+    padding:18px;
+    background:rgba(0,0,0,.13);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:16px;
+    transition:.2s ease;
 }
 
 .player-panel.active-player {
-    border-color: rgba(0,255,157,.4);
-
+    border-color:rgba(0,255,157,.4);
     box-shadow:
         0 0 25px rgba(0,255,157,.08),
         inset 0 0 20px rgba(0,255,157,.025);
 }
 
 .player-panel.finished-player {
-    opacity: .72;
+    opacity:.72;
 }
 
 .player-title-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-
-    margin-bottom: 8px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:8px;
 }
 
 .player-title {
-    color: rgba(255,255,255,.7);
-
-    font-size: 12px;
-    font-weight: 900;
-
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color:rgba(255,255,255,.7);
+    font-size:12px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1px;
 }
 
 .active-player .player-title {
-    color: var(--green);
+    color:var(--green);
 }
 
 .player-status {
-    color: rgba(255,255,255,.3);
-    font-size: 9px;
-    font-weight: 900;
-    text-transform: uppercase;
+    color:rgba(255,255,255,.3);
+    font-size:9px;
+    font-weight:900;
+    text-transform:uppercase;
 }
 
 .active-player .player-status {
-    color: var(--green);
+    color:var(--green);
 }
 
 .hand {
-    text-align: center;
+    text-align:center;
 }
 
 .hand-title {
-    color: rgba(255,255,255,.62);
-
-    font-size: 12px;
-    font-weight: 800;
-
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color:rgba(255,255,255,.62);
+    font-size:12px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1px;
 }
 
 .hand.active-hand {
-    color: var(--green);
+    color:var(--green);
 }
 
 .cards {
-    min-height: 150px;
-
-    margin: 12px 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    gap: 7px;
-    flex-wrap: wrap;
+    min-height:150px;
+    margin:12px 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:7px;
+    flex-wrap:wrap;
 }
 
 .card {
-    width: 74px;
-    height: 108px;
-
-    background:
-        linear-gradient(145deg, #fff, #e6ebe9);
-
-    color: #101717;
-
-    border-radius: 9px;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 24px;
-    font-weight: 900;
-
-    border: 2px solid rgba(255,255,255,.75);
-
-    box-shadow:
-        0 9px 22px rgba(0,0,0,.32);
-
-    animation:
-        quickCardDeal .18s cubic-bezier(.2,.8,.2,1) both;
+    width:74px;
+    height:108px;
+    background:linear-gradient(145deg,#fff,#e6ebe9);
+    color:#101717;
+    border-radius:9px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    font-weight:900;
+    border:2px solid rgba(255,255,255,.75);
+    box-shadow:0 9px 22px rgba(0,0,0,.32);
+    animation:quickCardDeal .18s cubic-bezier(.2,.8,.2,1) both;
 }
 
 .card.red {
-    color: #d51f31;
+    color:#d51f31;
 }
 
 .card.black {
-    color: #111;
+    color:#111;
 }
 
 .card-back {
-    color: white !important;
-
+    color:white !important;
     background:
         repeating-linear-gradient(
             45deg,
@@ -667,181 +571,114 @@ body::before {
             #087058 6px,
             #087058 12px
         );
-
-    border-color: var(--green);
+    border-color:var(--green);
 }
 
 .card-rank {
-    line-height: 1;
+    line-height:1;
 }
 
 .card-suit {
-    font-size: 27px;
-    margin-top: 3px;
+    font-size:27px;
+    margin-top:3px;
 }
 
 @keyframes quickCardDeal {
     0% {
-        opacity: 0;
-        transform:
-            translateY(-20px)
-            translateX(8px)
-            rotate(4deg)
-            scale(.88);
+        opacity:0;
+        transform:translateY(-20px) translateX(8px) rotate(4deg) scale(.88);
     }
-
     65% {
-        opacity: 1;
-        transform:
-            translateY(2px)
-            translateX(0)
-            rotate(-1deg)
-            scale(1.02);
+        opacity:1;
+        transform:translateY(2px) translateX(0) rotate(-1deg) scale(1.02);
     }
-
     100% {
-        opacity: 1;
-        transform:
-            translateY(0)
-            translateX(0)
-            rotate(0)
-            scale(1);
+        opacity:1;
+        transform:translateY(0) translateX(0) rotate(0) scale(1);
     }
 }
 
 .score {
-    color: rgba(255,255,255,.55);
-    font-size: 13px;
+    color:rgba(255,255,255,.55);
+    font-size:13px;
 }
 
 .score strong {
-    color: var(--green);
-    font-size: 17px;
+    color:var(--green);
+    font-size:17px;
 }
 
 .game-controls {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 18px;
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:18px;
 }
 
 .rule-strip {
-    margin-top: 20px;
-
-    display: flex;
-    justify-content: center;
-    gap: 22px;
-    flex-wrap: wrap;
-
-    color: rgba(255,255,255,.35);
-
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: .8px;
-    text-transform: uppercase;
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    gap:22px;
+    flex-wrap:wrap;
+    color:rgba(255,255,255,.35);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.8px;
+    text-transform:uppercase;
 }
 
 .rule-strip span::before {
-    content: "•";
-    color: var(--green);
-    margin-right: 6px;
+    content:"•";
+    color:var(--green);
+    margin-right:6px;
 }
 
 /* ROULETTE */
 
 .roulette-table {
-    padding: 26px;
-
-    border-radius: 22px;
-
+    padding:26px;
+    border-radius:22px;
     background:
-        radial-gradient(
-            circle at center,
-            rgba(0,255,157,.06),
-            transparent 60%
-        ),
-        linear-gradient(
-            145deg,
-            #06412f,
-            #04261e
-        );
-
-    border: 6px solid #172b28;
-
+        radial-gradient(circle at center,rgba(0,255,157,.06),transparent 60%),
+        linear-gradient(145deg,#06412f,#04261e);
+    border:6px solid #172b28;
     box-shadow:
         inset 0 0 45px rgba(0,0,0,.4),
         0 18px 40px rgba(0,0,0,.3);
 }
 
 .roulette-wheel-area {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 28px;
-    align-items: center;
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:28px;
+    align-items:center;
 }
 
 .wheel-wrap {
-    position: relative;
-    width: 270px;
-    height: 270px;
-    margin: auto;
+    position:relative;
+    width:270px;
+    height:270px;
+    margin:auto;
 }
 
 .roulette-wheel {
-    position: relative;
+    position:relative;
+    width:270px;
+    height:270px;
+    border-radius:50%;
+    border:9px solid #172d29;
+    outline:2px solid rgba(0,255,157,.45);
 
-    width: 270px;
-    height: 270px;
+    /*
+     * The actual colors are generated by JavaScript
+     * from rouletteWheelNumbers. This prevents the
+     * visual wheel from disagreeing with the payout.
+     */
+    background:#171717;
 
-    border-radius: 50%;
-
-    border: 9px solid #172d29;
-    outline: 2px solid rgba(0,255,157,.45);
-
-    background:
-        conic-gradient(
-            #08744e 0deg 9.73deg,
-            #171717 9.73deg 19.46deg,
-            #c82332 19.46deg 29.19deg,
-            #171717 29.19deg 38.92deg,
-            #c82332 38.92deg 48.65deg,
-            #171717 48.65deg 58.38deg,
-            #c82332 58.38deg 68.11deg,
-            #171717 68.11deg 77.84deg,
-            #c82332 77.84deg 87.57deg,
-            #171717 87.57deg 97.30deg,
-            #c82332 97.30deg 107.03deg,
-            #171717 107.03deg 116.76deg,
-            #c82332 116.76deg 126.49deg,
-            #171717 126.49deg 136.22deg,
-            #c82332 136.22deg 145.95deg,
-            #171717 145.95deg 155.68deg,
-            #c82332 155.68deg 165.41deg,
-            #171717 165.41deg 175.14deg,
-            #c82332 175.14deg 184.87deg,
-            #171717 184.87deg 194.60deg,
-            #c82332 194.60deg 204.33deg,
-            #171717 204.33deg 214.06deg,
-            #c82332 214.06deg 223.79deg,
-            #171717 223.79deg 233.52deg,
-            #c82332 233.52deg 243.25deg,
-            #171717 243.25deg 252.98deg,
-            #c82332 252.98deg 262.71deg,
-            #171717 262.71deg 272.44deg,
-            #c82332 272.44deg 282.17deg,
-            #171717 282.17deg 291.90deg,
-            #c82332 291.90deg 301.63deg,
-            #171717 301.63deg 311.36deg,
-            #c82332 311.36deg 321.09deg,
-            #171717 321.09deg 330.82deg,
-            #c82332 330.82deg 340.55deg,
-            #171717 340.55deg 350.28deg,
-            #c82332 350.28deg 360deg
-        );
-
-    transform: rotate(0deg);
+    transform:rotate(0deg);
 
     transition:
         transform 3.5s cubic-bezier(.08,.82,.12,1);
@@ -851,101 +688,67 @@ body::before {
         inset 0 0 25px rgba(0,0,0,.8),
         0 15px 35px rgba(0,0,0,.4);
 
-    overflow: hidden;
+    overflow:hidden;
 }
 
 .wheel-number {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: 25px;
-    height: 25px;
-
-    margin-left: -12.5px;
-    margin-top: -12.5px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: #fff;
-
-    font-size: 11px;
-    font-weight: 900;
-
-    line-height: 1;
-
-    border-radius: 50%;
-
-    text-shadow:
-        0 1px 3px rgba(0,0,0,.95);
-
-    z-index: 2;
-
-    pointer-events: none;
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:25px;
+    height:25px;
+    margin-left:-12.5px;
+    margin-top:-12.5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:11px;
+    font-weight:900;
+    line-height:1;
+    border-radius:50%;
+    text-shadow:0 1px 3px rgba(0,0,0,.95);
+    z-index:2;
+    pointer-events:none;
 }
 
 .wheel-number.zero {
-    color: #52ffbf;
-
-    font-size: 13px;
-
+    color:#52ffbf;
+    font-size:13px;
     text-shadow:
         0 0 8px rgba(0,255,157,.8),
         0 1px 3px #000;
 }
 
 .roulette-wheel::after {
-    content: "";
-
-    position: absolute;
-
-    width: 62px;
-    height: 62px;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%,-50%);
-
-    border-radius: 50%;
-
+    content:"";
+    position:absolute;
+    width:62px;
+    height:62px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
     background:
-        radial-gradient(
-            circle,
-            #35ffb0 0%,
-            #00a968 55%,
-            #063d2b 100%
-        );
-
-    border: 7px solid #071310;
-
+        radial-gradient(circle,#35ffb0 0%,#00a968 55%,#063d2b 100%);
+    border:7px solid #071310;
     box-shadow:
         0 0 20px rgba(0,255,157,.4),
         inset 0 0 12px rgba(0,0,0,.4);
-
-    z-index: 5;
+    z-index:5;
 }
 
 .pointer {
-    position: absolute;
-
-    top: -12px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    z-index: 20;
-
-    width: 0;
-    height: 0;
-
-    border-left: 13px solid transparent;
-    border-right: 13px solid transparent;
-    border-top: 26px solid var(--gold);
-
+    position:absolute;
+    top:-12px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:20;
+    width:0;
+    height:0;
+    border-left:13px solid transparent;
+    border-right:13px solid transparent;
+    border-top:26px solid var(--gold);
     filter:
         drop-shadow(0 2px 5px black)
         drop-shadow(0 0 5px rgba(255,200,87,.5));
@@ -954,444 +757,339 @@ body::before {
 /* ROULETTE BETTING */
 
 .roulette-mode {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 12px;
+    display:flex;
+    gap:6px;
+    margin-bottom:12px;
 }
 
 .roulette-mode button {
-    flex: 1;
-    min-height: 38px;
-
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 9px;
-
-    background: #091311;
-    color: var(--muted);
-
-    font-size: 11px;
-    font-weight: 900;
-
-    cursor: pointer;
-    transition: .18s ease;
+    flex:1;
+    min-height:38px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:9px;
+    background:#091311;
+    color:var(--muted);
+    font-size:11px;
+    font-weight:900;
+    cursor:pointer;
+    transition:.18s ease;
 }
 
 .roulette-mode button:hover {
-    color: white;
-    background: #10211d;
+    color:white;
+    background:#10211d;
 }
 
 .roulette-mode button.active {
-    background: var(--green);
-    color: #00150d;
-    box-shadow: 0 0 18px rgba(0,255,157,.15);
+    background:var(--green);
+    color:#00150d;
+    box-shadow:0 0 18px rgba(0,255,157,.15);
 }
 
 .bet-slip {
-    margin-top: 14px;
-    padding: 12px;
-
-    background: rgba(0,0,0,.2);
-
-    border: 1px solid rgba(255,255,255,.07);
-    border-radius: 12px;
+    margin-top:14px;
+    padding:12px;
+    background:rgba(0,0,0,.2);
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:12px;
 }
 
 .bet-slip-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 8px;
-
-    color: var(--muted);
-
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:8px;
+    color:var(--muted);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1px;
+    text-transform:uppercase;
 }
 
 .bet-slip-total {
-    color: var(--green);
+    color:var(--green);
 }
 
 .bet-slip-list {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    display:flex;
+    flex-direction:column;
+    gap:5px;
 }
 
 .bet-slip-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-
-    padding: 8px 9px;
-
-    background: rgba(255,255,255,.025);
-
-    border: 1px solid rgba(255,255,255,.05);
-    border-radius: 8px;
-
-    font-size: 11px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    padding:8px 9px;
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:8px;
+    font-size:11px;
 }
 
 .bet-slip-item strong {
-    color: white;
-    flex: 1;
+    color:white;
+    flex:1;
 }
 
 .bet-slip-item span {
-    color: var(--gold);
-    font-weight: 900;
+    color:var(--gold);
+    font-weight:900;
 }
 
 .remove-bet {
-    width: 22px;
-    height: 22px;
-
-    border: 0;
-    border-radius: 6px;
-
-    background: rgba(227,38,53,.12);
-    color: var(--red);
-
-    cursor: pointer;
-    font-weight: 900;
+    width:22px;
+    height:22px;
+    border:0;
+    border-radius:6px;
+    background:rgba(227,38,53,.12);
+    color:var(--red);
+    cursor:pointer;
+    font-weight:900;
 }
 
 .remove-bet:hover {
-    background: rgba(227,38,53,.25);
+    background:rgba(227,38,53,.25);
 }
 
 .clear-bets {
-    width: 100%;
-    margin-top: 8px;
-
-    padding: 7px;
-
-    border: 1px solid rgba(255,255,255,.07);
-    border-radius: 7px;
-
-    background: transparent;
-    color: var(--muted);
-
-    font-size: 10px;
-    font-weight: 900;
-
-    cursor: pointer;
+    width:100%;
+    margin-top:8px;
+    padding:7px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:7px;
+    background:transparent;
+    color:var(--muted);
+    font-size:10px;
+    font-weight:900;
+    cursor:pointer;
 }
 
 .clear-bets:hover {
-    color: white;
-    background: rgba(255,255,255,.04);
+    color:white;
+    background:rgba(255,255,255,.04);
 }
 
 .empty-bets {
-    color: rgba(255,255,255,.25);
-
-    text-align: center;
-
-    font-size: 10px;
-    padding: 5px;
+    color:rgba(255,255,255,.25);
+    text-align:center;
+    font-size:10px;
+    padding:5px;
 }
 
 .roulette-betting {
-    margin-top: 25px;
+    margin-top:25px;
 }
 
 .roulette-grid {
-    display: grid;
-    grid-template-columns: 44px repeat(12, 1fr);
-    grid-template-rows: repeat(3, 40px);
-    gap: 4px;
+    display:grid;
+    grid-template-columns:44px repeat(12,1fr);
+    grid-template-rows:repeat(3,40px);
+    gap:4px;
 }
 
 .roulette-number {
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 5px;
-
-    color: white;
-
-    font-weight: 900;
-    font-size: 13px;
-
-    cursor: pointer;
-
-    transition: .15s ease;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:5px;
+    color:white;
+    font-weight:900;
+    font-size:13px;
+    cursor:pointer;
+    transition:.15s ease;
 }
 
 .roulette-number:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.2);
+    transform:translateY(-2px);
+    filter:brightness(1.2);
 }
 
 .roulette-number.red {
-    background:
-        linear-gradient(
-            145deg,
-            #bd2534,
-            #761620
-        );
+    background:linear-gradient(145deg,#bd2534,#761620);
 }
 
 .roulette-number.black {
-    background:
-        linear-gradient(
-            145deg,
-            #292929,
-            #0d0d0d
-        );
+    background:linear-gradient(145deg,#292929,#0d0d0d);
 }
 
 .roulette-zero {
-    grid-row: 1 / span 3;
-
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 5px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #139461,
-            #075637
-        );
-
-    color: white;
-
-    font-size: 16px;
-    font-weight: 900;
-
-    cursor: pointer;
-
-    transition: .15s ease;
+    grid-row:1 / span 3;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:5px;
+    background:linear-gradient(145deg,#139461,#075637);
+    color:white;
+    font-size:16px;
+    font-weight:900;
+    cursor:pointer;
+    transition:.15s ease;
 }
 
 .roulette-zero:hover {
-    filter: brightness(1.2);
+    filter:brightness(1.2);
 }
 
 .roulette-number.selected,
 .roulette-zero.selected,
 .outside-bet.selected {
-    outline: 2px solid var(--gold);
-    box-shadow: 0 0 15px rgba(255,200,87,.25);
-    z-index: 2;
+    outline:2px solid var(--gold);
+    box-shadow:0 0 15px rgba(255,200,87,.25);
+    z-index:2;
 }
 
 .outside-bets {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 5px;
-    margin-top: 6px;
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:5px;
+    margin-top:6px;
 }
 
 .outside-bet {
-    min-height: 38px;
-
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 5px;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            145deg,
-            #0d5e47,
-            #063c2d
-        );
-
-    font-size: 11px;
-    font-weight: 900;
-
-    cursor: pointer;
+    min-height:38px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:5px;
+    color:white;
+    background:linear-gradient(145deg,#0d5e47,#063c2d);
+    font-size:11px;
+    font-weight:900;
+    cursor:pointer;
 }
 
 .outside-bet.red-bet {
-    background:
-        linear-gradient(
-            145deg,
-            #a8202d,
-            #68131c
-        );
+    background:linear-gradient(145deg,#a8202d,#68131c);
 }
 
 .outside-bet.black-bet {
-    background:
-        linear-gradient(
-            145deg,
-            #252525,
-            #0d0d0d
-        );
+    background:linear-gradient(145deg,#252525,#0d0d0d);
 }
 
 .roulette-legend {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-top: 12px;
-
-    color: rgba(255,255,255,.38);
-
-    font-size: 10px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:12px;
+    color:rgba(255,255,255,.38);
+    font-size:10px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.8px;
 }
 
 /* CHIPS */
 
 .chip-row {
-    display: flex;
-    justify-content: center;
-    gap: 7px;
-    margin-top: 15px;
+    display:flex;
+    justify-content:center;
+    gap:7px;
+    margin-top:15px;
 }
 
 .chip {
-    width: 38px;
-    height: 38px;
-
-    border-radius: 50%;
-
-    border: 4px dashed rgba(255,255,255,.75);
-
-    display: grid;
-    place-items: center;
-
-    color: white;
-
-    font-size: 9px;
-    font-weight: 900;
-
-    cursor: pointer;
-
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:4px dashed rgba(255,255,255,.75);
+    display:grid;
+    place-items:center;
+    color:white;
+    font-size:9px;
+    font-weight:900;
+    cursor:pointer;
     box-shadow:
         0 5px 10px rgba(0,0,0,.3),
         inset 0 0 0 2px rgba(0,0,0,.2);
-
-    transition: .15s ease;
+    transition:.15s ease;
 }
 
 .chip:hover {
-    transform: translateY(-3px);
+    transform:translateY(-3px);
 }
 
 .chip.active {
-    transform: translateY(-4px);
+    transform:translateY(-4px);
     box-shadow:
         0 0 0 2px var(--gold),
         0 7px 15px rgba(0,0,0,.4);
 }
 
 .chip-1 {
-    background: #eee;
-    color: #111;
+    background:#eee;
+    color:#111;
 }
 
 .chip-5 {
-    background: #e32635;
+    background:#e32635;
 }
 
 .chip-25 {
-    background: #159b67;
+    background:#159b67;
 }
 
 .chip-100 {
-    background: #191919;
+    background:#191919;
 }
 
 .chip-500 {
-    background: #7339ad;
+    background:#7339ad;
 }
 
 /* SLOTS */
 
 .slots-machine {
-    padding: 28px 20px;
-
-    border-radius: 20px;
-
+    padding:28px 20px;
+    border-radius:20px;
     background:
-        radial-gradient(
-            circle at center,
-            rgba(0,255,157,.08),
-            transparent 65%
-        ),
+        radial-gradient(circle at center,rgba(0,255,157,.08),transparent 65%),
         #071310;
-
-    border: 1px solid rgba(0,255,157,.08);
-
-    box-shadow:
-        inset 0 0 30px rgba(0,0,0,.35);
+    border:1px solid rgba(0,255,157,.08);
+    box-shadow:inset 0 0 30px rgba(0,0,0,.35);
 }
 
 .slot-top {
-    text-align: center;
-
-    color: var(--gold);
-
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-
-    margin-bottom: 18px;
+    text-align:center;
+    color:var(--gold);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:18px;
 }
 
 .slot-machine {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
 }
 
 .slot-reel-window {
-    position: relative;
-
-    width: 92px;
-    height: 118px;
-
-    overflow: hidden;
-
-    border-radius: 12px;
-
-    background: #070d0c;
-
-    border: 3px solid rgba(0,255,157,.4);
-
+    position:relative;
+    width:92px;
+    height:118px;
+    overflow:hidden;
+    border-radius:12px;
+    background:#070d0c;
+    border:3px solid rgba(0,255,157,.4);
     box-shadow:
         inset 0 0 20px rgba(0,0,0,.8),
         0 0 20px rgba(0,255,157,.04);
 }
 
 .slot-reel {
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    transition: transform .9s cubic-bezier(.15,.85,.2,1);
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    transition:transform .9s cubic-bezier(.15,.85,.2,1);
 }
 
 .slot-symbol {
-    width: 100%;
-    height: 118px;
-
-    display: grid;
-    place-items: center;
-
-    font-size: 48px;
-
+    width:100%;
+    height:118px;
+    display:grid;
+    place-items:center;
+    font-size:48px;
     background:
         linear-gradient(
             90deg,
@@ -1402,17 +1100,13 @@ body::before {
 }
 
 .slot-reel-window::after {
-    content: "";
-
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-
-    height: 2px;
-
-    transform: translateY(-50%);
-
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    top:50%;
+    height:2px;
+    transform:translateY(-50%);
     background:
         linear-gradient(
             90deg,
@@ -1420,8 +1114,7 @@ body::before {
             rgba(255,255,255,.35),
             transparent
         );
-
-    pointer-events: none;
+    pointer-events:none;
 }
 
 .slots-machine.spinning .slot-reel-window {
@@ -1431,214 +1124,189 @@ body::before {
 }
 
 .jackpot {
-    text-align: center;
-
-    margin-top: 18px;
-
-    color: var(--gold);
-
-    font-size: 11px;
-    font-weight: 800;
-
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    text-align:center;
+    margin-top:18px;
+    color:var(--gold);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
 }
 
 .slot-paytable {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 6px;
-
-    margin-top: 18px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+    margin-top:18px;
 }
 
 .pay-item {
-    padding: 8px;
-
-    text-align: center;
-
-    background: rgba(255,255,255,.025);
-
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: 8px;
-
-    color: var(--muted);
-
-    font-size: 10px;
-    font-weight: 800;
+    padding:8px;
+    text-align:center;
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:8px;
+    color:var(--muted);
+    font-size:10px;
+    font-weight:800;
 }
 
 .pay-item strong {
-    display: block;
-
-    color: white;
-
-    font-size: 13px;
-
-    margin-bottom: 3px;
+    display:block;
+    color:white;
+    font-size:13px;
+    margin-bottom:3px;
 }
 
 /* FOOTER */
 
 .footer {
-    margin-top: 28px;
-
-    text-align: center;
-
-    color: #506b64;
-
-    font-size: 11px;
+    margin-top:28px;
+    text-align:center;
+    color:#506b64;
+    font-size:11px;
 }
 
 /* RESPONSIVE */
 
-@media (max-width: 1100px) {
-
+@media (max-width:1100px) {
     .roulette-wheel-area {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
     }
 
     .roulette-grid {
-        grid-template-columns: 42px repeat(12, 1fr);
+        grid-template-columns:42px repeat(12,1fr);
     }
 }
 
-@media (max-width: 850px) {
-
+@media (max-width:850px) {
     .sidebar {
-        top: auto;
-        bottom: 15px;
-        left: 50%;
-
-        transform: translateX(-50%);
-
-        width: auto;
-
-        display: flex;
-
-        padding: 7px 10px;
-        border-radius: 18px;
+        top:auto;
+        bottom:15px;
+        left:50%;
+        transform:translateX(-50%);
+        width:auto;
+        display:flex;
+        padding:7px 10px;
+        border-radius:18px;
     }
 
     .side-button {
-        margin: 0 2px;
-
-        width: 46px;
-        height: 46px;
+        margin:0 2px;
+        width:46px;
+        height:46px;
     }
 
     .page {
-        width: calc(100% - 30px);
-        padding-bottom: 100px;
+        width:calc(100% - 30px);
+        padding-bottom:100px;
     }
 
     .games-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
     }
 
     .blackjack-card {
-        grid-column: auto;
+        grid-column:auto;
     }
 
     .player-hands {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
     }
 
     .blackjack-top-controls {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
     }
 }
 
-@media (max-width: 650px) {
-
+@media (max-width:650px) {
     .header h1 {
-        letter-spacing: -2px;
+        letter-spacing:-2px;
     }
 
     .game-header,
     .game-body {
-        padding-left: 17px;
-        padding-right: 17px;
+        padding-left:17px;
+        padding-right:17px;
     }
 
     .blackjack-table,
     .roulette-table {
-        padding: 14px;
+        padding:14px;
     }
 
     .player-bets {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
     }
 
     .card {
-        width: 58px;
-        height: 88px;
-        font-size: 18px;
+        width:58px;
+        height:88px;
+        font-size:18px;
     }
 
     .card-suit {
-        font-size: 21px;
+        font-size:21px;
     }
 
     .roulette-grid {
-        grid-template-columns: 32px repeat(12, 1fr);
-        gap: 2px;
+        grid-template-columns:32px repeat(12,1fr);
+        gap:2px;
     }
 
     .roulette-number {
-        font-size: 9px;
+        font-size:9px;
     }
 
     .roulette-zero {
-        font-size: 12px;
+        font-size:12px;
     }
 
     .outside-bets {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns:repeat(3,1fr);
     }
 
     .slot-reel-window {
-        width: 72px;
-        height: 98px;
+        width:72px;
+        height:98px;
     }
 
     .slot-symbol {
-        height: 98px;
-        font-size: 38px;
+        height:98px;
+        font-size:38px;
     }
 
     .chip {
-        width: 32px;
-        height: 32px;
-        font-size: 8px;
+        width:32px;
+        height:32px;
+        font-size:8px;
     }
 
     .wheel-wrap {
-        width: 240px;
-        height: 240px;
+        width:240px;
+        height:240px;
     }
 
     .roulette-wheel {
-        width: 240px;
-        height: 240px;
+        width:240px;
+        height:240px;
     }
 
     .wheel-number {
-        font-size: 9px;
+        font-size:9px;
     }
 
     .bet-row {
-        flex-wrap: wrap;
+        flex-wrap:wrap;
     }
 
     .bet-row .bet-input {
-        width: 100%;
-        flex-basis: 100%;
+        width:100%;
+        flex-basis:100%;
     }
 
     .roulette-mode {
-        flex-direction: column;
+        flex-direction:column;
     }
 }
 </style>
@@ -1671,24 +1339,11 @@ body::before {
     </p>
 
     <div class="balance-card">
-
         <div>
-            <div class="balance-label">
-                Demo Bankroll
-            </div>
-
-            <div
-                class="balance-value"
-                id="balance"
-            >
-                $1,000
-            </div>
+            <div class="balance-label">Demo Bankroll</div>
+            <div class="balance-value" id="balance">$1,000</div>
         </div>
-
-        <div class="balance-cash">
-            💰
-        </div>
-
+        <div class="balance-cash">💰</div>
     </div>
 
 </header>
@@ -1700,16 +1355,12 @@ body::before {
 <article class="game-card blackjack-card">
 
     <div class="game-header">
-
         <div>
             <h2>🃏 Blackjack</h2>
             <p>Classic 6-deck casino blackjack.</p>
         </div>
 
-        <div class="game-icon">
-            ♠️
-        </div>
-
+        <div class="game-icon">♠️</div>
     </div>
 
     <div class="game-body">
@@ -1717,10 +1368,7 @@ body::before {
         <div class="blackjack-top-controls">
 
             <div>
-
-                <div class="section-label">
-                    Number of Players
-                </div>
+                <div class="section-label">Number of Players</div>
 
                 <div class="player-selector">
 
@@ -1741,13 +1389,9 @@ body::before {
                     </button>
 
                 </div>
-
             </div>
 
-            <div
-                class="section-label"
-                id="bj-turn-label"
-            >
+            <div class="section-label" id="bj-turn-label">
                 Player 1
             </div>
 
@@ -1755,10 +1399,7 @@ body::before {
 
         <div class="player-bets">
 
-            <div
-                class="player-bet visible"
-                id="player1-bet-wrap"
-            >
+            <div class="player-bet visible" id="player1-bet-wrap">
 
                 <label for="bet-amount">
                     Player 1 Bet
@@ -1775,10 +1416,7 @@ body::before {
 
             </div>
 
-            <div
-                class="player-bet"
-                id="player2-bet-wrap"
-            >
+            <div class="player-bet" id="player2-bet-wrap">
 
                 <label for="bet-amount-2">
                     Player 2 Bet
@@ -1817,10 +1455,7 @@ body::before {
 
             <div id="blackjack-hands"></div>
 
-            <div
-                class="message"
-                id="bj-message"
-            ></div>
+            <div class="message" id="bj-message"></div>
 
             <div class="game-controls">
 
@@ -1886,9 +1521,7 @@ body::before {
             <p>European single-zero roulette.</p>
         </div>
 
-        <div class="game-icon">
-            0
-        </div>
+        <div class="game-icon">0</div>
 
     </div>
 
@@ -1947,9 +1580,7 @@ body::before {
 
             <div class="bet-slip-header">
 
-                <span>
-                    ACTIVE BETS
-                </span>
+                <span>ACTIVE BETS</span>
 
                 <span class="bet-slip-total">
                     TOTAL:
@@ -1962,11 +1593,9 @@ body::before {
                 class="bet-slip-list"
                 id="roulette-bet-list"
             >
-
                 <div class="empty-bets">
                     Select a wager to add it here.
                 </div>
-
             </div>
 
             <button
@@ -2011,35 +1640,35 @@ body::before {
 
                         <button
                             class="chip chip-1"
-                            onclick="selectChip(1, this)"
+                            onclick="selectChip(1,this)"
                         >
                             $1
                         </button>
 
                         <button
                             class="chip chip-5"
-                            onclick="selectChip(5, this)"
+                            onclick="selectChip(5,this)"
                         >
                             $5
                         </button>
 
                         <button
                             class="chip chip-25 active"
-                            onclick="selectChip(25, this)"
+                            onclick="selectChip(25,this)"
                         >
                             $25
                         </button>
 
                         <button
                             class="chip chip-100"
-                            onclick="selectChip(100, this)"
+                            onclick="selectChip(100,this)"
                         >
                             $100
                         </button>
 
                         <button
                             class="chip chip-500"
-                            onclick="selectChip(500, this)"
+                            onclick="selectChip(500,this)"
                         >
                             $500
                         </button>
@@ -2066,7 +1695,7 @@ body::before {
                     <button
                         class="outside-bet"
                         data-bet="1-18"
-                        onclick="selectRouletteBet('1-18', this)"
+                        onclick="selectRouletteBet('1-18',this)"
                     >
                         1–18
                     </button>
@@ -2074,7 +1703,7 @@ body::before {
                     <button
                         class="outside-bet"
                         data-bet="even"
-                        onclick="selectRouletteBet('even', this)"
+                        onclick="selectRouletteBet('even',this)"
                     >
                         EVEN
                     </button>
@@ -2082,7 +1711,7 @@ body::before {
                     <button
                         class="outside-bet red-bet"
                         data-bet="red"
-                        onclick="selectRouletteBet('red', this)"
+                        onclick="selectRouletteBet('red',this)"
                     >
                         RED
                     </button>
@@ -2090,7 +1719,7 @@ body::before {
                     <button
                         class="outside-bet black-bet"
                         data-bet="black"
-                        onclick="selectRouletteBet('black', this)"
+                        onclick="selectRouletteBet('black',this)"
                     >
                         BLACK
                     </button>
@@ -2098,7 +1727,7 @@ body::before {
                     <button
                         class="outside-bet"
                         data-bet="odd"
-                        onclick="selectRouletteBet('odd', this)"
+                        onclick="selectRouletteBet('odd',this)"
                     >
                         ODD
                     </button>
@@ -2106,7 +1735,7 @@ body::before {
                     <button
                         class="outside-bet"
                         data-bet="19-36"
-                        onclick="selectRouletteBet('19-36', this)"
+                        onclick="selectRouletteBet('19-36',this)"
                     >
                         19–36
                     </button>
@@ -2143,9 +1772,7 @@ body::before {
             <p>Three spinning reels. Three chances to hit.</p>
         </div>
 
-        <div class="game-icon">
-            💎
-        </div>
+        <div class="game-icon">💎</div>
 
     </div>
 
@@ -2256,7 +1883,6 @@ body::before {
 let balance = 1000;
 
 function updateBalance() {
-
     document.getElementById("balance").textContent =
         "$" + Math.floor(balance).toLocaleString();
 }
@@ -2266,11 +1892,11 @@ function updateBalance() {
    BLACKJACK
 ========================================================= */
 
-const suits = ["♠", "♥", "♦", "♣"];
+const suits = ["♠","♥","♦","♣"];
 
 const ranks = [
-    "A", "2", "3", "4", "5", "6", "7",
-    "8", "9", "10", "J", "Q", "K"
+    "A","2","3","4","5","6","7",
+    "8","9","10","J","Q","K"
 ];
 
 let shoe = [];
@@ -2282,8 +1908,6 @@ let currentHandIndex = 0;
 let blackjackActive = false;
 let dealerTurn = false;
 
-
-/* PLAYER COUNT */
 
 function setBlackjackPlayers(count) {
 
@@ -2302,15 +1926,15 @@ function setBlackjackPlayers(count) {
 
     document
         .getElementById("one-player-option")
-        .classList.toggle("active", count === 1);
+        .classList.toggle("active",count === 1);
 
     document
         .getElementById("two-player-option")
-        .classList.toggle("active", count === 2);
+        .classList.toggle("active",count === 2);
 
     document
         .getElementById("player2-bet-wrap")
-        .classList.toggle("visible", count === 2);
+        .classList.toggle("visible",count === 2);
 
     document.getElementById("bj-turn-label").textContent =
         count === 2 ? "2 Players" : "Player 1";
@@ -2318,8 +1942,6 @@ function setBlackjackPlayers(count) {
     renderBlackjack();
 }
 
-
-/* SHOE */
 
 function createShoe() {
 
@@ -2353,9 +1975,7 @@ function shuffle(array) {
     ) {
 
         const j =
-            Math.floor(
-                Math.random() * (i + 1)
-            );
+            Math.floor(Math.random() * (i + 1));
 
         [
             array[i],
@@ -2377,8 +1997,6 @@ function drawCard() {
     return shoe.pop();
 }
 
-
-/* CARD VALUES */
 
 function cardValue(card) {
 
@@ -2431,9 +2049,7 @@ function isBlackjack(hand) {
 }
 
 
-/* RENDER CARD */
-
-function renderCard(card, hidden = false) {
+function renderCard(card,hidden = false) {
 
     const div =
         document.createElement("div");
@@ -2444,9 +2060,8 @@ function renderCard(card, hidden = false) {
 
         div.classList.add("card-back");
 
-        div.innerHTML = `
-            <span style="font-size:32px">♠</span>
-        `;
+        div.innerHTML =
+            `<span style="font-size:32px">♠</span>`;
 
         return div;
     }
@@ -2455,29 +2070,19 @@ function renderCard(card, hidden = false) {
         card.suit === "♥" ||
         card.suit === "♦"
     ) {
-
         div.classList.add("red");
-
     } else {
-
         div.classList.add("black");
     }
 
     div.innerHTML = `
-        <span class="card-rank">
-            ${card.rank}
-        </span>
-
-        <span class="card-suit">
-            ${card.suit}
-        </span>
+        <span class="card-rank">${card.rank}</span>
+        <span class="card-suit">${card.suit}</span>
     `;
 
     return div;
 }
 
-
-/* BLACKJACK RENDER */
 
 function renderBlackjack() {
 
@@ -2494,17 +2099,11 @@ function renderBlackjack() {
     dealerArea.className = "dealer-area";
 
     dealerArea.innerHTML = `
-        <div class="hand-title">
-            Dealer
-        </div>
-
+        <div class="hand-title">Dealer</div>
         <div class="cards"></div>
-
         <div class="score">
             Score:
-            <strong class="dealer-score">
-                ?
-            </strong>
+            <strong class="dealer-score">?</strong>
         </div>
     `;
 
@@ -2513,7 +2112,7 @@ function renderBlackjack() {
     const dealerCards =
         dealerArea.querySelector(".cards");
 
-    dealerHand.forEach((card, index) => {
+    dealerHand.forEach((card,index) => {
 
         const hidden =
             blackjackActive &&
@@ -2521,7 +2120,7 @@ function renderBlackjack() {
             index === 1;
 
         const cardElement =
-            renderCard(card, hidden);
+            renderCard(card,hidden);
 
         cardElement.style.animationDelay =
             `${index * 45}ms`;
@@ -2543,109 +2142,110 @@ function renderBlackjack() {
     const playersContainer =
         document.createElement("div");
 
-    playersContainer.className =
-        "player-hands";
+    playersContainer.className = "player-hands";
 
-    blackjackHands.forEach((player, playerIndex) => {
+    blackjackHands.forEach(
+        (player,playerIndex) => {
 
-        const playerPanel =
-            document.createElement("div");
-
-        const active =
-            blackjackActive &&
-            playerIndex === currentPlayerIndex;
-
-        const finished =
-            player.hands.every(
-                hand => hand.finished
-            );
-
-        playerPanel.className =
-            "player-panel" +
-            (active ? " active-player" : "") +
-            (finished ? " finished-player" : "");
-
-        playerPanel.innerHTML = `
-            <div class="player-title-row">
-
-                <div class="player-title">
-                    Player ${playerIndex + 1}
-                </div>
-
-                <div class="player-status">
-                    ${
-                        active
-                            ? "YOUR TURN"
-                            : finished
-                                ? "DONE"
-                                : "WAITING"
-                    }
-                </div>
-
-            </div>
-        `;
-
-        player.hands.forEach((hand, handIndex) => {
-
-            const section =
+            const playerPanel =
                 document.createElement("div");
 
-            section.className =
-                "hand" +
-                (
-                    active &&
-                    handIndex === currentHandIndex
-                        ? " active-hand"
-                        : ""
+            const active =
+                blackjackActive &&
+                playerIndex === currentPlayerIndex;
+
+            const finished =
+                player.hands.every(
+                    hand => hand.finished
                 );
 
-            const title =
-                player.hands.length > 1
-                    ? `Hand #${handIndex + 1}`
-                    : "Your Hand";
+            playerPanel.className =
+                "player-panel" +
+                (active ? " active-player" : "") +
+                (finished ? " finished-player" : "");
 
-            section.innerHTML = `
-                <div class="hand-title">
-                    ${title}
-                </div>
+            playerPanel.innerHTML = `
+                <div class="player-title-row">
+                    <div class="player-title">
+                        Player ${playerIndex + 1}
+                    </div>
 
-                <div class="cards"></div>
-
-                <div class="score">
-                    Score:
-                    <strong>
-                        ${handValue(hand.cards)}
-                    </strong>
+                    <div class="player-status">
+                        ${
+                            active
+                                ? "YOUR TURN"
+                                : finished
+                                    ? "DONE"
+                                    : "WAITING"
+                        }
+                    </div>
                 </div>
             `;
 
-            const cards =
-                section.querySelector(".cards");
+            player.hands.forEach(
+                (hand,handIndex) => {
 
-            hand.cards.forEach((card, cardIndex) => {
+                    const section =
+                        document.createElement("div");
 
-                const cardElement =
-                    renderCard(card);
+                    section.className =
+                        "hand" +
+                        (
+                            active &&
+                            handIndex === currentHandIndex
+                                ? " active-hand"
+                                : ""
+                        );
 
-                cardElement.style.animationDelay =
-                    `${cardIndex * 45}ms`;
+                    const title =
+                        player.hands.length > 1
+                            ? `Hand #${handIndex + 1}`
+                            : "Your Hand";
 
-                cards.appendChild(cardElement);
-            });
+                    section.innerHTML = `
+                        <div class="hand-title">
+                            ${title}
+                        </div>
 
-            playerPanel.appendChild(section);
-        });
+                        <div class="cards"></div>
 
-        playersContainer.appendChild(playerPanel);
-    });
+                        <div class="score">
+                            Score:
+                            <strong>
+                                ${handValue(hand.cards)}
+                            </strong>
+                        </div>
+                    `;
+
+                    const cards =
+                        section.querySelector(".cards");
+
+                    hand.cards.forEach(
+                        (card,cardIndex) => {
+
+                            const cardElement =
+                                renderCard(card);
+
+                            cardElement.style.animationDelay =
+                                `${cardIndex * 45}ms`;
+
+                            cards.appendChild(cardElement);
+                        }
+                    );
+
+                    playerPanel.appendChild(section);
+                }
+            );
+
+            playersContainer.appendChild(playerPanel);
+        }
+    );
 
     container.appendChild(playersContainer);
 
     updateBlackjackButtons();
 }
 
-
-/* START BLACKJACK */
 
 function startBlackjack() {
 
@@ -2725,29 +2325,22 @@ function startBlackjack() {
     ) {
 
         const bet =
-            i === 0
-                ? bet1
-                : bet2;
+            i === 0 ? bet1 : bet2;
 
         blackjackHands.push({
+            player:i + 1,
 
-            player: i + 1,
-
-            hands: [
-
+            hands:[
                 {
-                    cards: [
+                    cards:[
                         drawCard(),
                         drawCard()
                     ],
 
                     bet,
-
-                    finished: false
+                    finished:false
                 }
-
             ]
-
         });
     }
 
@@ -2774,8 +2367,6 @@ function startBlackjack() {
 }
 
 
-/* NATURAL BLACKJACKS */
-
 function checkInitialBlackjacks() {
 
     let allPlayersNatural = true;
@@ -2786,11 +2377,8 @@ function checkInitialBlackjacks() {
             player.hands[0];
 
         if (isBlackjack(hand.cards)) {
-
             hand.finished = true;
-
         } else {
-
             allPlayersNatural = false;
         }
     });
@@ -2808,7 +2396,6 @@ function checkInitialBlackjacks() {
                 player.hands[0];
 
             if (isBlackjack(hand.cards)) {
-
                 balance += hand.bet;
             }
         });
@@ -2845,7 +2432,6 @@ function checkInitialBlackjacks() {
             player.hands[0];
 
         if (isBlackjack(hand.cards)) {
-
             balance += hand.bet * 2.5;
         }
     });
@@ -2869,8 +2455,6 @@ function checkInitialBlackjacks() {
     moveToNextPlayableHand();
 }
 
-
-/* NEXT PLAYABLE HAND */
 
 function moveToNextPlayableHand() {
 
@@ -2915,8 +2499,6 @@ function moveToNextPlayableHand() {
     dealerPlay();
 }
 
-
-/* HIT */
 
 function hitCurrentHand() {
 
@@ -2975,8 +2557,6 @@ function hitCurrentHand() {
 }
 
 
-/* STAND */
-
 function standCurrentHand() {
 
     if (!blackjackActive) return;
@@ -2994,8 +2574,6 @@ function standCurrentHand() {
     moveToNextPlayableHand();
 }
 
-
-/* DOUBLE */
 
 function doubleCurrentHand() {
 
@@ -3052,8 +2630,6 @@ function doubleCurrentHand() {
 }
 
 
-/* SPLIT */
-
 function splitCurrentHand() {
 
     if (!blackjackActive) return;
@@ -3095,15 +2671,12 @@ function splitCurrentHand() {
         hand.cards.pop();
 
     const secondHand = {
-
-        cards: [
+        cards:[
             secondCard,
             drawCard()
         ],
-
-        bet: hand.bet,
-
-        finished: false
+        bet:hand.bet,
+        finished:false
     };
 
     hand.cards.push(drawCard());
@@ -3115,12 +2688,9 @@ function splitCurrentHand() {
     );
 
     updateBalance();
-
     renderBlackjack();
 }
 
-
-/* DEALER */
 
 function dealerPlay() {
 
@@ -3156,8 +2726,6 @@ function dealerPlay() {
     );
 }
 
-
-/* SETTLE BLACKJACK */
 
 function settleBlackjack() {
 
@@ -3260,8 +2828,6 @@ function settleBlackjack() {
 }
 
 
-/* BLACKJACK CONTROLS */
-
 function updateBlackjackButtons() {
 
     const hit =
@@ -3330,10 +2896,10 @@ function updateBlackjackButtons() {
 ========================================================= */
 
 const redNumbers = [
-    1, 3, 5, 7, 9,
-    12, 14, 16, 18,
-    19, 21, 23, 25,
-    27, 30, 32, 34, 36
+    1,3,5,7,9,
+    12,14,16,18,
+    19,21,23,25,
+    27,30,32,34,36
 ];
 
 /*
@@ -3400,17 +2966,11 @@ function setRouletteMode(mode) {
 
     document
         .getElementById("single-bet-mode")
-        .classList.toggle(
-            "active",
-            mode === "single"
-        );
+        .classList.toggle("active",mode === "single");
 
     document
         .getElementById("multi-bet-mode")
-        .classList.toggle(
-            "active",
-            mode === "multi"
-        );
+        .classList.toggle("active",mode === "multi");
 
     if (mode === "single") {
 
@@ -3433,18 +2993,18 @@ function setRouletteMode(mode) {
 }
 
 
-/* CHIP */
+/* =========================================================
+   CHIP
+========================================================= */
 
-function selectChip(value, element) {
+function selectChip(value,element) {
 
     selectedChip = value;
 
     document
         .querySelectorAll(".chip")
         .forEach(chip => {
-
             chip.classList.remove("active");
-
         });
 
     element.classList.add("active");
@@ -3461,8 +3021,6 @@ function selectChip(value, element) {
 }
 
 
-/* GET BET AMOUNT */
-
 function getRouletteAmount() {
 
     const input =
@@ -3475,7 +3033,6 @@ function getRouletteAmount() {
         !Number.isFinite(amount) ||
         amount <= 0
     ) {
-
         return 0;
     }
 
@@ -3483,9 +3040,11 @@ function getRouletteAmount() {
 }
 
 
-/* SELECT BET */
+/* =========================================================
+   SELECT BET
+========================================================= */
 
-function selectRouletteBet(bet, element) {
+function selectRouletteBet(bet,element) {
 
     if (rouletteSpinning) {
         return;
@@ -3495,16 +3054,10 @@ function selectRouletteBet(bet, element) {
 
         document
             .querySelectorAll(
-                ".roulette-number, " +
-                ".roulette-zero, " +
-                ".outside-bet"
+                ".roulette-number,.roulette-zero,.outside-bet"
             )
             .forEach(button => {
-
-                button.classList.remove(
-                    "selected"
-                );
-
+                button.classList.remove("selected");
             });
 
         element.classList.add("selected");
@@ -3542,14 +3095,14 @@ function selectRouletteBet(bet, element) {
     element.classList.add("selected");
 
     setTimeout(() => {
-
         element.classList.remove("selected");
-
-    }, 250);
+    },250);
 }
 
 
-/* ADD BET */
+/* =========================================================
+   ADD BET
+========================================================= */
 
 function addRouletteBet() {
 
@@ -3557,9 +3110,7 @@ function addRouletteBet() {
         return;
     }
 
-    if (
-        pendingRouletteSelection === null
-    ) {
+    if (pendingRouletteSelection === null) {
 
         showMessage(
             "roulette-selection",
@@ -3595,9 +3146,7 @@ function addRouletteBet() {
 }
 
 
-/* ADD WAGER */
-
-function addRouletteWager(bet, amount) {
+function addRouletteWager(bet,amount) {
 
     rouletteBets.push({
         bet,
@@ -3614,21 +3163,17 @@ function addRouletteWager(bet, amount) {
 }
 
 
-/* REMOVE BET */
-
 function removeRouletteBet(index) {
 
     if (rouletteSpinning) {
         return;
     }
 
-    rouletteBets.splice(index, 1);
+    rouletteBets.splice(index,1);
 
     updateRouletteBetSlip();
 }
 
-
-/* CLEAR BETS */
 
 function clearRouletteBets() {
 
@@ -3652,25 +3197,21 @@ function clearRouletteBets() {
 }
 
 
-/* CLEAR SELECTION */
-
 function clearRouletteSelection() {
 
     document
         .querySelectorAll(
-            ".roulette-number, " +
-            ".roulette-zero, " +
-            ".outside-bet"
+            ".roulette-number,.roulette-zero,.outside-bet"
         )
         .forEach(button => {
-
             button.classList.remove("selected");
-
         });
 }
 
 
-/* BET SLIP */
+/* =========================================================
+   BET SLIP
+========================================================= */
 
 function updateRouletteBetSlip() {
 
@@ -3705,7 +3246,7 @@ function updateRouletteBetSlip() {
 
     let total = 0;
 
-    rouletteBets.forEach((wager, index) => {
+    rouletteBets.forEach((wager,index) => {
 
         total += wager.amount;
 
@@ -3739,8 +3280,6 @@ function updateRouletteBetSlip() {
 }
 
 
-/* FORMAT BET */
-
 function formatRouletteBet(bet) {
 
     if (typeof bet === "number") {
@@ -3752,25 +3291,24 @@ function formatRouletteBet(bet) {
 
 
 /* =========================================================
-   FIXED ROULETTE WIN LOGIC
+   ROULETTE WIN LOGIC
 ========================================================= */
 
-function rouletteWon(bet, number) {
+/*
+ * This is the actual payout logic.
+ *
+ * The important part is that RED is determined
+ * from redNumbers and the exact same winningNumber
+ * is used by the wheel and payout.
+ */
+
+function rouletteWon(bet,number) {
 
     /*
-     * Zero is green.
+     * Zero is GREEN.
      *
-     * Therefore:
-     * - red loses
-     * - black loses
-     * - odd loses
-     * - even loses
-     * - 1-18 loses
-     * - 19-36 loses
-     *
-     * A straight-up 0 bet can still win.
+     * Therefore zero loses all outside bets.
      */
-
     if (number === 0) {
 
         if (typeof bet === "number") {
@@ -3789,15 +3327,9 @@ function rouletteWon(bet, number) {
     /*
      * Straight-up number bet.
      */
-
     if (typeof bet === "number") {
-
         return bet === number;
     }
-
-    /*
-     * Outside bets.
-     */
 
     switch (bet) {
 
@@ -3825,34 +3357,26 @@ function rouletteWon(bet, number) {
 }
 
 
-/* PAYOUT */
+/* =========================================================
+   ROULETTE PAYOUT
+========================================================= */
 
 function rouletteMultiplier(bet) {
 
     /*
-     * Straight-up pays 35:1.
+     * Straight-up:
+     * 35:1 winnings.
      *
-     * The original stake is also returned
-     * when a bet wins, so the total payout
-     * is amount * 36.
+     * Original stake is returned separately.
      */
-
     if (typeof bet === "number") {
         return 35;
     }
 
     /*
-     * Outside even-money bets:
-     * red
-     * black
-     * odd
-     * even
-     * 1-18
-     * 19-36
-     *
-     * These pay 1:1.
+     * Red, black, odd, even, 1-18, 19-36:
+     * 1:1 winnings.
      */
-
     return 1;
 }
 
@@ -3876,6 +3400,84 @@ function getRouletteColor(number) {
 
 
 /* =========================================================
+   FIXED WHEEL COLOR GENERATION
+========================================================= */
+
+/*
+ * THIS IS THE IMPORTANT FIX.
+ *
+ * Previously your wheel CSS painted the pockets as:
+ *
+ * red / black / red / black / ...
+ *
+ * But a real European roulette wheel does NOT simply
+ * alternate colors starting from zero.
+ *
+ * We now generate the wheel background directly from
+ * rouletteWheelNumbers and redNumbers.
+ *
+ * Therefore:
+ *
+ * Visual 32 = RED
+ * Visual 15 = BLACK
+ * Visual 19 = RED
+ * Visual 4 = BLACK
+ * etc.
+ *
+ * The wheel and payout system now use the same data.
+ */
+
+function createRouletteWheelBackground() {
+
+    const wheel =
+        document.getElementById("wheel");
+
+    if (!wheel) return;
+
+    const slice =
+        360 / rouletteWheelNumbers.length;
+
+    const stops = [];
+
+    rouletteWheelNumbers.forEach(
+        (number,index) => {
+
+            const start =
+                index * slice;
+
+            const end =
+                (index + 1) * slice;
+
+            const color =
+                getRouletteColor(number);
+
+            let cssColor;
+
+            if (color === "red") {
+
+                cssColor = "#c82332";
+
+            } else if (color === "black") {
+
+                cssColor = "#171717";
+
+            } else {
+
+                cssColor = "#08744e";
+            }
+
+            stops.push(
+                `${cssColor} ${start}deg ${end}deg`
+            );
+        }
+    );
+
+    wheel.style.background =
+        `conic-gradient(${stops.join(",")})`;
+}
+
+
+/* =========================================================
    WHEEL ANGLE
 ========================================================= */
 
@@ -3892,7 +3494,7 @@ function getRouletteNumberAngle(number) {
         360 / rouletteWheelNumbers.length;
 
     /*
-     * Return the CENTER of the pocket.
+     * Center of the pocket.
      */
     return (
         index * slice +
@@ -3914,15 +3516,8 @@ function getCurrentWheelRotation(wheel) {
         !transform ||
         transform === "none"
     ) {
-
         return 0;
     }
-
-    /*
-     * Modern browsers normally return:
-     *
-     * matrix(a, b, c, d, tx, ty)
-     */
 
     const match =
         transform.match(
@@ -3946,7 +3541,7 @@ function getCurrentWheelRotation(wheel) {
     const b = values[1];
 
     return (
-        Math.atan2(b, a) *
+        Math.atan2(b,a) *
         180 /
         Math.PI
     );
@@ -3964,12 +3559,11 @@ function spinRoulette() {
     }
 
     /*
-     * SINGLE BET:
+     * SINGLE BET MODE:
      *
-     * Automatically move the selected wager
-     * into the bet slip when SPIN is pressed.
+     * Move the selected bet into the bet slip
+     * automatically when SPIN is pressed.
      */
-
     if (
         rouletteMode === "single" &&
         pendingRouletteSelection !== null
@@ -4000,9 +3594,8 @@ function spinRoulette() {
     }
 
     /*
-     * No bets = cannot spin.
+     * Cannot spin without a wager.
      */
-
     if (rouletteBets.length === 0) {
 
         showMessage(
@@ -4017,18 +3610,16 @@ function spinRoulette() {
     /*
      * Calculate total wager.
      */
-
     const totalBet =
         rouletteBets.reduce(
-            (total, wager) =>
+            (total,wager) =>
                 total + wager.amount,
             0
         );
 
     /*
-     * Check balance.
+     * Check bankroll.
      */
-
     if (totalBet > balance) {
 
         showMessage(
@@ -4041,10 +3632,8 @@ function spinRoulette() {
     }
 
     /*
-     * Take the wager from the balance
-     * before the spin.
+     * Take the wager before spinning.
      */
-
     balance -= totalBet;
 
     updateBalance();
@@ -4060,19 +3649,17 @@ function spinRoulette() {
 
     /*
      * =====================================================
-     * IMPORTANT:
+     * ONE RANDOM NUMBER.
      *
-     * This is the ONE random result for the spin.
+     * This number is used for:
      *
-     * The exact same winningNumber is used for:
-     *
-     * 1. The wheel position
+     * 1. The wheel
      * 2. The color
-     * 3. The bet calculation
-     * 4. The payout
+     * 3. RED/BLACK determination
+     * 4. Every payout
      *
-     * This prevents the visual result and payout
-     * from becoming different.
+     * This is what guarantees the visual result and
+     * actual result are identical.
      * =====================================================
      */
 
@@ -4082,23 +3669,16 @@ function spinRoulette() {
         );
 
     const winningColor =
-        getRouletteColor(
-            winningNumber
-        );
+        getRouletteColor(winningNumber);
 
     /*
-     * 3 or 4 full rotations.
+     * 3 or 4 complete wheel rotations.
      */
-
     const fullRotations =
         3 +
         Math.floor(
             Math.random() * 2
         );
-
-    /*
-     * Get the exact pocket angle.
-     */
 
     const targetAngle =
         getRouletteNumberAngle(
@@ -4106,22 +3686,10 @@ function spinRoulette() {
         );
 
     const wheel =
-        document.getElementById(
-            "wheel"
-        );
-
-    /*
-     * Get the wheel's current visual rotation.
-     */
+        document.getElementById("wheel");
 
     const currentDegrees =
-        getCurrentWheelRotation(
-            wheel
-        );
-
-    /*
-     * Normalize the current angle.
-     */
+        getCurrentWheelRotation(wheel);
 
     const normalized =
         (
@@ -4130,23 +3698,13 @@ function spinRoulette() {
         ) % 360;
 
     /*
-     * =====================================================
-     * POINTER IS AT 12 O'CLOCK.
+     * Pointer is at the top.
      *
-     * The pocket angle is measured clockwise from
-     * the top of the wheel.
-     *
-     * Therefore we need to rotate the wheel by
-     * the NEGATIVE target angle.
-     * =====================================================
+     * The pocket needs to be rotated clockwise into
+     * the pointer position.
      */
-
     const destination =
         -targetAngle;
-
-    /*
-     * Find the forward amount needed to get there.
-     */
 
     let extra =
         destination -
@@ -4156,18 +3714,10 @@ function spinRoulette() {
         extra += 360;
     }
 
-    /*
-     * Add the full rotations.
-     */
-
     const finalRotation =
         currentDegrees +
         fullRotations * 360 +
         extra;
-
-    /*
-     * Spin duration.
-     */
 
     const duration =
         3000 +
@@ -4176,15 +3726,7 @@ function spinRoulette() {
     wheel.style.transition =
         `transform ${duration}ms cubic-bezier(.08,.82,.12,1)`;
 
-    /*
-     * Force browser to apply transition.
-     */
-
     void wheel.offsetHeight;
-
-    /*
-     * Start the spin.
-     */
 
     wheel.style.transform =
         `rotate(${finalRotation}deg)`;
@@ -4196,22 +3738,17 @@ function spinRoulette() {
     );
 
     /*
-     * Wait for the wheel to finish.
+     * Wait until the wheel finishes.
      */
-
     setTimeout(() => {
-
-        /*
-         * =================================================
-         * SETTLE ALL BETS USING THE SAME
-         * winningNumber THAT THE WHEEL WAS GIVEN.
-         * =================================================
-         */
 
         let totalPayout = 0;
         let wins = 0;
         let losses = 0;
 
+        /*
+         * EVERY BET USES THE SAME winningNumber.
+         */
         rouletteBets.forEach(wager => {
 
             const won =
@@ -4228,15 +3765,18 @@ function spinRoulette() {
                     );
 
                 /*
-                 * Return the original stake
-                 * plus the winnings.
+                 * Return:
+                 *
+                 * original stake
+                 * +
+                 * winnings
                  *
                  * Example:
                  *
-                 * $25 red win:
+                 * $25 RED:
                  * $25 * (1 + 1) = $50
                  *
-                 * $25 number 17 win:
+                 * $25 on 17:
                  * $25 * (35 + 1) = $900
                  */
 
@@ -4253,30 +3793,25 @@ function spinRoulette() {
         });
 
         /*
-         * Add winnings back to balance.
+         * Return winnings.
          */
-
         balance += totalPayout;
 
         updateBalance();
 
         /*
-         * Net result:
-         *
-         * payout - amount originally wagered.
+         * Net result.
          */
-
         const net =
             totalPayout -
             totalBet;
 
-        /*
-         * Display result.
-         */
-
         const colorText =
             winningColor.toUpperCase();
 
+        /*
+         * Show result.
+         */
         if (wins > 0) {
 
             showMessage(
@@ -4302,18 +3837,13 @@ function spinRoulette() {
             );
         }
 
-        /*
-         * Re-enable roulette.
-         */
-
         rouletteSpinning = false;
 
         button.disabled = false;
 
         /*
-         * Clear bets for the next round.
+         * Clear bets for next round.
          */
-
         rouletteBets = [];
 
         pendingRouletteSelection = null;
@@ -4322,7 +3852,7 @@ function spinRoulette() {
 
         updateRouletteBetSlip();
 
-    }, duration + 100);
+    },duration + 100);
 }
 
 
@@ -4338,9 +3868,7 @@ function createWheelNumbers() {
     wheel
         .querySelectorAll(".wheel-number")
         .forEach(element => {
-
             element.remove();
-
         });
 
     const total =
@@ -4352,7 +3880,7 @@ function createWheelNumbers() {
     const radius = 101;
 
     rouletteWheelNumbers.forEach(
-        (number, index) => {
+        (number,index) => {
 
             const angle =
                 index * slice +
@@ -4396,7 +3924,7 @@ function createWheelNumbers() {
                 number;
 
             label.style.transform =
-                `translate(${x}px, ${y}px)`;
+                `translate(${x}px,${y}px)`;
 
             wheel.appendChild(label);
         }
@@ -4423,8 +3951,7 @@ function createRouletteTable() {
     zero.className =
         "roulette-zero";
 
-    zero.textContent =
-        "0";
+    zero.textContent = "0";
 
     zero.onclick = () => {
 
@@ -4628,12 +4155,10 @@ function pullSlots() {
 
     setTimeout(
         () => {
-
             finishSlots(
                 results,
                 amount
             );
-
         },
         2250
     );
@@ -4684,8 +4209,7 @@ function spinReel(
         reel.appendChild(symbol);
     }
 
-    reel.style.transition =
-        "none";
+    reel.style.transition = "none";
 
     reel.style.transform =
         "translateY(0px)";
@@ -4807,7 +4331,6 @@ function showMessage(
         "message";
 
     if (type) {
-
         element.classList.add(type);
     }
 }
@@ -4822,6 +4345,13 @@ createShoe();
 createRouletteTable();
 
 createWheelNumbers();
+
+/*
+ * IMPORTANT:
+ * Generate the actual roulette wheel colors AFTER
+ * the wheel numbers and roulette data exist.
+ */
+createRouletteWheelBackground();
 
 initializeSlots();
 
